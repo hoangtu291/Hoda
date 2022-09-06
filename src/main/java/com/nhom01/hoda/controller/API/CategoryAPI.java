@@ -36,7 +36,7 @@ public class CategoryAPI  extends HttpServlet{
         long id = categoryService.save(categoryModel);
 
         // return object Product json
-        objectMapper.writeValue(response.getOutputStream(), id);
+//        objectMapper.writeValue(response.getOutputStream(), id);
 
     }
     
