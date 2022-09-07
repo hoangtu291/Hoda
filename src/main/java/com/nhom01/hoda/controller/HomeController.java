@@ -20,5 +20,4 @@ public class HomeController extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/views/home.jsp");
         rd.forward(request, response);
     }
-    
 }
