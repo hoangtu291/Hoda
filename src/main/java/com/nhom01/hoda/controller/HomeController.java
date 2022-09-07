@@ -16,7 +16,6 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         RequestDispatcher rd = request.getRequestDispatcher("/views/home.jsp");
         rd.forward(request, response);
     }
