@@ -6,6 +6,7 @@ import com.nhom01.hoda.dao.IUserDao;
 import com.nhom01.hoda.model.UserModel;
 import com.nhom01.hoda.service.IUserService;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.inject.Inject;
 
 public class UserService implements IUserService{
@@ -27,6 +28,11 @@ public class UserService implements IUserService{
         userModel.setCreatedTime(new Timestamp(System.currentTimeMillis()));
         userModel.setModifiedTime(new Timestamp(System.currentTimeMillis()));
         return userDao.save(userModel);
+    }
+
+    @Override
+    public List<UserModel> getAll() {
+        return userDao.getAll();
     }
     
 }

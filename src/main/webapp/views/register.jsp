@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,7 @@
 
         <script src="https://accounts.google.com/gsi/client" async defer></script>
         <div id="g_id_onload"
-             data-client_id="229201671267-s2tejq7006vd2hkvrstj0c06m29jpdlv.apps.googleusercontent.com"
+             data-client_id="323016078986-jhofv2p55ps84etahaaj6g0uvo4dhd1u.apps.googleusercontent.com"
              data-auto_prompt="true"
              data-callback="handleCredentialResponse">
         </div>
@@ -36,14 +37,24 @@
 
     <table class="table table-dark table-striped">
         <thead>
-            <th>STT</th>
-            <th>Avatar</th>
+            <th width="100px">Avatar</th>
             <th>FullName</th>
             <th>Email</th>
-            <th>Birth</th>
-
-
+            <th>Login Type</th>
+            <th>Created Date</th>
         </thead>
+    <tbody>
+        <c:forEach items="${requestScope.USERS}" var="user">
+        
+            <tr>
+                <td><img class="w-100" src="${user.getProfileModel().getAvatar()}"></td>
+                <td><b>${user.getProfileModel().getFullName()}</b></td>
+                <td>${user.getProfileModel().getEmail()}</td>
+                <td>${user.getLoginTypeModel().getName()}</td>
+                <td>${user.getCreatedTime()}</td>
+            </tr>
+        </c:forEach>
+</tbody>
 </table>
 
 <script>

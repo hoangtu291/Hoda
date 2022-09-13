@@ -41,7 +41,12 @@ public class UserAPI extends HttpServlet {
             SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
             java.util.Date utilDate = new java.util.Date();
             try {
-                utilDate = formatter.parse(request.getParameter("birthday"));
+                if(request.getParameter("birthday") != null){
+                    utilDate = formatter.parse(request.getParameter("birthday"));
+                }else{
+                    utilDate = formatter.parse("01/01/2001");
+                }
+                
             } catch (ParseException ex) {
                 Logger.getLogger(UserAPI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -52,8 +57,12 @@ public class UserAPI extends HttpServlet {
             userModel.getProfileModel().setFirstName(request.getParameter("first_name"));
             userModel.getProfileModel().setLastName(request.getParameter("last_name"));
             userModel.getProfileModel().setDateOfBirth(new java.sql.Date(utilDate.getTime()));
-            userModel.getProfileModel().setAddress(request.getParameter("hometown[name]"));
-
+            if(request.getParameter("hometown[name]") == null){
+                userModel.getProfileModel().setAddress("");
+            }
+            else{
+                userModel.getProfileModel().setAddress(request.getParameter("hometown[name]"));
+            }
         }
 
         userModel.getProfileModel().setFullName(request.getParameter("name"));
