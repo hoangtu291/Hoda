@@ -1,8 +1,14 @@
 package com.nhom01.hoda.model;
 
-public class UserModel {
+public class UserModel extends AbstractModel {
+
     private long id;
-    private String fullname;
+    private String socialId;
+    private long loginTypeId;
+    private long profileId;
+
+    private LoginTypeModel loginTypeModel = new LoginTypeModel();
+    private ProfileModel profileModel = new ProfileModel();
 
     public long getId() {
         return id;
@@ -12,12 +18,44 @@ public class UserModel {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getSocialId() {
+        return socialId;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setSocialId(String socialId) {
+        this.socialId = socialId;
     }
-    
+
+    public long getLoginTypeId() {
+        return loginTypeId;
+    }
+
+    public void setLoginTypeId(long loginTypeId) {
+        this.loginTypeId = loginTypeId;
+    }
+
+    public long getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(long profileId) {
+        this.profileId = profileId;
+    }
+
+    public LoginTypeModel getLoginTypeModel() {
+        return loginTypeModel;
+    }
+
+    public void setLoginTypeModel(LoginTypeModel loginTypeModel) {
+        this.loginTypeModel = loginTypeModel;
+    }
+
+    public ProfileModel getProfileModel() {
+        return profileModel;
+    }
+
+    public void setProfileModel(ProfileModel profileModel) {
+        this.profileModel = profileModel;
+    }
+
 }

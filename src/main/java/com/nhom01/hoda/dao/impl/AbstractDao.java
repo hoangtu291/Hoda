@@ -3,6 +3,7 @@ package com.nhom01.hoda.dao.impl;
 import com.nhom01.hoda.dao.IGenericDao;
 import com.nhom01.hoda.mapper.RowMapper;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -77,6 +78,8 @@ public class AbstractDao<T> implements IGenericDao<T>{
                     statement.setTimestamp(index, (Timestamp) parameter);
                 } else if(parameter instanceof Double){
                     statement.setDouble(index, (Double) parameter);
+                }else if(parameter instanceof Date){
+                    statement.setDate(index, (Date) parameter);
                 }
             }
         } catch (SQLException e) {
