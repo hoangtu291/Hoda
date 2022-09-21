@@ -8,6 +8,33 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
+        <script>
+            var request;
+            function sendInfo() {
+
+                if (window.XMLHttpRequest) {
+                    request = new XMLHttpRequest();
+                } else if (window.ActiveXObject) {
+                    request = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                try {
+                    request.onreadystatechange = getInfo;
+
+                } catch (e) {
+                    alert("Unable to connect to server");
+                }
+            }
+
+            function getInfo() {
+                if (request.readyState === 4) {
+                    var val = request.responseText;
+                    ddocument.getElementById('status').innerHTML =val;
+                    
+                }
+            }
+        </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <h1>Hello World!</h1>
 
@@ -128,6 +155,7 @@
 
 
     function login(data, type) {
+        sendInfo();
         data['type'] = type;
 
         $.ajax({

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,7 +38,7 @@
                 if (request.readyState === 4) {
                     var val = request.responseText;
                     document.getElementById('ketqua').innerHTML = val;
-                    $('#rs-image').attr('src',val);
+                    $('#rs-image').attr('src', val);
                 }
             }
         </script>
@@ -53,7 +54,19 @@
         <span id="status"></span>
 
         <span id="ketqua"> </span>
-        
+
+        <!--<textarea rows="5" id="editor"></textarea>-->
+<!--        <div id="editor" style="border: 1px solid; margin-top: 20px;">
+        </div>-->
+
         <img src="" id="rs-image">
+<!--        <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/balloon-block/ckeditor.js"></script>
+        <script>
+                BalloonEditor
+                        .create(document.querySelector('#editor'))
+                        .catch(error => {
+                            console.log("error");
+                        });
+        </script>-->
     </body>
 </html>

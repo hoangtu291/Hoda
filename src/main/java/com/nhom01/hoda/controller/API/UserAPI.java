@@ -71,6 +71,8 @@ public class UserAPI extends HttpServlet {
         userModel.setId(userService.save(userModel));
 
         new ObjectMapper().writeValue(response.getOutputStream(), userModel);
+        response.setContentType("text/plain");
+        response.getWriter().write("/upload/images" + "/");
     }
 
     @Override

@@ -29,5 +29,6 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\model\UserModel.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\utils\HttpUtil.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\IGenericDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\UserAPI.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\UserMapper.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\HomeController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\CategoryDao.java
