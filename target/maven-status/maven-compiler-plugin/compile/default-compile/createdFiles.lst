@@ -1,8 +1,12 @@
 com\nhom01\hoda\dao\impl\ImageDao.class
+com\nhom01\hoda\dao\ICommentDao.class
+com\nhom01\hoda\controller\API\CommentAPI.class
 com\nhom01\hoda\utils\HttpUtil.class
 com\nhom01\hoda\controller\API\UserAPI.class
 com\nhom01\hoda\mapper\PostMapper.class
+com\nhom01\hoda\model\CommentModel.class
 com\nhom01\hoda\dao\impl\AbstractDao.class
+com\nhom01\hoda\mapper\CommentMapper.class
 com\nhom01\hoda\controller\HomeController.class
 com\nhom01\hoda\model\UserModel.class
 com\nhom01\hoda\service\ICategoryService.class
@@ -21,7 +25,9 @@ com\nhom01\hoda\controller\API\PostAPI.class
 com\nhom01\hoda\service\impl\CategoryService.class
 com\nhom01\hoda\mapper\RowMapper.class
 com\nhom01\hoda\dao\IGenericDao.class
+com\nhom01\hoda\dao\impl\CommentDao.class
 com\nhom01\hoda\model\LoginTypeModel.class
+com\nhom01\hoda\service\impl\CommentService.class
 com\nhom01\hoda\model\ProfileModel.class
 com\nhom01\hoda\dao\impl\UserDao.class
 com\nhom01\hoda\model\AbstractModel.class
@@ -34,5 +40,6 @@ com\nhom01\hoda\service\IUserService.class
 com\nhom01\hoda\controller\LoginController.class
 com\nhom01\hoda\dao\impl\PostDao.class
 com\nhom01\hoda\mapper\LoginTypeMapper.class
+com\nhom01\hoda\service\ICommentService.class
 com\nhom01\hoda\mapper\UserMapper.class
 com\nhom01\hoda\dao\ICategoryDao.class

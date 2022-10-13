@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/api-post"})
+@WebServlet(urlPatterns = {"/api-comment"})
 public class CommentAPI extends HttpServlet{
     @Inject
     ICommentService commentService;

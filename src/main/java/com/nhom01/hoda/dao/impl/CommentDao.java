@@ -8,6 +8,6 @@ public class CommentDao extends AbstractDao implements ICommentDao{
     @Override
     public Long save(CommentModel commentModel) {
         String sql = "INSERT INTO comment(content, createdtime, modifiedtime, interactid) VALUES(?, ?, ?, ?);";
-        return insert(sql, commentModel.getContent(), commentModel.getCreatedtime(), commentModel.getModifiedtime(), commentModel.getInteractid());
+        return insert(sql, commentModel.getContent(), commentModel.getCreatedTime(), commentModel.getModifiedTime(), commentModel.getInteractId());
     }
 }
