@@ -29,7 +29,7 @@ public class HomeController extends HttpServlet {
         request.setAttribute("POSTS", postModels);
                 
         
-        RequestDispatcher rd = request.getRequestDispatcher("/views/add_post.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/views/post.jsp");
         rd.forward(request, response);
     }
 }
