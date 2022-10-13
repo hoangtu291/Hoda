@@ -11,11 +11,20 @@ public class PostMapper implements RowMapper<PostModel>{
         try {
             PostModel post = new PostModel();
 
-            post.setId(resultSet.getLong("id"));
+            post.setId(resultSet.getLong("pid"));
+            post.setTitle(resultSet.getString("title"));
             post.setContent(resultSet.getString("content"));
-            post.setImage(resultSet.getString("image"));
-            post.setUserid(resultSet.getLong("userid"));
-            post.setCategoryid(resultSet.getLong("categoryid"));
+            post.setUserid(resultSet.getLong("uid"));
+            post.setCategoryid(resultSet.getLong("cid"));
+            post.setCreatedTime(resultSet.getTimestamp("createdtime"));
+            post.setModifiedTime(resultSet.getTimestamp("modifiedtime"));
+            
+            post.getCategoryModel().setCode(resultSet.getString("ccode"));
+            post.getCategoryModel().setName(resultSet.getString("cname"));
+            
+            post.getUserModel().getProfileModel().setFullName(resultSet.getString("fullname"));
+            post.getUserModel().getProfileModel().setEmail(resultSet.getString("email"));
+            post.getUserModel().getProfileModel().setAvatar(resultSet.getString("avatarimg"));
             
             return post;
         } catch (SQLException e) {

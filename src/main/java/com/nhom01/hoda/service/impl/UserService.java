@@ -34,5 +34,10 @@ public class UserService implements IUserService{
     public List<UserModel> getAll() {
         return userDao.getAll();
     }
+
+    @Override
+    public UserModel findUserBySocialIdAndType(String social, String type) {
+        return userDao.findUserBySocialIdAndType(social, type);
+    }
     
 }

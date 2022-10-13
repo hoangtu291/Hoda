@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/register"})
 @MultipartConfig
 public class LoginController extends HttpServlet {
-    
+
     @Inject
     IUserService userService;
 
@@ -24,21 +24,18 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
-        
+
         List<UserModel> userModels  = userService.getAll();
         
         request.setAttribute("USERS", userModels);
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/register.jsp");
         rd.forward(request, response);
-       
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
 
 //CODE TEST AJAX------------------------------
 //        int a = Integer.parseInt(request.getParameter("a"));
@@ -46,17 +43,23 @@ public class LoginController extends HttpServlet {
 //
 //        response.setContentType("text/plain");
 //
-//        Part part = request.getPart("image");
-//        String realPath = request.getSession().getServletContext().getRealPath("/upload/images");
-//        String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-//        part.write(realPath + "/" + fileName);
-//        String source = realPath + "/" + fileName;
-//        
-//        
-//        realPath = realPath.substring(0, realPath.indexOf("Hoda")+5);
-//        realPath+="src\\main\\webapp\\upload\\images";
-//        realPath = realPath.replace("\\", "/");
-//        FileUtils.copyFile(new File(source), new File(realPath + "/" + fileName));
+//        String fileName = "";
+//
+//        Collection<Part> parts = request.getParts();
+//
+//        for (Part part : parts) {
+//            String realPath = request.getSession().getServletContext().getRealPath("/upload/images");
+//            fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+//
+//            part.write(realPath + "/" + fileName);
+//            String source = realPath + "/" + fileName;
+//
+//            realPath = realPath.substring(0, realPath.indexOf("Hoda") + 5);
+//            realPath += "src\\main\\webapp\\upload\\images";
+//            realPath = realPath.replace("\\", "/");
+//            FileUtils.copyFile(new File(source), new File(realPath + "/" + fileName));
+//
+//        }
 //        response.getWriter().write("/upload/images" + "/" + fileName);
     }
 }

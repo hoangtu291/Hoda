@@ -64,7 +64,7 @@
 
     <table class="table table-dark table-striped">
         <thead>
-            <th width="100px">Avatar</th>
+            <th width="100px">${sessionScope.account.getProfileModel().getEmail()}</th>
             <th>FullName</th>
             <th>Email</th>
             <th>Login Type</th>
@@ -169,6 +169,7 @@
             },
             success: function () {
                 document.getElementById('status').innerHTML = JSON.stringify(data);
+                window.location.href="/home";
 
             },
             error: function () {

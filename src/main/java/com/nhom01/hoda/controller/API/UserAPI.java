@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = {"/api-user"})
 public class UserAPI extends HttpServlet {
@@ -37,30 +38,29 @@ public class UserAPI extends HttpServlet {
             userModel.getProfileModel().setDateOfBirth(Date.valueOf("2001-01-01"));
             userModel.getProfileModel().setAddress("");
         } else if (userModel.getLoginTypeModel().getName().equals("facebook")) {
-            
+
             SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
             java.util.Date utilDate = new java.util.Date();
             try {
-                if(request.getParameter("birthday") != null){
+                if (request.getParameter("birthday") != null) {
                     utilDate = formatter.parse(request.getParameter("birthday"));
-                }else{
+                } else {
                     utilDate = formatter.parse("01/01/2001");
                 }
-                
+
             } catch (ParseException ex) {
                 Logger.getLogger(UserAPI.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             userModel.setSocialId(request.getParameter("id"));
-            
+
             userModel.getProfileModel().setAvatar(request.getParameter("picture[data][url]"));
             userModel.getProfileModel().setFirstName(request.getParameter("first_name"));
             userModel.getProfileModel().setLastName(request.getParameter("last_name"));
             userModel.getProfileModel().setDateOfBirth(new java.sql.Date(utilDate.getTime()));
-            if(request.getParameter("hometown[name]") == null){
+            if (request.getParameter("hometown[name]") == null) {
                 userModel.getProfileModel().setAddress("");
-            }
-            else{
+            } else {
                 userModel.getProfileModel().setAddress(request.getParameter("hometown[name]"));
             }
         }
@@ -68,11 +68,16 @@ public class UserAPI extends HttpServlet {
         userModel.getProfileModel().setFullName(request.getParameter("name"));
         userModel.getProfileModel().setEmail(request.getParameter("email"));
 
-        userModel.setId(userService.save(userModel));
+        if (userService.findUserBySocialIdAndType(userModel.getSocialId(), userModel.getLoginTypeModel().getName()) != null) {
+            userModel = userService.findUserBySocialIdAndType(userModel.getSocialId(), userModel.getLoginTypeModel().getName());
+            HttpSession session = request.getSession();
+            session.setAttribute("account", userModel);
+            new ObjectMapper().writeValue(response.getOutputStream(), "login_successfully");
+        } else {
+            userModel.setId(userService.save(userModel));
 
-        new ObjectMapper().writeValue(response.getOutputStream(), userModel);
-        response.setContentType("text/plain");
-        response.getWriter().write("/upload/images" + "/");
+            new ObjectMapper().writeValue(response.getOutputStream(), "register_successfully");
+        }
     }
 
     @Override

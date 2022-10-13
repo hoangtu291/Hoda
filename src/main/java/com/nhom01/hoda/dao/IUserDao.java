@@ -6,4 +6,6 @@ import java.util.List;
 public interface IUserDao {
     long save(UserModel UserModel);
     List<UserModel> getAll();
+    
+    UserModel findUserBySocialIdAndType(String socialid, String type);
 }
