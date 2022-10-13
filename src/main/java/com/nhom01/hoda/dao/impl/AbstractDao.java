@@ -20,7 +20,7 @@ public class AbstractDao<T> implements IGenericDao<T>{
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/hoda";
             String user = "root";
-            String password = "tu0764";
+            String password = "3g4@ZVPaWd";
             return DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException | SQLException e) {
             return null;
