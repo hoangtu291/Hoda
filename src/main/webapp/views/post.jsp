@@ -354,7 +354,7 @@
                                         <nav class="navbar navbar-expand p-2">
                                             <img src="<c:url value='/template/images/Ellipse 20.png' />" class="d-block rounded-circle" alt=""
                                                  style="height: 28px; width: 28px;">
-                                            <form id="form-comment">
+                                            <form id="form-comment_${post.getId()}">
                                                 <input class="add-comment" name="content" type="text" value=""
                                                        placeholder="Thêm bình luận...">
                                                 <input type="hidden" name="pid" value="${post.getId()}">
@@ -378,7 +378,7 @@
                                                 </li>
 
                                                 <li class="nav-item pe-2">
-                                                    <button class="d-block" id="btn-send">
+                                                    <button class="d-block btn-send" id="btn-send_${post.getId()}">
                                                         <svg>
                                                             <use xlink:href="#icon-send" />
                                                         </svg>

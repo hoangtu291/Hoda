@@ -69,19 +69,18 @@
                 $('body').addClass('modal-active');
             });
 
-            $('#btn-send').click(function (event) {
+            $('.btn-send').click(function (event) {
                 event.preventDefault();
                 //        sendComment();
+                var id = $(this).attr("id");
+                id = id.substring(id.lastIndexOf("_")+1);
+                console.log(id);
                 var data = {};
-                var formData = $('#form-comment').serializeArray();
+                var formData = $('#form-comment_'+id).serializeArray();
                 $.each(formData, function (i, v) {
                     data["" + v.name + ""] = v.value;
                 });
-                //                var dt = new Date();
-                //                var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-                //                document.write(time);
-                //                data["createdTime"] = time;
-                //                data["modifiedTime"] = null;
+
                 console.log(data);
 
                 $.ajax({
@@ -91,8 +90,6 @@
                     data: JSON.stringify(data),
                     dataType: 'json'
                 });
-
-                console.log(data);
             });
 
         </script>

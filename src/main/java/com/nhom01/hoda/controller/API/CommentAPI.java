@@ -7,9 +7,10 @@ package com.nhom01.hoda.controller.API;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhom01.hoda.model.CommentModel;
-import com.nhom01.hoda.utils.HttpUtil;
+import com.nhom01.hoda.service.ICommentService;
 import java.io.IOException;
 import java.util.stream.Collectors;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +21,9 @@ import org.json.simple.JSONValue;
 
 @WebServlet(urlPatterns = {"/api-comment"})
 public class CommentAPI extends HttpServlet {
+    
+    @Inject
+    ICommentService commentService;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +39,12 @@ public class CommentAPI extends HttpServlet {
         
         Object obj = JSONValue.parse(strJson);
         JSONObject jsonObject = (JSONObject) obj;
+        commentModel.getInteractModel().setPostId((Long.parseLong((String) jsonObject.get("pid"))));
+        commentModel.getInteractModel().setUserId((Long.parseLong((String) jsonObject.get("uid"))));
         commentModel.setContent((String) jsonObject.get("content"));
+        
+        
+        commentService.save(commentModel);
         
         
         new ObjectMapper().writeValue(response.getOutputStream(), request.getParameter("content") + " -- "+commentModel.getContent());
