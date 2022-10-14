@@ -35,7 +35,7 @@
                 }
             }
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
         <h1>Hello World!</h1>
 
         <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -83,7 +83,7 @@
         </c:forEach>
 </tbody>
 </table>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 
     function parseJwt(token) {
