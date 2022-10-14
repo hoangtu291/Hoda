@@ -10,12 +10,12 @@
             <ul class="navbar-nav ms-auto" id="header-icon">
                 <li class="nav-item">
                     <div class="nav-link" data-bs-toggle="dropdown" id="nav-user">
-                        <img class="d-block" src="./images/Ellipse 20.png" width="24px" height="24px" alt="">
+                        <img class="d-block" src="<c:url value='/template/images/Ellipse 20.png' />" width="24px" height="24px" alt="">
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                        <img class="d-block" src="./images/Ellipse 20.png" width="24px" height="24px" alt=""></a>
+                        <img class="d-block" src="<c:url value='/template/images/Ellipse 20.png' />" width="24px" height="24px" alt=""></a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="#">Link 1</a></li>
                         <li><a class="dropdown-item" href="#">Link 2</a></li>

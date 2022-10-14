@@ -1,6 +1,6 @@
 const { to, set, registerPlugin } = gsap
 gsap.registerPlugin(MorphSVGPlugin)
-
+gsap.config({trialWarn: false});
 const tabbar = document.querySelector('#tabbar')
 const indicator = tabbar.querySelector('.indicator')
 const listEntries = tabbar.querySelectorAll('li')
