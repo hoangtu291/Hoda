@@ -18,7 +18,12 @@ button {
     border: none;
 }
 
-
+/*CAROUSEL_CONFIG*/
+.carousel-control-next, .carousel-control-prev {
+    bottom: auto;
+    top: 50%;
+    z-index: 0;
+}
 
 header {
     height: 6vh;
@@ -93,19 +98,18 @@ main {
     color: #fff;
 }
 .list-post{
-    border-radius: 12px 12px 0px 0px;
-    background-color: #fff;
+    background-color: #f1f1f1;
 }
 .post{
     /* height: 500px; */
+    margin-bottom: 10px;
     width: 100%;
     background-color: none;
     border-bottom: 1px solid #D9D9D9;
 }
 .header-post{
     height: 12%;
-    /* background-color: #fff; */
-    border-bottom: 1px solid #D9D9D9;
+     background-color: #fff; 
 }
 #list-header{
     list-style: none;
