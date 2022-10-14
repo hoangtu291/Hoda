@@ -13,6 +13,14 @@ public class CommentModel extends AbstractModel{
     private long id;
     private String content;
     private long interactId;
+    private InteractModel interactModel= new InteractModel();
+    public InteractModel getInteractModel() {
+        return interactModel;
+    }
+
+    public void setInteractModel(InteractModel interactModel) {
+        this.interactModel = interactModel;
+    }
 
     public long getId() {
         return id;
