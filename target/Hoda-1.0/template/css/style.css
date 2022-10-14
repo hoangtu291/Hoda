@@ -181,7 +181,7 @@ main {
     justify-content: flex-end;
 }
 
-.modal .head-dialog .add-post--prev, .modal .head-dialog .add-post--next {
+.modal .head-dialog .add-post--prev, .modal .head-dialog .add-post--next{
     position: static;
     width: auto;
     color: black;

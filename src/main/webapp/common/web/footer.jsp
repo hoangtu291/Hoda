@@ -24,13 +24,31 @@
                     </button>
                 </li>
                 <li class="nav-item my-auto active ps-5 pe-5">
-                    <button class="d-block" data-bs-toggle="modal" data-bs-target="#modalContact">
-                        <svg>
-                        <use xlink:href="#icon-plus" />
-                        </svg>
-                        <svg>
-                        <use xlink:href="#icon-plus-filled" />
-                        </svg>
+                    <button class="d-block">
+
+                        <c:if test="${empty sessionScope.account}">
+                            <a href="/register">
+                                <div id="two" class="btn-add-post">
+                                    <svg>
+                                    <use xlink:href="#icon-plus" />
+                                    </svg>
+                                    <svg>
+                                    <use xlink:href="#icon-plus-filled" />
+                                    </svg>
+                                </div>
+                            </a>
+                        </c:if>
+                        <c:if test="${not empty sessionScope.account}">
+                            <div id="two" class="btn-add-post">
+                                    <svg>
+                                    <use xlink:href="#icon-plus" />
+                                    </svg>
+                                    <svg>
+                                    <use xlink:href="#icon-plus-filled" />
+                                    </svg>
+                                </div>
+                        </c:if>
+
                     </button>
                 </li>
                 <li class="nav-item my-auto pe-5">
@@ -104,4 +122,11 @@
             </div>
         </div>
     </div>
+    <script>
+        $('.btn-add-post').click(function () {
+                    var buttonId = $(this).attr('id');
+                    $('#modal-container').removeAttr('class').addClass(buttonId);
+                    $('body').addClass('modal-active');
+                });
+    </script>
 </footer>
