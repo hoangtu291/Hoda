@@ -37,43 +37,49 @@
         <script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
         <script src="<c:url value='/template/js/home.js' />"></script>
-<script>
-//    var request;
-//    function sendComment() {
-//
-//        if (window.XMLHttpRequest) {
-//            request = new XMLHttpRequest();
-//        } else if (window.ActiveXObject) {
-//            request = new ActiveXObject("Microsoft.XMLHTTP");
-//        }
-//    }
-    $('#btn-send').click(function (event){
-        event.preventDefault();
-//        sendComment();
-        var data = {};
-        var formData = $('#form-comment').serializeArray();
-        $.each(formData, function (i, v) {
-            data["" + v.name + ""] = v.value;
-        })
-//                var dt = new Date();
-//                var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-//                document.write(time);
-//                data["createdTime"] = time;
-//                data["modifiedTime"] = null;
-        console.log(data);
+        <script>
 
-        $.ajax({
-            type: "GET",
-            url: "/api-comment",
-            contentType: 'application/json',
-            data: data,
-            dataType: 'json',
-        })
-        
-        console.log(data);
-    });
+            $('.btn-add-post').click(function () {
+                var buttonId = $(this).attr('id');
+                $('#modal-container').removeAttr('class').addClass(buttonId);
+                $('body').addClass('modal-active');
+            });
+        //    var request;
+        //    function sendComment() {
+        //
+        //        if (window.XMLHttpRequest) {
+        //            request = new XMLHttpRequest();
+        //        } else if (window.ActiveXObject) {
+        //            request = new ActiveXObject("Microsoft.XMLHTTP");
+        //        }
+        //    }
+            $('#btn-send').click(function (event) {
+                event.preventDefault();
+        //        sendComment();
+                var data = {};
+                var formData = $('#form-comment').serializeArray();
+                $.each(formData, function (i, v) {
+                    data["" + v.name + ""] = v.value;
+                });
+        //                var dt = new Date();
+        //                var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+        //                document.write(time);
+        //                data["createdTime"] = time;
+        //                data["modifiedTime"] = null;
+                console.log(data);
 
-</script>
+                $.ajax({
+                    type: "POST",
+                    url: "/api-comment",
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    dataType: 'json'
+                });
+
+                console.log(data);
+            });
+
+        </script>
 
     </body>
 </html>

@@ -209,7 +209,7 @@
                                     <nav class="navbar navbar-expand p-2">
                                         <img src="<c:url value='/template/images/Ellipse 20.png' />" class="d-block rounded-circle" alt=""
                                              style="height: 28px; width: 28px;">
-                                        <form action="#" method="get" id="form-comment">
+                                        <form id="form-comment">
                                             <input class="add-comment" name="content" type="text" value=""
                                                    placeholder="Thêm bình luận...">
                                         </form>

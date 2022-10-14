@@ -123,10 +123,6 @@
         </div>
     </div>
     <script>
-        $('.btn-add-post').click(function () {
-                    var buttonId = $(this).attr('id');
-                    $('#modal-container').removeAttr('class').addClass(buttonId);
-                    $('body').addClass('modal-active');
-                });
+        
     </script>
 </footer>
