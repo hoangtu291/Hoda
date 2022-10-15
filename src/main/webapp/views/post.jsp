@@ -21,7 +21,7 @@
                                 <div class="head-dialog">
                                     <div class="person-info d-flex">
                                         <!-- <div class="avatar-person radius-100"></div> -->
-                                        <div class="add-post--prev carousel-control-prev" type="button"
+                                        <div class="add-post--prev carousel-control-prev d-none" type="button"
                                              data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                                             <i class="fa-solid fa-arrow-left"></i>
                                         </div>
@@ -326,26 +326,23 @@
                                     <div class="modal-body">
                                         <div class="comment-post">
                                             <ul class="list-comment p-0 m-0">
-                                                <li class="d-flex flex-row comment-1">
-                                                    <div class="pe-2">
-                                                        <img src="<c:url value='/template/images/Ellipse 20.png' />"
-                                                             class="d-block rounded-circle" alt=""
-                                                             style="height: 30px; width: 30px;">
-                                                    </div>
-                                                    <div class="d-flex flex-column">
-                                                        <!--${sessionScope.account.getProfileModel().getFullName()}-->
-                                                        <div class="user-comment"><b>Nguoi dung 02</b></div>
-                                                        <div class="time-comment">15 phút trước</div>
-                                                        <div class="content-comment">Nội dung bình luận, nội dung bình
-                                                            luận ...
-                                                            Nội dung bình luận, nội dung bình luận ...
-                                                            Nội dung bình luận, nội dung bình luận ...
-                                                            Nội dung bình luận, nội dung bình luận ...
+                                                <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
+                                                    <li class="d-flex flex-row comment-1">
+                                                        <div class="pe-2">
+                                                            <img src="<c:url value='/template/images/Ellipse 20.png' />"
+                                                                 class="d-block rounded-circle" alt=""
+                                                                 style="height: 30px; width: 30px;">
                                                         </div>
-                                                    </div>
+                                                        <div class="d-flex flex-column">
+                                                            <!--${sessionScope.account.getProfileModel().getFullName()}-->
+                                                            <div class="user-comment"><b>Nguoi dung ${interact.getUserId()}</b></div>
+                                                            <div class="time-comment">${interact.getCommentModel().getCreatedTime()}</div>
+                                                            <div class="content-comment">${interact.getCommentModel().getContent()}</div>
+                                                        </div>
 
 
-                                                </li>
+                                                    </li>
+                                                </c:forEach>
 
                                             </ul>
                                         </div>

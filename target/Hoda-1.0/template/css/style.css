@@ -108,6 +108,7 @@ main {
     border-radius: 12px;
     font-weight: 300;
     position: relative;
+    z-index: 100;
 }
 
 #modal-container .modal-background .modal h2 {

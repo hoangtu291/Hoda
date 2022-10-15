@@ -54,7 +54,7 @@
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             $('.list-image').append(`<div class="image-item">
-                                                    <img src="${e.target.result}" alt="" class="w-100">
+                                                    <img src="`+e.target.result+`" alt="" class="w-100">
                                                 </div>`);
                         }
                         reader.readAsDataURL(fileInput.files[i]);
@@ -69,14 +69,21 @@
                 $('body').addClass('modal-active');
             });
 
+            $('.fa-solid.fa-at').click(function () {
+                $('.js-example-basic-multiple').removeClass('d-none');
+                $('.js-example-basic-multiple').select2({
+                    maximumSelectionLength: 2
+                });
+            });
+
             $('.btn-send').click(function (event) {
                 event.preventDefault();
                 //        sendComment();
                 var id = $(this).attr("id");
-                id = id.substring(id.lastIndexOf("_")+1);
+                id = id.substring(id.lastIndexOf("_") + 1);
                 console.log(id);
                 var data = {};
-                var formData = $('#form-comment_'+id).serializeArray();
+                var formData = $('#form-comment_' + id).serializeArray();
                 $.each(formData, function (i, v) {
                     data["" + v.name + ""] = v.value;
                 });
@@ -104,7 +111,7 @@
 
                 window.emojiPicker = new EmojiPicker({
                     emojiable_selector: '[data-emojiable=true]',
-                    assetsPath: './lib/img/',
+                    assetsPath: '/template/lib/img',
                     popupButtonClasses: 'fa-regular fa-face-smile-wink'
                 });
                 window.emojiPicker.discover()

@@ -5,6 +5,16 @@ public class InteractModel {
     private long postId;
     private long userId;
     
+    private CommentModel commentModel = new CommentModel();
+
+    public CommentModel getCommentModel() {
+        return commentModel;
+    }
+
+    public void setCommentModel(CommentModel commentModel) {
+        this.commentModel = commentModel;
+    }
+    
     public long getId() {
         return id;
     }

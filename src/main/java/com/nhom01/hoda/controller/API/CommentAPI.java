@@ -7,6 +7,7 @@ package com.nhom01.hoda.controller.API;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhom01.hoda.model.CommentModel;
+import com.nhom01.hoda.model.InteractModel;
 import com.nhom01.hoda.service.ICommentService;
 import java.io.IOException;
 import java.util.stream.Collectors;
@@ -35,16 +36,22 @@ public class CommentAPI extends HttpServlet {
 
         CommentModel commentModel = new CommentModel();
         
+        InteractModel interactModel = new InteractModel();
+        
         String strJson = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         
         Object obj = JSONValue.parse(strJson);
         JSONObject jsonObject = (JSONObject) obj;
-        commentModel.getInteractModel().setPostId((Long.parseLong((String) jsonObject.get("pid"))));
-        commentModel.getInteractModel().setUserId((Long.parseLong((String) jsonObject.get("uid"))));
-        commentModel.setContent((String) jsonObject.get("content"));
+//        commentModel.getInteractModel().setPostId((Long.parseLong((String) jsonObject.get("pid"))));
+//        commentModel.getInteractModel().setUserId((Long.parseLong((String) jsonObject.get("uid"))));
+//        commentModel.setContent((String) jsonObject.get("content"));
+
+        interactModel.setPostId((Long.parseLong((String) jsonObject.get("pid"))));
+        interactModel.setUserId((Long.parseLong((String) jsonObject.get("uid"))));
+        interactModel.getCommentModel().setContent((String) jsonObject.get("content"));
         
         
-        commentService.save(commentModel);
+        commentService.save(interactModel);
         
         
         new ObjectMapper().writeValue(response.getOutputStream(), request.getParameter("content") + " -- "+commentModel.getContent());
