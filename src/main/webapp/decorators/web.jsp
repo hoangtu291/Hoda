@@ -54,7 +54,7 @@
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             $('.list-image').append(`<div class="image-item">
-                                                    <img src="`+e.target.result+`" alt="" class="w-100">
+                                                    <img src="` + e.target.result + `" alt="" class="w-100">
                                                 </div>`);
                         }
                         reader.readAsDataURL(fileInput.files[i]);
@@ -97,6 +97,41 @@
                     data: JSON.stringify(data),
                     dataType: 'json'
                 });
+            });
+
+
+            //ADDPOST AJAX
+            $('#btn-submit-addPost').click(function (e) {
+                e.preventDefault();
+
+                var data = new FormData();
+                data = $('#form-addPost').serializeArray();
+
+                var formData = new FormData();
+                $.each(data, function (i, v) {
+                    formData.append("" + v.name + "", v.value);
+                });
+                for (var i = 0; i < $("#images").get(0).files.length; i++) {
+                    var varA = $("#images").get(0).files[i];
+                    formData.append("image" + i, varA);
+                }
+                $.ajax({
+                    url: "/api-post",
+                    method: "POST",
+                    processData: false,
+                    mimeType: "multipart/form-data",
+                    contentType: false,
+                    data: formData,
+                    success: function () {
+                        alert("jsdhfkshd");
+                        window.location.href = "/home";
+                    },
+                    error:function () {
+                        window.location.href = "/home";
+                    }
+
+                });
+                $('#form-addPost').submit();
             });
 
         </script>

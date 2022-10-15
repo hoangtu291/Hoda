@@ -23,7 +23,7 @@ category.sort();
 var i = 1;
 category.forEach(cate => {
     $('.list-topic').append(`<div class="col box-topic">
-                                            <input type="radio" id="control_${i}" name="select" value="${i}">
+                                            <input type="radio" id="control_${i}" name="categoryid" value="${i}">
                                             <label class="text-nowrap" for="control_${i}">
                                                 ${cate}
                                             </label>

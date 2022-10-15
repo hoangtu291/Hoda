@@ -100,7 +100,7 @@
                             });
             </script>-->
 
-    <!--        <script>
+            <script>
                 $('#btn-submit').click(function (e) {
                     e.preventDefault();
     //                var data = {};
@@ -118,7 +118,7 @@
     //                }
     
                     $.ajax({
-                        url: "/register",
+                        url: "/api-post",
                         method: "POST",
                         processData: false,
                         contentType: 'multipart/form-data',
@@ -129,6 +129,6 @@
                     $('#form').submit();
                 });
     
-            </script>-->
+            </script>
 </body>
 </html>

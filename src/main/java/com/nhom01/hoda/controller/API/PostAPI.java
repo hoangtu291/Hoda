@@ -36,7 +36,7 @@ public class PostAPI extends HttpServlet {
 //        Part part = request.getPart("image");
         int i = 0;
         for (Part part : parts) {
-            if (part.getName().equals("image")) {
+            if (part.getName().substring(0,5).equals("image")) {
                 String realPath = request.getSession().getServletContext().getRealPath("/upload/images");
                 String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
                 part.write(realPath + "/" + fileName);
