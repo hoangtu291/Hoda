@@ -8,4 +8,7 @@
     <decorator name="web" page="web.jsp">
         <pattern>/*</pattern>
     </decorator>
+    <decorator name="login" page="">
+        <pattern>/register</pattern>
+    </decorator>
 </decorators>

@@ -6,6 +6,7 @@
 package com.nhom01.hoda.dao;
 
 import com.nhom01.hoda.model.CategoryModel;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,5 @@ import com.nhom01.hoda.model.CategoryModel;
  */
 public interface ICategoryDao {
     Long save(CategoryModel categoryModel);
+    List<CategoryModel> getAll();
 }

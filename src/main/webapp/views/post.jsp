@@ -50,6 +50,15 @@
 
                                         <!-- <div class="list-topic"> -->
                                         <div class="row list-topic">
+                                            <c:forEach items="${requestScope.CATEGORIES}" var="category">
+<!--                        <li class="nav-item"><button class="d-block">${category.getName()}</button></li>-->
+                                                <div class="col box-topic">
+                                                    <input type="radio" id="control_${category.getId()}" name="categoryid" value="${category.getId()}">
+                                                    <label class="text-nowrap" for="control_${category.getId()}">
+                                                        ${category.getName()}
+                                                    </label>
+                                                </div>
+                                            </c:forEach>
                                         </div>
                                         <!-- </div> -->
                                     </div>
@@ -135,13 +144,17 @@
         <div class="container-fluid p-0 ps-2" id="category">
             <h5 class="p-0 pt-2">Thể loại</h5>
             <nav class="navbar navbar-expand p-0">
-                <ul class="navbar-nav gap-1 me-auto" id="list-category">
-                    <li class="nav-item"><button class="d-block">Tất cả</button></li>
-                    <li class="nav-item"><button class="d-block">Chủ đề 1</button></li>
-                    <li class="nav-item"><button class="d-block">Chủ đề 2</button></li>
-                    <li class="nav-item"><button class="d-block">Chủ đề 3</button></li>
-                    <li class="nav-item"><button class="d-block">Chủ đề 4</button></li>
-                    <li class="nav-item"><button class="d-block">Chủ đề 5</button></li>
+                <ul class="navbar-nav gap-1 me-auto list-topic d-flex" id="list-category">
+                    <c:forEach items="${requestScope.CATEGORIES}" var="category">
+    <!--                        <li class="nav-item"><button class="d-block">${category.getName()}</button></li>-->
+                        <div class="col box-topic">
+                            <input type="radio" id="control_${category.getId()}" name="categoryid" value="${category.getId()}">
+                            <label class="text-nowrap" for="control_${category.getId()}">
+                                ${category.getName()}
+                            </label>
+                        </div>
+                    </c:forEach>
+
                 </ul>
             </nav>
         </div>
@@ -198,12 +211,12 @@
                         <h6>${post.getTitle()}</h6>
                         <p>
                             ${post.getContent()}
-                            <a data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false"
-                               aria-controls="collapseExample">
+                            <a data-bs-toggle="collapse" href="#collapseContent_${post.getId()}" aria-expanded="false"
+                               aria-controls="collapseContent_${post.getId()}">
                                 Xem thêm
                             </a>
                         </p>
-                        <div class="collapse" id="collapseExample">
+                        <div class="collapse" id="collapseContent_${post.getId()}">
                             <div class="card card-body" style="width:100%; margin: 0; padding: 0; border: 0;">
                                 Some placeholder content for the collapse component. This panel is hidden by default but
                                 revealed when the user activates the relevant trigger.
@@ -211,28 +224,30 @@
                         </div>
                     </div>
                     <div class="image-post">
-                        <div id="carouselImagePost_${post.getId()}" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
-                                    <button type="button" data-bs-target="#carouselImagePost_${post.getId()}" data-bs-slide-to="${loop.index}" class="<c:if test="${loop.index == 1}">active</c:if>" aria-current="true" aria-label="Slide 1"></button>
-                                </c:forEach>
+                        <c:if test="${not empty post.getImageModels()}">
+                            <div id="carouselImagePost_${post.getId()}" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
+                                        <button type="button" data-bs-target="#carouselImagePost_${post.getId()}" data-bs-slide-to="${loop.index}" class="<c:if test="${loop.index == 1}">active</c:if>" aria-current="true" aria-label="Slide 1"></button>
+                                    </c:forEach>
+                                </div>
+                                <div class="carousel-inner">
+                                    <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
+                                        <div class="carousel-item <c:if test="${loop.index == 1}">active</c:if>" data-bs-interval="10000">
+                                            <img src="${imgPost.getUrl()}" class="d-block w-100" alt="...">
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
-                            <div class="carousel-inner">
-                                <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
-                                    <div class="carousel-item <c:if test="${loop.index == 1}">active</c:if>" data-bs-interval="10000">
-                                        <img src="${imgPost.getUrl()}" class="d-block w-100" alt="...">
-                                    </div>
-                                </c:forEach>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
+                        </c:if>
                     </div>
                     <div class="interact-post d-flex flex-row p-2">
                         <div class="d-flex justify-content-start">

@@ -8,16 +8,24 @@ package com.nhom01.hoda.service.impl;
 import com.nhom01.hoda.dao.ICategoryDao;
 import com.nhom01.hoda.model.CategoryModel;
 import com.nhom01.hoda.service.ICategoryService;
+import java.util.List;
 import javax.inject.Inject;
 
 public class CategoryService implements ICategoryService{
 
     @Inject
-    ICategoryDao category;
+    ICategoryDao categoryDao;
     
     @Override
     public Long save(CategoryModel categoryModel) {
-        return category.save(categoryModel);
+        return categoryDao.save(categoryModel);
     }
+
+    @Override
+    public List<CategoryModel> getAll() {
+        return categoryDao.getAll();
+    }
+    
+    
     
 }

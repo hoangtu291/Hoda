@@ -25,9 +25,9 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
 
-        List<UserModel> userModels  = userService.getAll();
-        
-        request.setAttribute("USERS", userModels);
+//        List<UserModel> userModels  = userService.getAll();
+//        
+//        request.setAttribute("USERS", userModels);
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/register.jsp");
         rd.forward(request, response);
