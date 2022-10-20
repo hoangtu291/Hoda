@@ -75,8 +75,11 @@ public class UserAPI extends HttpServlet {
             new ObjectMapper().writeValue(response.getOutputStream(), "login_successfully");
         } else {
             userModel.setId(userService.save(userModel));
-
-            new ObjectMapper().writeValue(response.getOutputStream(), "register_successfully");
+            
+//            Tạm
+            HttpSession session = request.getSession();
+            session.setAttribute("account", userModel);
+            new ObjectMapper().writeValue(response.getOutputStream(), userModel.getId());
         }
     }
 

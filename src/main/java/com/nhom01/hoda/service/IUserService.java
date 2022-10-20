@@ -8,4 +8,5 @@ public interface IUserService {
     List<UserModel> getAll();
     
     UserModel findUserBySocialIdAndType(String social, String type);
+    UserModel findUserById(Long id);
 }

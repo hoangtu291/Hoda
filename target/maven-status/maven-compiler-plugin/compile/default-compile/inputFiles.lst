@@ -13,6 +13,7 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\CommentService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\UserService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\AbstractDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\model\AbstractModel.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\InfoController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\CategoryService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\ICommentDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\CategoryAPI.java
@@ -42,6 +43,7 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\UserDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\model\LoginTypeModel.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\RowMapper.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\PostAPI.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\PersonalController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\PostDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\IUserDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\ProfileDao.java

@@ -14,6 +14,7 @@ com\nhom01\hoda\mapper\RowMapper.class
 com\nhom01\hoda\dao\IGenericDao.class
 com\nhom01\hoda\dao\impl\CommentDao.class
 com\nhom01\hoda\model\ProfileModel.class
+com\nhom01\hoda\controller\PersonalController.class
 com\nhom01\hoda\model\ImageModel.class
 com\nhom01\hoda\model\CategoryModel.class
 com\nhom01\hoda\dao\impl\CategoryDao.class
@@ -22,6 +23,7 @@ com\nhom01\hoda\dao\ICategoryDao.class
 com\nhom01\hoda\mapper\InteractMapper.class
 com\nhom01\hoda\dao\impl\ImageDao.class
 com\nhom01\hoda\utils\HttpUtil.class
+com\nhom01\hoda\controller\InfoController.class
 com\nhom01\hoda\controller\API\UserAPI.class
 com\nhom01\hoda\mapper\PostMapper.class
 com\nhom01\hoda\model\InteractModel.class

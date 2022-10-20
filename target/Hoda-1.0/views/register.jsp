@@ -10,7 +10,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
 
-        
+
     </head>
     <body>
 
@@ -44,27 +44,27 @@
         </script>
 
         <script src="https://accounts.google.com/gsi/client" async defer></script>
-<!--        <div id="g_id_onload"
-             data-client_id="323016078986-jhofv2p55ps84etahaaj6g0uvo4dhd1u.apps.googleusercontent.com"
-             data-auto_prompt="true"
-             data-callback="handleCredentialResponse">
-        </div>-->
+        <!--        <div id="g_id_onload"
+                     data-client_id="323016078986-jhofv2p55ps84etahaaj6g0uvo4dhd1u.apps.googleusercontent.com"
+                     data-auto_prompt="true"
+                     data-callback="handleCredentialResponse">
+                </div>-->
 
         <script src="https://accounts.google.com/gsi/client" async defer></script>
         <script>
-              window.onload = function () {
-                  google.accounts.id.initialize({
-                      client_id: "323016078986-jhofv2p55ps84etahaaj6g0uvo4dhd1u.apps.googleusercontent.com",
-                      callback: handleCredentialResponse
-                  });
-                  google.accounts.id.renderButton(
-                          document.getElementById("buttonDiv"),
-                          {theme: "outline", size: "large", width:"700px", shape:"circle"}  // customization attributes
-                  );
-                  google.accounts.id.prompt(); // also display the One Tap dialog
-              }
+            window.onload = function () {
+                google.accounts.id.initialize({
+                    client_id: "323016078986-jhofv2p55ps84etahaaj6g0uvo4dhd1u.apps.googleusercontent.com",
+                    callback: handleCredentialResponse
+                });
+                google.accounts.id.renderButton(
+                        document.getElementById("buttonDiv"),
+                        {theme: "outline", size: "large", width: "700px", shape: "circle"}  // customization attributes
+                );
+                google.accounts.id.prompt(); // also display the One Tap dialog
+            }
         </script>
-        
+
 
         <div class="background-1"></div>
         <div class="background-2"></div>
@@ -179,9 +179,13 @@
                     beforeSend: function () {
                         document.getElementById('status').innerHTML = "Đang kiểm tra đăng nhập.....";
                     },
-                    success: function () {
+                    success: function (data, textStatus, jqXHR) {
                         document.getElementById('status').innerHTML = JSON.stringify(data);
-                        window.location.href = "/home";
+                        if(data ==="login_successfully"){
+                            window.location.href = "/home";
+                        } else{
+                            window.location.href = "/update/info?id="+data;
+                        }
 
                     },
                     error: function () {

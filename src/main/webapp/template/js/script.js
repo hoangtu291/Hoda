@@ -19,6 +19,12 @@ $('.btn-add-post').click(function () {
     $('body').addClass('modal-active');
 });
 
+$('.btn-close').click(function () {
+    $('#modal-container').addClass('out');
+    $('body').removeClass('modal-active');
+    $('.icon-plus').removeClass("active");
+});
+
 $('.fa-solid.fa-at').click(function () {
     $('.js-example-basic-multiple').removeClass('d-none');
     $('.js-example-basic-multiple').select2({

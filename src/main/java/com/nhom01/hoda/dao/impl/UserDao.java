@@ -34,4 +34,15 @@ public class UserDao extends AbstractDao<UserModel> implements IUserDao {
         return userModels.size() > 0 ? userModels.get(0) : null;
     }
 
+    @Override
+    public UserModel findUserById(Long id) {
+        String sql = "SELECT user.id as uid, profile.id as pfid, login_type.id as lgid," +
+                    " socialid, createdtime, modifiedtime, fullname, email, avatarimg, login_type.name as lgname" +
+                    " FROM user INNER JOIN profile ON user.profileid=profile.id" +
+                    " INNER JOIN login_type ON user.type_accountid = login_type.id" +
+                    " WHERE user.id=?";
+        List<UserModel> userModels = query(sql, new UserMapper(), id);
+        return userModels.size() > 0 ? userModels.get(0) : null;
+    }
+
 }

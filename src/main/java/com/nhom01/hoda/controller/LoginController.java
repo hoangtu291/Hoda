@@ -1,9 +1,7 @@
 package com.nhom01.hoda.controller;
 
-import com.nhom01.hoda.model.UserModel;
 import com.nhom01.hoda.service.IUserService;
 import java.io.IOException;
-import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

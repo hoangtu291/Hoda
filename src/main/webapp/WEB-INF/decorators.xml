@@ -11,4 +11,8 @@
     <decorator name="login" page="">
         <pattern>/register</pattern>
     </decorator>
+    
+    <decorator name="updateInfo" page="">
+        <pattern>/update/info</pattern>
+    </decorator>
 </decorators>

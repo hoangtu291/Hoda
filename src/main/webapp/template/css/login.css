@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-main {
+body {
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
@@ -83,4 +83,100 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     clip: auto;
+}
+
+/* INFO-PERSON */
+
+.info-person {
+    width: 100%;
+    height: 200px;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+
+    /* margin: 0px 12px; */
+}
+
+.info-person .main-info {
+    width: 100%;
+    /* background-color: gray; */
+}
+
+.info-person .main-info .info-top {
+    width: 100%;
+    height: 100px;
+    /* background-color: plum; */
+    display: flex;
+    align-items: center;
+}
+
+.info-person .main-info .left-side {
+    width: 85px;
+    height: 85px;
+    /* background-color: gray; */
+    margin-right: 20px;
+}
+
+.info-person .main-info .img-person {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
+    border: 1px solid #787878;
+}
+
+.info-person .main-info .update-info {
+    width: 100%;
+    height: 50px;
+    /* background-color: greenyellow; */
+    display: flex;
+    align-items: center;
+}
+
+.info-person .main-info .right-side {
+    width: fit-content;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.info-person .main-info .person-name {
+    width: fit-content;
+}
+
+.info-person .main-info .person-name input {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+
+
+.gender-select label {
+    user-select: none;
+}
+
+.gender-select input[type="radio"] {
+    display: none;
+}
+
+.gender-select input[type="radio"]+label {
+    z-index: 10;
+    margin: 0 10px 10px 0;
+    position: relative;
+    color: #ced4da;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+    font-weight: bold;
+    background-color: #ffffff;
+    border: 2px solid #ced4da;
+    cursor: pointer;
+    transition: all 200ms ease;
+}
+
+.gender-select input[type="radio"]:checked+label {
+    color: #495057;
+    background-color: #ced4da;
+}
+
+.gender-select input[type="radio"]+label {
+    padding: 5px 20px;
+    border-radius: 10px;
 }

@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <footer>
-    <nav class="navbar navbar-expand bg-light fixed-bottom p-0" id="footer-nav">
-        <div class="container-fluid" id="tabbar">
-            <ul class="navbar-nav mx-auto" id="footer-icon">
-                <li class="nav-item my-auto">
-                    <button class="d-block">
-                        <svg>
-                        <use xlink:href="#icon-home" />
-                        </svg>
-                        <svg>
-                        <use xlink:href="#icon-home-filled" />
-                        </svg>
-                    </button>
+    <nav class="navbar navbar-expand fixed-bottom p-0" id="footer-nav">
+        <div class="container-fluid" id="tabbar" style="height: 100%">
+            <ul class="navbar-nav mx-auto" id="footer-icon" style="height: 100%">
+                <li class="nav-item my-auto icon-home">
+                    <a href="/home">
+                        <button class="d-block">
+                            <svg>
+                            <use xlink:href="#icon-home" />
+                            </svg>
+                            <svg>
+                            <use xlink:href="#icon-home-filled" />
+                            </svg>
+                        </button>
+                    </a>
                 </li>
                 <li class="nav-item my-auto ps-5">
                     <button class="d-block">
@@ -23,7 +25,7 @@
                         </svg>
                     </button>
                 </li>
-                <li class="nav-item my-auto active ps-5 pe-5">
+                <li class="nav-item my-auto ps-5 pe-5 icon-plus">
                     <button class="d-block">
 
                         <c:if test="${empty sessionScope.account}">
@@ -32,7 +34,7 @@
                                     <svg>
                                     <use xlink:href="#icon-plus" />
                                     </svg>
-                                    <svg>
+                                    <svg style="width: 31px">
                                     <use xlink:href="#icon-plus-filled" />
                                     </svg>
                                 </div>
@@ -40,13 +42,13 @@
                         </c:if>
                         <c:if test="${not empty sessionScope.account}">
                             <div id="two" class="btn-add-post">
-                                    <svg>
-                                    <use xlink:href="#icon-plus" />
-                                    </svg>
-                                    <svg>
-                                    <use xlink:href="#icon-plus-filled" />
-                                    </svg>
-                                </div>
+                                <svg>
+                                <use xlink:href="#icon-plus" />
+                                </svg>
+                                <svg style="width: 31px">
+                                <use xlink:href="#icon-plus-filled" />
+                                </svg>
+                            </div>
                         </c:if>
 
                     </button>
@@ -61,15 +63,17 @@
                         </svg>
                     </button>
                 </li>
-                <li class="nav-item my-auto">
-                    <button class="d-block">
-                        <svg>
-                        <use xlink:href="#icon-user" />
-                        </svg>
-                        <svg>
-                        <use xlink:href="#icon-user-filled" />
-                        </svg>
-                    </button>
+                <li class="nav-item my-auto icon-user">
+                    <a href="/personal?id=${sessionScope.account.getId()}">
+                        <button class="d-block">
+                            <svg>
+                            <use xlink:href="#icon-user" />
+                            </svg>
+                            <svg>
+                            <use xlink:href="#icon-user-filled" />
+                            </svg>
+                        </button>
+                    </a>
                 </li>
             </ul>
             <svg class="indicator" viewBox="0 0 68 72"></svg>
@@ -122,7 +126,4 @@
             </div>
         </div>
     </div>
-    <script>
-        
-    </script>
 </footer>

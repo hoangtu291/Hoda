@@ -8,4 +8,5 @@ public interface IUserDao {
     List<UserModel> getAll();
     
     UserModel findUserBySocialIdAndType(String socialid, String type);
+    UserModel findUserById(Long id);
 }

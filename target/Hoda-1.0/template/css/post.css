@@ -1,0 +1,130 @@
+.list-post{
+    background-color: #f1f1f1;
+}
+.post{
+    /* height: 500px; */
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: none;
+    border-bottom: 1px solid #D9D9D9;
+}
+button {
+    color: #fff;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+.header-post{
+    height: 12%;
+    background-color: #fff;
+}
+#list-header{
+    list-style: none;
+    font-size: 18px;
+    background-color: #fff;
+}
+.header-post ul li button svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    fill: #3D3D3D;
+}
+.header-post h5{
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+.header-post h6{
+    font-size: 14px;
+    color: #1D9000;
+    margin: 0;
+}
+.header-post p{
+    font-size: 11px;
+    margin: 0;
+    font-weight: 600;
+    color: #aaa;
+}
+.content-post{
+    /* height: 50px; */
+    background-color: #fff;
+}
+.content-post p{
+    margin: 0;
+}
+.image-post{
+    background-color: #3D3D3D;
+}
+.interact-post{
+    /* height: 10%; */
+    background-color: #fff;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.interact-post button svg, .interact-post button .material-symbols-outlined{
+    /* display: block; */
+    width: 24px;
+    height: 24px;
+    color: #1d9000;
+    /*fill: #1D9000;*/
+} 
+
+.interact-post button i {
+    /* display: block; */
+    width: 24px;
+    height: 24px;
+    font-size: 20px;
+    color: #1d9000;
+    border: 0.1 solid white
+    /*fill: #1D9000;*/
+}
+
+.interact-post p{
+    margin: 0;
+}
+.footer-post{
+    /* height: 10%; */
+    background-color: #fff;
+}
+.footer-post button svg{
+    width: 24px;
+    height: 24px;
+    fill: #1D9000;
+}
+.footer-post p{
+    margin: 0;
+    font-size: 14px;
+    color: #3D3D3D;
+}
+.add-comment{
+    border: 0;
+}
+.footer-post .modal-content {
+    height: 400px;
+    border-radius: 14px 14px 0px 0px;
+}
+.footer-post .modal-dialog{
+    margin: 0;
+}
+.footer-post .modal-footer{
+    display: block;
+}
+.comment-post .time-comment{
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+.comment-post .user-comment{
+    margin: 0;
+    padding: 0;
+    line-height: 1.0;
+}
+.comment-post .content-comment{
+    text-align: justify;
+}
+.list-header{
+    list-style: none;
+    font-size: 18px;
+    background-color: #fff;
+}

@@ -3,7 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
+        
         <title><dec:title default="Home" /></title>
+        <!--<meta name="color-scheme" content="dark"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--<link rel="shortcut icon" href="<c:url value='/template/images/Logo_Xanh.png' />" type="images/vnd.microsoft.icon">-->
@@ -11,12 +13,17 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link href="../template/lib/css/emoji.css" rel="stylesheet">
-        <link rel="stylesheet" href="../template/css/style.css">
-        <link rel="stylesheet" href="<c:url value='/template/css/home.css' />">
+        <link rel="stylesheet" href="<c:url value='/template/css/style.css' />">
+        <link rel="stylesheet" href="<c:url value='/template/css/header.css' />">
+        <link rel="stylesheet" href="<c:url value='/template/css/footer.css' />">
+        <dec:head/>
+<!--        <link rel="stylesheet" href="<c:url value='/template/css/post.css' />">
+        <link rel="stylesheet" href="<c:url value='/template/css/home.css' />">-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
         <link
             href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
             rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
 
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     </head>
@@ -44,7 +51,7 @@
         <script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
         <script src="<c:url value='/template/js/home.js' />"></script>
-        
+
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="../template/js/script.js"></script>
 
@@ -61,8 +68,15 @@
                     assetsPath: '/template/lib/img',
                     popupButtonClasses: 'fa-regular fa-face-smile-wink'
                 });
-                window.emojiPicker.discover()
+                window.emojiPicker.discover();
             });
+
+            var pathname = window.location.pathname;
+            if (pathname.indexOf("home") !== -1) {
+                $('.icon-home').addClass("active");
+            } else if (pathname.indexOf("personal") !== -1) {
+                $('.icon-user').addClass("active");
+            }
         </script>
     </body>
 </html>
