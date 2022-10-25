@@ -51,8 +51,25 @@ $('.btn-send').click(function (event) {
         url: "/api-comment",
         contentType: 'application/json',
         data: JSON.stringify(data),
-        dataType: 'json'
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+//            console.log(data.userModel);
+            $('.list-comment').prepend(`<li class="d-flex flex-row comment-1">
+                                                        <div class="pe-2">
+                                                            <img src="${data.userModel.profileModel.avatar}"
+                                                                 class="d-block rounded-circle" alt=""
+                                                                 style="height: 30px; width: 30px;">
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                            <div class="user-comment"><b>${data.userModel.profileModel.fullName}</b></div>
+                                                            <div class="time-comment">bây giờ</div>
+                                                            <div class="content-comment">${data.commentModel.content}</div>
+                                                        </div>
+                                                    </li>`);
+            $('#form-comment_' + id)[0].reset();
+        }
     });
+    
 });
 
 

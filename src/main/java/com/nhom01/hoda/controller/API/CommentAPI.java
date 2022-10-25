@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhom01.hoda.model.CommentModel;
 import com.nhom01.hoda.model.InteractModel;
 import com.nhom01.hoda.service.ICommentService;
+import com.nhom01.hoda.service.IUserService;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
@@ -25,6 +26,9 @@ public class CommentAPI extends HttpServlet {
     
     @Inject
     ICommentService commentService;
+    
+    @Inject
+    IUserService userService;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -53,8 +57,9 @@ public class CommentAPI extends HttpServlet {
         
         commentService.save(interactModel);
         
+        interactModel.setUserModel(userService.findUserById(interactModel.getUserId()));
         
-        new ObjectMapper().writeValue(response.getOutputStream(), request.getParameter("content") + " -- "+commentModel.getContent());
+        new ObjectMapper().writeValue(response.getOutputStream(), interactModel);
     }
 
 }

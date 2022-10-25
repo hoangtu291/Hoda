@@ -20,6 +20,11 @@ public class InteractMapper implements RowMapper<InteractModel>{
             interactModel.getCommentModel().setCreatedTime(resultSet.getTimestamp("cmtcreatedtime"));
             interactModel.getCommentModel().setModifiedTime(resultSet.getTimestamp("cmtmodifiedtime"));
             
+            interactModel.getUserModel().setId(interactModel.getUserId());
+            interactModel.getUserModel().getProfileModel().setFullName(resultSet.getString("fullname"));
+            interactModel.getUserModel().getProfileModel().setAvatar(resultSet.getString("avatarimg"));
+            interactModel.getUserModel().getProfileModel().setEmail(resultSet.getString("email"));
+            
             return interactModel;
         } catch (SQLException e) {
             return null;

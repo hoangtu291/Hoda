@@ -342,7 +342,7 @@
                             </button>
                         </div>
                         <div id="modalComment_pid_${post.getId()}" class="modal fade" role="dialog" tabindex="-1">
-                            <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-dialog modal-dialog-centered mx-auto p-0">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5>Bình luận</h5>
@@ -354,13 +354,13 @@
                                                 <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
                                                     <li class="d-flex flex-row comment-1">
                                                         <div class="pe-2">
-                                                            <img src="<c:url value='/template/images/Ellipse 20.png' />"
+                                                            <img src="<c:url value='${interact.getUserModel().getProfileModel().getAvatar()}' />"
                                                                  class="d-block rounded-circle" alt=""
                                                                  style="height: 30px; width: 30px;">
                                                         </div>
                                                         <div class="d-flex flex-column">
                                                             <!--${sessionScope.account.getProfileModel().getFullName()}-->
-                                                            <div class="user-comment"><b>Nguoi dung ${interact.getUserId()}</b></div>
+                                                            <div class="user-comment"><b>${interact.getUserModel().getProfileModel().getFullName()}</b></div>
                                                             <div class="time-comment">${interact.getCommentModel().getCreatedTime()}</div>
                                                             <div class="content-comment">${interact.getCommentModel().getContent()}</div>
                                                         </div>

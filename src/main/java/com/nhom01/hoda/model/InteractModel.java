@@ -6,7 +6,17 @@ public class InteractModel {
     private long userId;
     
     private CommentModel commentModel = new CommentModel();
+    private UserModel userModel = new UserModel();
 
+    public UserModel getUserModel() {
+        return userModel;
+    }
+
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
+    }
+
+    
     public CommentModel getCommentModel() {
         return commentModel;
     }

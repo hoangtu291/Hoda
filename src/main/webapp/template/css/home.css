@@ -10,6 +10,27 @@ body {
     color: #1D9000;
 }
 
+/* width */
+::-webkit-scrollbar {
+    height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #1d9000; 
+}
+
 button {
     color: #fff;
     background-color: #fff;

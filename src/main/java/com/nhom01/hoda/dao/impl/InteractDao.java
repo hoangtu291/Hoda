@@ -14,10 +14,11 @@ public class InteractDao extends AbstractDao<InteractModel> implements IInteract
 
     @Override
     public List<InteractModel> getAllInteractOfPost(long pid) {
-        String sql = "SELECT interact.id as interactid, postid, userid, comment.id as cmtid, "
-                + "comment.content as cmtcontent, comment.createdtime as cmtcreatedtime, "
-                + "comment.modifiedtime as cmtmodifiedtime "
+        String sql ="SELECT interact.id as interactid, postid, userid, fullname, "
+                + "email, avatarimg , comment.id as cmtid, comment.content as cmtcontent, "
+                + "comment.createdtime as cmtcreatedtime, comment.modifiedtime as cmtmodifiedtime "
                 + "FROM interact INNER JOIN comment ON interact.id = comment.interactid "
+                + "INNER JOIN user ON user.id=interact.userid INNER JOIN profile ON user.profileid=profile.id "
                 + "WHERE postid = ? ORDER BY cmtcreatedtime DESC";
         return query(sql, new InteractMapper(), pid);
     }
