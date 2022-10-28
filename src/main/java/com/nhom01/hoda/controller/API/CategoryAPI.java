@@ -13,15 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/api-category"})
-public class CategoryAPI  extends HttpServlet{
-    
+public class CategoryAPI extends HttpServlet {
+
     @Inject
     ICategoryService categoryService;
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         //-- add product
         // get params
         ObjectMapper objectMapper = new ObjectMapper();
@@ -39,5 +40,5 @@ public class CategoryAPI  extends HttpServlet{
         objectMapper.writeValue(response.getOutputStream(), id);
 
     }
-    
+
 }

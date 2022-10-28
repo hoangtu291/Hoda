@@ -35,11 +35,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="update-info">
-                        <a href="/update/info?id=${sessionScope.account.getId()}">
-                            <button>Cập nhật thông tin</button>
-                        </a>
-                    </div>
+                    <c:if test="${sessionScope.account.getId()==requestScope.USER.getId()}">
+                        <div class="update-info">
+                            <a href="/update/info?id=${sessionScope.account.getId()}">
+                                <button>Cập nhật thông tin</button>
+                            </a>
+                        </div>
+                    </c:if>
                 </div>
             </div>
             <div class="main-content">
@@ -48,7 +50,8 @@
                         <div class="tab">
                             <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
                             <label for="tab-1" class="tab-label">Bài viết</label>
-                            <div class="tab-content"><div class="list-post">
+                            <div class="tab-content">
+                                <div class="list-post">
                                     <c:forEach items="${requestScope.POSTS}" var="post">
                                         <div class="post">
                                             <div class="header-post">
@@ -80,7 +83,7 @@
                                                         </li>
 
                                                         <li class="nav-item">
-                                                            <button class="d-block">
+                                                            <button class="d-block menu-post" id="menu-list_${post.getId()}">
                                                                 <svg>
                                                                 <use xlink:href="#icon-ellipsis" />
                                                                 </svg>
@@ -97,10 +100,31 @@
                                                     </ul>
                                                 </nav>
                                             </div>
+                                            <!-- BOOTOM SHEET MODAL -->
+                                            <div id="menu-post_${post.getId()}" tabindex="-1" class="overlay">
+                                                <aside class="social" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+                                                    <a href="#" class="btn-close" aria-hidden="true"><span class="mdi mdi-close"></span><span
+                                                            class="sr-only">Close</span></a>
+                                                    <ul class="list-group list-group-flush">
+                                                        <c:if test="${sessionScope.account.getId() == post.getUserid()}">
+                                                            <div class="list-group-item btn btn-updatePost" id="btn-updatePost">Chỉnh sửa bài viết</div>
+                                                            <div class="list-group-item btn text-danger">Xóa bài viết</div>
+                                                        </c:if>
+                                                        <c:if test="${sessionScope.account.getId() != post.getUserid()}">
+                                                            <div class="list-group-item btn">Ẩn bài viết này</div>
+                                                            <div class="list-group-item btn">Chặn bài viết từ người dùng này</div>
+                                                            <div class="list-group-item btn text-danger">Báo cáo</div>
+                                                        </c:if>
+
+
+                                                    </ul>
+
+                                                </aside>
+
+                                            </div>
                                             <div class="content-post p-2">
                                                 <h6>${post.getTitle()}</h6>
                                                 <p>
-                                                    ${post.getContent()}
                                                     <a data-bs-toggle="collapse" href="#collapseContent_${post.getId()}" aria-expanded="false"
                                                        aria-controls="collapseContent_${post.getId()}">
                                                         Xem thêm
@@ -108,34 +132,37 @@
                                                 </p>
                                                 <div class="collapse" id="collapseContent_${post.getId()}">
                                                     <div class="card card-body" style="width:100%; margin: 0; padding: 0; border: 0;">
-                                                        Some placeholder content for the collapse component. This panel is hidden by default but
-                                                        revealed when the user activates the relevant trigger.
+                                                        ${post.getContent()}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="image-post">
                                                 <c:if test="${not empty post.getImageModels()}">
                                                     <div id="carouselImagePost_${post.getId()}" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                                                        <div class="carousel-indicators">
-                                                            <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
-                                                                <button type="button" data-bs-target="#carouselImagePost_${post.getId()}" data-bs-slide-to="${loop.index}" class="<c:if test="${loop.index == 1}">active</c:if>" aria-current="true" aria-label="Slide 1"></button>
-                                                            </c:forEach>
-                                                        </div>
+                                                        <c:if test="${post.getImageModels().size() > 1}">
+                                                            <div class="carousel-indicators">
+                                                                <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
+                                                                    <button type="button" data-bs-target="#carouselImagePost_${post.getId()}" data-bs-slide-to="${loop.index}" class="<c:if test="${loop.index == 1}">active</c:if>" aria-current="true" aria-label="Slide 1"></button>
+                                                                </c:forEach>
+                                                            </div>
+                                                        </c:if>
                                                         <div class="carousel-inner">
                                                             <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
-                                                                <div class="carousel-item <c:if test="${loop.index == 1}">active</c:if>" data-bs-interval="10000">
+                                                                <div class="carousel-item <c:if test="${loop.index == 0}">active</c:if>" data-bs-interval="10000">
                                                                     <img src="${imgPost.getUrl()}" class="d-block w-100" alt="...">
                                                                 </div>
                                                             </c:forEach>
                                                         </div>
-                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="prev">
-                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                            <span class="visually-hidden">Previous</span>
-                                                        </button>
-                                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="next">
-                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                            <span class="visually-hidden">Next</span>
-                                                        </button>
+                                                        <c:if test="${post.getImageModels().size() > 1}">
+                                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="prev">
+                                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Previous</span>
+                                                            </button>
+                                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="next">
+                                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Next</span>
+                                                            </button>
+                                                        </c:if>
                                                     </div>
                                                 </c:if>
                                             </div>
@@ -228,7 +255,7 @@
                                                     </button>
                                                 </div>
                                                 <div id="modalComment_pid_${post.getId()}" class="modal fade" role="dialog" tabindex="-1">
-                                                    <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-dialog modal-dialog-centered mx-auto p-0">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5>Bình luận</h5>
@@ -240,13 +267,13 @@
                                                                         <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
                                                                             <li class="d-flex flex-row comment-1">
                                                                                 <div class="pe-2">
-                                                                                    <img src="<c:url value='/template/images/Ellipse 20.png' />"
+                                                                                    <img src="<c:url value='${interact.getUserModel().getProfileModel().getAvatar()}' />"
                                                                                          class="d-block rounded-circle" alt=""
                                                                                          style="height: 30px; width: 30px;">
                                                                                 </div>
                                                                                 <div class="d-flex flex-column">
                                                                                     <!--${sessionScope.account.getProfileModel().getFullName()}-->
-                                                                                    <div class="user-comment"><b>Nguoi dung ${interact.getUserId()}</b></div>
+                                                                                    <div class="user-comment"><b>${interact.getUserModel().getProfileModel().getFullName()}</b></div>
                                                                                     <div class="time-comment">${interact.getCommentModel().getCreatedTime()}</div>
                                                                                     <div class="content-comment">${interact.getCommentModel().getContent()}</div>
                                                                                 </div>

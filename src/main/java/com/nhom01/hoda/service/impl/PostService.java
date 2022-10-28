@@ -23,7 +23,9 @@ public class PostService implements IPostService{
     @Override
     public Long save(PostModel postModel) {
         long pid;
+        long id = postModel.getCategoryid();
         postModel.setCreatedTime(new Timestamp(System.currentTimeMillis()));
+        id++;
         postModel.setModifiedTime(new Timestamp(System.currentTimeMillis()));
         pid = postDao.save(postModel);
         imageDao.saveList(postModel.getImageModels(), pid);

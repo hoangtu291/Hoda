@@ -4,9 +4,10 @@ import com.nhom01.hoda.model.UserModel;
 import java.util.List;
 
 public interface IUserDao {
-    long save(UserModel UserModel);
-    List<UserModel> getAll();
+    long save(UserModel userModel);
+    void update(UserModel userModel);
     
+    List<UserModel> getAll();
     UserModel findUserBySocialIdAndType(String socialid, String type);
     UserModel findUserById(Long id);
 }

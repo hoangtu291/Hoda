@@ -122,6 +122,7 @@ body {
     height: 80px;
     background-color: #ccc;
     border: 1px solid #787878;
+    position: relative
 }
 
 .info-person .main-info .update-info {
@@ -179,4 +180,29 @@ body {
 .gender-select input[type="radio"]+label {
     padding: 5px 20px;
     border-radius: 10px;
+}
+
+.img-person input[type=file] {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.edit-avatar-btn{    
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 20px);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    pointer-events: none
 }

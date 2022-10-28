@@ -64,6 +64,8 @@
                     </button>
                 </li>
                 <li class="nav-item my-auto icon-user">
+
+                <c:if test="${not empty sessionScope.account}">
                     <a href="/personal?id=${sessionScope.account.getId()}">
                         <button class="d-block">
                             <svg>
@@ -74,6 +76,19 @@
                             </svg>
                         </button>
                     </a>
+                </c:if>
+                <c:if test="${empty sessionScope.account}">
+                    <a href="/register">
+                        <button class="d-block">
+                            <svg>
+                            <use xlink:href="#icon-user" />
+                            </svg>
+                            <svg>
+                            <use xlink:href="#icon-user-filled" />
+                            </svg>
+                        </button>
+                    </a>
+                </c:if>
                 </li>
             </ul>
             <svg class="indicator" viewBox="0 0 68 72"></svg>

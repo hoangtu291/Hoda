@@ -7,10 +7,11 @@ public class ProfileDao extends AbstractDao<ProfileModel>implements IProfileDao{
 
     @Override
     public long save(ProfileModel profileModel) {
-        String sql = "INSERT INTO profile(firstname, lastname, fullname, email, birth, address, avatarimg, coverimg) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO profile(firstname, lastname, fullname, email, birth, address, phone, study, work, avatarimg, coverimg) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         return insert(sql, profileModel.getFirstName(), profileModel.getLastName(), 
                             profileModel.getFullName(), profileModel.getEmail(), profileModel.getDateOfBirth(),
-                            profileModel.getAddress(), profileModel.getAvatar(), "/upload/images/cover_default.png");
+                            profileModel.getAddress(), profileModel.getPhone(), profileModel.getStudy(), profileModel.getWork(),
+                            profileModel.getAvatar(), "/upload/images/cover_default.png");
         
     }
     
