@@ -13,7 +13,7 @@ public class CommentDao extends AbstractDao implements ICommentDao{
     @Override
     public void update(CommentModel commentModel) {
         String sql = "UPDATE comment "
-                    + "SET content = ?, createdtime = ?, modifiedtime = ?, interactid = ? WHERE id = ?";
-        update(sql, commentModel.getContent(), commentModel.getCreatedTime(), commentModel.getModifiedTime(), commentModel.getInteractId(),commentModel.getId());
+                    + "SET content = ?, modifiedtime = ?, interactid = ? WHERE id = ?";
+        update(sql, commentModel.getContent(), commentModel.getModifiedTime(), commentModel.getInteractId(),commentModel.getId());
     }
 }

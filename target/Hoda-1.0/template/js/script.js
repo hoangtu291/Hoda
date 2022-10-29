@@ -259,3 +259,4 @@ $('#btn-submitInfo').click(function (e) {
     });
     $('#form-updateInfo').submit();
 });
+

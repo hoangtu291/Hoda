@@ -31,9 +31,12 @@ public class CommentService implements ICommentService{
         cid = commentDao.save(interactModel.getCommentModel());
         return cid;
     }
+//    @Override
+//    public CommentModel findUserById(Long id) {
+//        return commentDao.findUserById(id);
+//    }
     @Override
     public void update(InteractModel interactModel) {
-        interactModel.getCommentModel().setCreatedTime(new Timestamp(System.currentTimeMillis()));
         interactModel.getCommentModel().setModifiedTime(new Timestamp(System.currentTimeMillis()));
         interactModel.setId(interactDao.save(interactModel));
         interactModel.getCommentModel().setInteractId(interactModel.getId());
