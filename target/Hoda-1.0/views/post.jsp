@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <div class="dialog-add-post">
+                                    <div class="dialog-add-post carousel-content-post">
                                         <div class="head-dialog">
                                             <div class="person-info d-flex">
                                                 <!-- <div class="avatar-person radius-100" style="background-color: red;"></div> -->
@@ -171,7 +171,7 @@
         </div>
         <div class="list-post">
             <c:forEach items="${requestScope.POSTS}" var="post">
-                <div class="post">
+                <div class="post" id="post_${post.getId()}">
                     <div class="header-post">
                         <nav class="navbar navbar-expand ps-2 pe-2 gap-2">
                             <img src="<c:url value='${post.getUserModel().getProfileModel().getAvatar()}' />" class="d-block rounded-circle" alt=""
@@ -241,6 +241,9 @@
 
                     </div>
                     <div class="content-post p-2">
+                        <div class="post-category post-category_${post.getId()}" id="post-category_${post.getCategoryid()}">
+                            ${post.getCategoryModel().getName()}
+                        </div>
                         <h6>${post.getTitle()}</h6>
                         <p>
                             <a data-bs-toggle="collapse" href="#collapseContent_${post.getId()}" aria-expanded="false"

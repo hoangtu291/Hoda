@@ -51,6 +51,18 @@ button {
 .content-post p{
     margin: 0;
 }
+
+.content-post .post-category{
+    padding: 2px 10px;
+    border: 0.5px solid #1D9000;
+    width: fit-content;
+    margin-bottom: 3px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1d9000;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 999px;
+}
 .image-post{
     background-color: #3D3D3D;
 }

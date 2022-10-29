@@ -24,4 +24,12 @@ public class PostDao extends AbstractDao implements IPostDao {
         return query(sql, new PostMapper());
     }
 
+    @Override
+    public void update(PostModel postModel) {
+        String sql= "UPDATE post SET title=?, content=?, categoryid=?, modifiedtime=?"
+                + " WHERE id=?";
+        update(sql, postModel.getTitle(), postModel.getContent(), postModel.getCategoryid(),
+                postModel.getModifiedTime(), postModel.getId());
+    }
+
 }

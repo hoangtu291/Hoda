@@ -5,5 +5,7 @@ import java.util.List;
 
 public interface IPostService {
     Long save(PostModel postModel);
+    void update(PostModel postModel);
+    
     List<PostModel> getAllPost();
 }

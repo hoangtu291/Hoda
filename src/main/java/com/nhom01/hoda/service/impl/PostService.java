@@ -23,9 +23,7 @@ public class PostService implements IPostService{
     @Override
     public Long save(PostModel postModel) {
         long pid;
-        long id = postModel.getCategoryid();
         postModel.setCreatedTime(new Timestamp(System.currentTimeMillis()));
-        id++;
         postModel.setModifiedTime(new Timestamp(System.currentTimeMillis()));
         pid = postDao.save(postModel);
         imageDao.saveList(postModel.getImageModels(), pid);
@@ -42,6 +40,14 @@ public class PostService implements IPostService{
             postModels.get(i).setInteractModels(interactDao.getAllInteractOfPost(postModels.get(i).getId()));
         }
         return postModels;
+    }
+
+    @Override
+    public void update(PostModel postModel) {
+        postModel.setModifiedTime(new Timestamp(System.currentTimeMillis()));
+        postDao.update(postModel);
+        imageDao.deleteAllImageOfPost(postModel.getId());
+        imageDao.saveList(postModel.getImageModels(), postModel.getId());
     }
     
 }

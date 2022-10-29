@@ -6,6 +6,7 @@ import java.util.List;
 public interface IPostDao {
     
     Long save(PostModel postModel);
+    void update(PostModel postModel);
     
     List<PostModel> getAllPost();
     
