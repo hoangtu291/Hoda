@@ -1,4 +1,3 @@
-
 package com.nhom01.hoda.dao.impl;
 
 import com.nhom01.hoda.dao.IImageDao;
@@ -6,7 +5,7 @@ import com.nhom01.hoda.mapper.ImageMapper;
 import com.nhom01.hoda.model.ImageModel;
 import java.util.List;
 
-public class ImageDao extends AbstractDao<ImageModel> implements IImageDao{
+public class ImageDao extends AbstractDao<ImageModel> implements IImageDao {
 
     @Override
     public long save(ImageModel imageModel, long pid) {
@@ -26,5 +25,12 @@ public class ImageDao extends AbstractDao<ImageModel> implements IImageDao{
         String sql = "SELECT * FROM image WHERE postid = ?";
         return query(sql, new ImageMapper(), pid);
     }
-    
+
+    @Override
+    public void deleteAllImageOfPost(long pid) {
+        String sql = "DELETE FROM image WHERE postid=?";
+        update(sql, pid);
+    }
+
+
 }

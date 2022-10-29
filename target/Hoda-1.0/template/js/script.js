@@ -27,6 +27,16 @@ $('.btn-updatePost').click(function () {
     $('body').addClass('modal-active');
 });
 
+$('.btn-deletePost').click(function () {
+    window.location.hash = "#bottom-sheet";
+    var pid = $(this).attr('id');
+    pid = pid.substring(pid.lastIndexOf("_") + 1);
+    var result = confirm("Bạn có chắc muốn xóa bài viết này không");
+    if(result){
+        deletePost(pid);
+    }
+});
+
 setInterval(function () {
     $('#form-addPost .txt-title').html($('#input-title').val());
 }, 2000);
@@ -38,6 +48,59 @@ $('.btn-updatePost').click(function () {
     var pid = $(this).attr('id');
     pid = pid.substring(pid.lastIndexOf("_") + 1);
     $('#form-addPost').append(`<input type='hidden' name='pid' value='${pid}'>`);
+
+    //edit modal add post become update
+    $('#form-addPost .head-dialog .person-name').html("Cập nhật bài viết");
+
+    $('#input-title + .emoji-wysiwyg-editor').html($(`#post_${pid} .content-post h6`).html());
+    $('#input-content + .emoji-wysiwyg-editor').html($(`#post_${pid} #collapseContent_${pid} .card`).html());
+    $('#input-title').val($(`#post_${pid} .content-post h6`).html());
+    $('#input-content').val($(`#post_${pid} #collapseContent_${pid} .card`).html());
+    
+    
+    var cateid = $(`.post-category_${pid}`).attr('id');
+    cateid = cateid.substring(cateid.lastIndexOf("_") + 1);
+
+    $(`#form-addPost .list-topic input[value=${cateid}]`).prop("checked", true);
+
+    //replace btn Đăng by Btn update
+    $('#btn-submit-addPost').remove();
+    $('#form-addPost .carousel-content-post .person-info').append(`<div id="btn-submit-updatePost" class="add-post--prev carousel-control-next" type="button">
+                                                    Xong
+                                                </div>`);
+    //UPDATE POST AJAX
+    $('#btn-submit-updatePost').click(function (e) {
+        e.preventDefault();
+
+        var data = new FormData();
+        data = $('#form-addPost').serializeArray();
+
+        var formData = new FormData();
+        $.each(data, function (i, v) {
+            formData.append("" + v.name + "", v.value);
+        });
+        for (var i = 0; i < $("#images").get(0).files.length; i++) {
+            var varA = $("#images").get(0).files[i];
+            formData.append("image" + i, varA);
+        }
+        console.log(formData.get("title"));
+    $.ajax({
+        url: "/api-post",
+        method: "PUT",
+        processData: false,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        data: formData,
+        success: function () {
+            window.location.href = "/home";
+        },
+        error: function () {
+            window.location.href = "/home";
+        }
+
+    });
+//    $('#form-addPost').submit();
+    });
 });
 
 
@@ -106,6 +169,8 @@ $('.btn-send').click(function (event) {
 });
 
 
+
+
 //ADDPOST AJAX
 $('#btn-submit-addPost').click(function (e) {
     e.preventDefault();
@@ -136,9 +201,29 @@ $('#btn-submit-addPost').click(function (e) {
         }
 
     });
-    $('#form-addPost').submit();
+//    $('#form-addPost').submit();
 });
 
+
+function deletePost(pid) {
+    data = {};
+    data['pid'] = pid;
+    console.log(JSON.stringify(data));
+    $.ajax({
+        type: "DELETE",
+        url: "/api-post",
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function () {
+            window.location.href = "/home";
+        },
+        error: function () {
+            window.location.href = "/home";
+        }
+
+    });
+}
 
 //UPDATE INFO AJAX
 $('#btn-submitInfo').click(function (e) {

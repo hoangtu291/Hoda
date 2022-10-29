@@ -257,7 +257,7 @@ main {
     font-size: 16px;
     /* font-weight: 700; */
     outline: 0;
-
+    word-break: break-word;
 }
 
 .main-dialog .footer-input-post {
@@ -406,12 +406,13 @@ main#personal {
     background-color: #fff;
     height: 88vh;
     max-width: 100%;
+    overflow: auto;
     margin: 0 auto;
 }
 
 @media only screen and (min-width: 760px){
     main#personal {
-        width: 50%;
+        width: 40%;
     }
 
 }
@@ -515,7 +516,6 @@ main#personal {
 #personal .tabs {
     position: relative;
     margin: 3rem 0;
-    height: 14.75rem;
     display: flex;
     justify-content: center;
 
@@ -576,6 +576,7 @@ main#personal {
     z-index: 2;
     opacity: 1;
     transition: all 0.35s;
+    width: 100%;
 }
 
 

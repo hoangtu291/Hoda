@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <div class="dialog-add-post">
+                                    <div class="dialog-add-post carousel-content-post">
                                         <div class="head-dialog">
                                             <div class="person-info d-flex">
                                                 <!-- <div class="avatar-person radius-100" style="background-color: red;"></div> -->
@@ -171,7 +171,7 @@
         </div>
         <div class="list-post">
             <c:forEach items="${requestScope.POSTS}" var="post">
-                <div class="post">
+                <div class="post" id="post_${post.getId()}">
                     <div class="header-post">
                         <nav class="navbar navbar-expand ps-2 pe-2 gap-2">
                             <img src="<c:url value='${post.getUserModel().getProfileModel().getAvatar()}' />" class="d-block rounded-circle" alt=""
@@ -208,7 +208,7 @@
                             <ul class="list-group list-group-flush">
                                 <c:if test="${sessionScope.account.getId() == post.getUserid()}">
                                     <div class="list-group-item btn btn-updatePost" id="btn-updatePost_${post.getId()}">Chỉnh sửa bài viết</div>
-                                    <div class="list-group-item btn text-danger">Xóa bài viết</div>
+                                    <div class="list-group-item btn text-danger btn-deletePost" id="btn-deletePost_${post.getId()}">Xóa bài viết</div>
                                 </c:if>
                                 <c:if test="${sessionScope.account.getId() != post.getUserid()}">
                                     <div class="list-group-item btn">Ẩn bài viết này</div>
@@ -223,6 +223,9 @@
 
                     </div>
                     <div class="content-post p-2">
+                        <div class="post-category post-category_${post.getId()}" id="post-category_${post.getCategoryid()}">
+                            ${post.getCategoryModel().getName()}
+                        </div>
                         <h6>${post.getTitle()}</h6>
                         <p>
                             <a data-bs-toggle="collapse" href="#collapseContent_${post.getId()}" aria-expanded="false"
@@ -249,7 +252,7 @@
                                 <div class="carousel-inner">
                                     <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
                                         <div class="carousel-item <c:if test="${loop.index == 0}">active</c:if>" data-bs-interval="10000">
-                                            <img src="${imgPost.getUrl()}" class="d-block w-100" alt="...">
+                                            <img src="${imgPost.getUrl()}" class="d-block" alt="...">
                                         </div>
                                     </c:forEach>
                                 </div>

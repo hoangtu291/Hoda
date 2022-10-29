@@ -12,6 +12,9 @@
                     rel="stylesheet">
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css">-->
         <!--        <link rel="stylesheet" href="./css/style.css">-->
+        <style>
+            .fixed-top, .fixed-bottom{z-index: auto}
+        </style>
         <title>Trang cá nhân</title>
     </head>
 
@@ -39,6 +42,13 @@
                         <div class="update-info">
                             <a href="/update/info?id=${sessionScope.account.getId()}">
                                 <button>Cập nhật thông tin</button>
+                            </a>
+                        </div>
+                    </c:if>
+                    <c:if test="${sessionScope.account.getId()!=requestScope.USER.getId()}">
+                        <div class="update-info">
+                            <a href="/update/info?id=${sessionScope.account.getId()}">
+                                <button>Theo dõi</button>
                             </a>
                         </div>
                     </c:if>
@@ -359,31 +369,12 @@
                                     }
                                 </style>
                                 <div class="grid">
-                                    <img src="https://www.quackit.com/pix/samples/23m.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/24m.jpg" alt="Sample photo">
-                                    <img src="./images/AIR FORCE 1 '07 MID_158.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/15l.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/25m.jpg" alt="Sample photo">
-                                    <img src="./VsCode/IMG/Nen.png" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/23m.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/24m.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/22l.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/15l.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/25m.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/16l.jpg" alt="Sample photo">
+                                    <c:forEach items="${requestScope.POSTS}" var="post">
+                                        <c:forEach items="${post.getImageModels()}" var="image">
+                                            <img src="${image.getUrl()}" alt="">
+                                        </c:forEach>
+                                    </c:forEach>
 
-                                    <img src="https://www.quackit.com/pix/samples/23m.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/24m.jpg" alt="Sample photo">
-                                    <img src="./images/AIR FORCE 1 '07 MID_158.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/15l.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/25m.jpg" alt="Sample photo">
-                                    <img src="./VsCode/IMG/Nen.png" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/23m.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/24m.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/22l.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/15l.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/25m.jpg" alt="Sample photo">
-                                    <img src="https://www.quackit.com/pix/samples/16l.jpg" alt="Sample photo">
                                 </div>
                                 <!-- <div class="image-gallery">
                                     <div class="image-item">
@@ -416,6 +407,5 @@
                 </div>
             </div>
         </main>
-        <footer></footer>
     </body>
 </html>

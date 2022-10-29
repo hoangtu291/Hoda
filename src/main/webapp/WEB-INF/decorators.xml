@@ -15,4 +15,8 @@
     <decorator name="updateInfo" page="">
         <pattern>/update/info</pattern>
     </decorator>
+    
+    <decorator name="followList" page="">
+        <pattern>/personal/follow</pattern>
+    </decorator>
 </decorators>
