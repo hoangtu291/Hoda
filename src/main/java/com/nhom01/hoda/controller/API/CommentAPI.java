@@ -8,9 +8,19 @@ package com.nhom01.hoda.controller.API;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhom01.hoda.model.CommentModel;
 import com.nhom01.hoda.model.InteractModel;
+import com.nhom01.hoda.model.UserModel;
 import com.nhom01.hoda.service.ICommentService;
 import com.nhom01.hoda.service.IUserService;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -18,6 +28,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -29,7 +42,7 @@ public class CommentAPI extends HttpServlet {
     
     @Inject
     IUserService userService;
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,7 +51,7 @@ public class CommentAPI extends HttpServlet {
         //-- add product
         // get param
         response.setContentType("application/json");
-
+        
         CommentModel commentModel = new CommentModel();
         
         InteractModel interactModel = new InteractModel();
@@ -55,7 +68,6 @@ public class CommentAPI extends HttpServlet {
         interactModel.setUserId((Long.parseLong((String) jsonObject.get("uid"))));
         interactModel.getCommentModel().setContent((String) jsonObject.get("content"));
         
-        
         commentService.save(interactModel);
         
         interactModel.setUserModel(userService.findUserById(interactModel.getUserId()));
@@ -63,4 +75,28 @@ public class CommentAPI extends HttpServlet {
         new ObjectMapper().writeValue(response.getOutputStream(), interactModel);
     }
 
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        
+        CommentModel commentModel = new CommentModel();
+        
+        InteractModel interactModel = new InteractModel();
+        
+        String strJson = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        
+        Object obj = JSONValue.parse(strJson);
+        JSONObject jsonObject = (JSONObject) obj;
+        
+        interactModel.setPostId((Long.parseLong((String) jsonObject.get("pid"))));
+        interactModel.setUserId((Long.parseLong((String) jsonObject.get("uid"))));
+        interactModel.getCommentModel().setId((long) jsonObject.get("cmtid"));
+        interactModel.getCommentModel().setContent((String) jsonObject.get("content"));
+        
+        commentService.update(interactModel);
+    }
+    
 }
