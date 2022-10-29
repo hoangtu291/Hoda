@@ -10,8 +10,8 @@ public class PostDao extends AbstractDao implements IPostDao {
     @Override
     public Long save(PostModel postModel) {
         String sql = "INSERT INTO post(title, content, userid, categoryid, createdtime, modifiedtime) VALUES(?, ?, ?, ?, ?, ?);";
-        return insert(sql, postModel.getTitle(), postModel.getContent(), postModel.getUserid(), postModel.getCategoryid(),
-                        postModel.getCreatedTime(), postModel.getModifiedTime());
+        return insert(sql, postModel.getTitle(), postModel.getContent(), postModel.getUserid(), postModel.getCategoryid(), 
+                postModel.getCreatedTime(), postModel.getModifiedTime());
     }
 
     @Override

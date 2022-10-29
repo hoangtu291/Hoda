@@ -19,10 +19,36 @@ $('.btn-add-post').click(function () {
     $('body').addClass('modal-active');
 });
 
+//ẩn modal bottom để show modal update post
+$('.btn-updatePost').click(function () {
+    window.location.hash = "#bottom-sheet";
+    var buttonId = $(this).attr('id');
+    $('#modal-container').removeAttr('class').addClass("two");
+    $('body').addClass('modal-active');
+});
+
+setInterval(function () {
+    $('#form-addPost .txt-title').html($('#input-title').val());
+}, 2000);
+
+
+//event update post
+//-- add pid to form add post
+$('.btn-updatePost').click(function () {
+    var pid = $(this).attr('id');
+    pid = pid.substring(pid.lastIndexOf("_") + 1);
+    $('#form-addPost').append(`<input type='hidden' name='pid' value='${pid}'>`);
+});
+
+
+//close modal add post
 $('.btn-close').click(function () {
     $('#modal-container').addClass('out');
     $('body').removeClass('modal-active');
     $('.icon-plus').removeClass("active");
+
+//    remove tag input name=pid in form add post
+    $('#form-addPost input[name="pid"]').remove();
 });
 
 $('.fa-solid.fa-at').click(function () {
@@ -30,6 +56,13 @@ $('.fa-solid.fa-at').click(function () {
     $('.js-example-basic-multiple').select2({
         maximumSelectionLength: 2
     });
+});
+
+$('.menu-post').click(function () {
+    var id = $(this).attr("id");
+    id = id.substring(id.lastIndexOf("_") + 1);
+    console.log(id);
+    window.location.hash = "#menu-post_" + id;
 });
 
 $('.btn-send').click(function (event) {
@@ -69,7 +102,7 @@ $('.btn-send').click(function (event) {
             $('#form-comment_' + id)[0].reset();
         }
     });
-    
+
 });
 
 
@@ -96,7 +129,6 @@ $('#btn-submit-addPost').click(function (e) {
         contentType: false,
         data: formData,
         success: function () {
-            alert("jsdhfkshd");
             window.location.href = "/home";
         },
         error: function () {
@@ -105,4 +137,40 @@ $('#btn-submit-addPost').click(function (e) {
 
     });
     $('#form-addPost').submit();
+});
+
+
+//UPDATE INFO AJAX
+$('#btn-submitInfo').click(function (e) {
+    e.preventDefault();
+
+    var data = new FormData();
+    data = $('#form-updateInfo').serializeArray();
+
+    if ($('#inp-avatar').get(0).files.length > 0) {
+//        data.append('avatar', $('#inp-avatar').get(0).files[0]);
+        data['avatar'] = $('#inp-avatar').get(0).files[0];
+    }
+    var formData = new FormData();
+    $.each(data, function (i, v) {
+        formData.append("" + v.name + "", v.value);
+    });
+    formData.append("avatar", data['avatar']);
+    console.log(formData.get("avatar"));
+    $.ajax({
+        url: "/api-user",
+        method: "PUT",
+        processData: false,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        data: formData
+//        success: function (data) {
+//            window.location.href = "/" + data;
+//        },
+//        error: function (data) {
+//            window.location.href = "/" + data;
+//        }
+
+    });
+    $('#form-updateInfo').submit();
 });

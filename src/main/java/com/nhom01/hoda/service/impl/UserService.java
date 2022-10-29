@@ -44,5 +44,10 @@ public class UserService implements IUserService{
     public UserModel findUserById(Long id) {
         return userDao.findUserById(id);
     }
+
+    @Override
+    public void update(UserModel userModel) {
+        userDao.update(userModel);
+    }
     
 }

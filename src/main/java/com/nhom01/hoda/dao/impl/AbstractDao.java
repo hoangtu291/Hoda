@@ -80,7 +80,9 @@ public class AbstractDao<T> implements IGenericDao<T>{
                     statement.setDouble(index, (Double) parameter);
                 }else if(parameter instanceof Date){
                     statement.setDate(index, (Date) parameter);
-                }
+                } else if (parameter instanceof Boolean) {
+                    statement.setBoolean(index, (Boolean) parameter);
+                } 
             }
         } catch (SQLException e) {
             e.printStackTrace();

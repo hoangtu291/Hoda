@@ -7,145 +7,151 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="<c:url value='/template/css/post.css' />">
     <link rel="stylesheet" href="<c:url value='/template/css/home.css' />">
+
     <script src="https://use.fontawesome.com/fe459689b4.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
     <title>HODA | Trang chủ</title>
 </head>
 
 <body>
 <main id="home">
-    <div id="modal-container">
-        <div class="modal-background">
-            <div class="modal">
-                <form id="form-addPost" enctype="multipart/form-data">
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"
-                         data-bs-interval="false" data-bs-touch="false">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="dialog-add-post">
-                                    <div class="head-dialog">
-                                        <div class="person-info d-flex">
-                                            <!-- <div class="avatar-person radius-100"></div> -->
-                                            <div class="add-post--prev carousel-control-prev d-none" type="button"
-                                                 data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                                <i class="fa-solid fa-arrow-left"></i>
-                                            </div>
 
-                                            <div class="person-name w-100 text-center">Thêm bài viết</div>
-                                            <div class="add-post--prev carousel-control-next" type="button"
-                                                 data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="main-dialog">
-                                        <div class="suggest-title">
-                                            <ul>
-                                                <li>Gợi ý 1: Trong câu nên có dấu '?'</li>
-                                                <li>Gợi ý 2: Nên có các từ để hỏi</li>
-                                                <li>Gợi ý 3: Nên trình bày cụ thể về chủ đề bài viết</li>
-                                            </ul>
-                                        </div>
-                                        <div class="text-title emoji-picker-container">
-                                            <textarea form="form-addPost" placeholder="Viết tiêu đề... ?" name="title" id="input-title"
-                                                      data-emojiable="true" data-emoji-input="unicode"></textarea>
-                                            <div class="footer-input-post"></div>
-                                        </div>
-
-                                        <!-- <div class="list-topic"> -->
-                                        <div class="row list-topic">
-                                            <c:forEach items="${requestScope.CATEGORIES}" var="category">
-<!--                        <li class="nav-item"><button class="d-block">${category.getName()}</button></li>-->
-                                                <div class="col box-topic">
-                                                    <input type="radio" id="control_${category.getId()}" name="categoryid" value="${category.getId()}">
-                                                    <label class="text-nowrap" for="control_${category.getId()}">
-                                                        ${category.getName()}
-                                                    </label>
-                                                </div>
-                                            </c:forEach>
-                                        </div>
-                                        <!-- </div> -->
-                                    </div>
-                                    <div class="foot-dialog">
-                                        Xem trước
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="dialog-add-post">
-                                    <div class="head-dialog">
-                                        <div class="person-info d-flex">
-                                            <!-- <div class="avatar-person radius-100" style="background-color: red;"></div> -->
-                                            <div class="add-post--prev carousel-control-prev" type="button"
-                                                 data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                                <i class="fa-solid fa-arrow-left"></i>
-                                            </div>
-                                            <div class="person-name w-100 text-center">Thêm bài viết</div>
-                                            <div id="btn-submit-addPost" class="add-post--prev carousel-control-next" type="button">
-                                                Đăng
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="main-dialog">
-                                        <div class="txt-title">
-                                            Title ?
-                                        </div>
-                                        <div class="text-content emoji-picker-container">
-                                            <textarea form="form-addPost" placeholder="Viết nội dung..." style="height: 150px;"
-                                                      name="content" id="input-content" data-emojiable="true"
-                                                      data-emoji-input="unicode"></textarea>
-                                            <div class="footer-input-post d-flex">
-                                                <div class="footer-bottom footer-bottom--left" id="select">
-                                                    <select class="js-example-basic-multiple list-acc-tag d-none"
-                                                            style="width: 100%" name="states[]" multiple="multiple">
-                                                        <option value="AL">Alabama</option>
-                                                        <option value="WY">Wyoming</option>
-
-                                                        <option value="AL1">Alabama</option>
-                                                        <option value="WY1">Wyoming</option>
-
-                                                        <option value="AL2">Alabama</option>
-                                                        <option value="WY3">Wyoming</option>
-
-                                                        <option value="AL4">Alabama</option>
-                                                        <option value="WY4">Wyoming</option>
-                                                    </select>
-                                                </div>
-                                                <div class="footer-bottom footer-bottom--right">
-                                                    <i class="fa-solid fa-at"></i>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="add-image">
-                                            <div class="list-image d-flex">
-
-                                            </div>
-                                            <div class="btn-add-image">
-                                                <div class="file-upload">
-                                                    <input type="file" name="images" id="images" onchange="showPictures(this)" multiple>
-                                                    <i class="fa-regular fa-images"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="foot-dialog">
-                                        Xem trước
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <input type="hidden" name="userid" value="${sessionScope.account.getId()}">
-                </form>
-            </div>
-            <div class="btn-close"></div>
-        </div>
-    </div>
 
     <div class="left"></div>
     <div class="center">
+        <div id="modal-container">
+            <div class="modal-background">
+                <div class="modal">
+                    <form id="form-addPost" enctype="multipart/form-data">
+                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"
+                             data-bs-interval="false" data-bs-touch="false">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="dialog-add-post">
+                                        <div class="head-dialog">
+                                            <div class="person-info d-flex">
+                                                <!-- <div class="avatar-person radius-100"></div> -->
+                                                <div class="add-post--prev carousel-control-prev d-none" type="button"
+                                                     data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                    <i class="fa-solid fa-arrow-left"></i>
+                                                </div>
+
+                                                <div class="person-name w-100 text-center">Thêm bài viết</div>
+                                                <div class="add-post--prev carousel-control-next" type="button"
+                                                     data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="main-dialog">
+                                            <div class="suggest-title">
+                                                <ul>
+                                                    <li>Gợi ý 1: Trong câu nên có dấu '?'</li>
+                                                    <li>Gợi ý 2: Nên có các từ để hỏi</li>
+                                                    <li>Gợi ý 3: Nên trình bày cụ thể về chủ đề bài viết</li>
+                                                </ul>
+                                            </div>
+                                            <div class="text-title emoji-picker-container">
+                                                <textarea form="form-addPost" placeholder="Viết tiêu đề... ?" name="title" id="input-title"
+                                                          data-emojiable="true" data-emoji-input="unicode"></textarea>
+                                                <div class="footer-input-post"></div>
+                                            </div>
+
+                                            <!-- <div class="list-topic"> -->
+                                            <div class="row list-topic">
+                                                <c:forEach items="${requestScope.CATEGORIES}" var="category">
+    <!--                        <li class="nav-item"><button class="d-block">${category.getName()}</button></li>-->
+                                                    <div class="col box-topic">
+                                                        <input type="radio" id="control_${category.getId()}" name="categoryid" value="${category.getId()}">
+                                                        <label class="text-nowrap" for="control_${category.getId()}">
+                                                            ${category.getName()}
+                                                        </label>
+                                                    </div>
+                                                </c:forEach>
+                                            </div>
+                                            <!-- </div> -->
+                                        </div>
+                                        <div class="foot-dialog">
+                                            Xem trước
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="dialog-add-post">
+                                        <div class="head-dialog">
+                                            <div class="person-info d-flex">
+                                                <!-- <div class="avatar-person radius-100" style="background-color: red;"></div> -->
+                                                <div class="add-post--prev carousel-control-prev" type="button"
+                                                     data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                    <i class="fa-solid fa-arrow-left"></i>
+                                                </div>
+                                                <div class="person-name w-100 text-center">Thêm bài viết</div>
+                                                <div id="btn-submit-addPost" class="add-post--prev carousel-control-next" type="button">
+                                                    Đăng
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="main-dialog">
+                                            <div class="txt-title" id="title-show">
+                                                Title ?
+                                            </div>
+                                            <div class="text-content emoji-picker-container">
+                                                <textarea form="form-addPost" placeholder="Viết nội dung..." style="height: 150px;"
+                                                          name="content" id="input-content" data-emojiable="true"
+                                                          data-emoji-input="unicode"></textarea>
+                                                <div class="footer-input-post d-flex">
+                                                    <div class="footer-bottom footer-bottom--left" id="select">
+                                                        <select class="js-example-basic-multiple list-acc-tag d-none"
+                                                                style="width: 100%" name="states[]" multiple="multiple">
+                                                            <option value="AL">Alabama</option>
+                                                            <option value="WY">Wyoming</option>
+
+                                                            <option value="AL1">Alabama</option>
+                                                            <option value="WY1">Wyoming</option>
+
+                                                            <option value="AL2">Alabama</option>
+                                                            <option value="WY3">Wyoming</option>
+
+                                                            <option value="AL4">Alabama</option>
+                                                            <option value="WY4">Wyoming</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="footer-bottom footer-bottom--right">
+                                                        <i class="fa-solid fa-at"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="add-image">
+                                                <div class="list-image d-flex">
+
+                                                </div>
+                                                <div class="btn-add-image">
+                                                    <div class="file-upload">
+                                                        <input type="file" name="images" id="images" onchange="showPictures(this)" multiple>
+                                                        <i class="fa-regular fa-images"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="foot-dialog">
+                                            Xem trước
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <input type="hidden" name="userid" value="${sessionScope.account.getId()}">
+                    </form>
+                </div>
+                <div class="btn-close"></div>
+            </div>
+        </div>
+
+
+
         <div class="container-fluid p-0 ps-2" id="category">
             <h5 class="p-0 pt-2">Thể loại </h5>
             <nav class="navbar navbar-expand p-0">
@@ -195,7 +201,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <button class="d-block">
+                                    <button class="d-block menu-post" id="menu-list_${post.getId()}">
                                         <svg>
                                             <use xlink:href="#icon-ellipsis" />
                                         </svg>
@@ -212,10 +218,31 @@
                             </ul>
                         </nav>
                     </div>
+                    <!-- BOOTOM SHEET MODAL -->
+                    <div id="menu-post_${post.getId()}" tabindex="-1" class="overlay">
+                        <aside class="social" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+                            <a href="#" class="btn-close" aria-hidden="true"><span class="mdi mdi-close"></span><span
+                                    class="sr-only">Close</span></a>
+                            <ul class="list-group list-group-flush">
+                                <c:if test="${sessionScope.account.getId() == post.getUserid()}">
+                                    <div class="list-group-item btn btn-updatePost" id="btn-updatePost_${post.getId()}">Chỉnh sửa bài viết</div>
+                                    <div class="list-group-item btn text-danger">Xóa bài viết</div>
+                                </c:if>
+                                <c:if test="${sessionScope.account.getId() != post.getUserid()}">
+                                    <div class="list-group-item btn">Ẩn bài viết này</div>
+                                    <div class="list-group-item btn">Chặn bài viết từ người dùng này</div>
+                                    <div class="list-group-item btn text-danger">Báo cáo</div>
+                                </c:if>
+
+
+                            </ul>
+
+                        </aside>
+
+                    </div>
                     <div class="content-post p-2">
                         <h6>${post.getTitle()}</h6>
                         <p>
-                            ${post.getContent()}
                             <a data-bs-toggle="collapse" href="#collapseContent_${post.getId()}" aria-expanded="false"
                                aria-controls="collapseContent_${post.getId()}">
                                 Xem thêm
@@ -223,34 +250,37 @@
                         </p>
                         <div class="collapse" id="collapseContent_${post.getId()}">
                             <div class="card card-body" style="width:100%; margin: 0; padding: 0; border: 0;">
-                                Some placeholder content for the collapse component. This panel is hidden by default but
-                                revealed when the user activates the relevant trigger.
+                                ${post.getContent()}
                             </div>
                         </div>
                     </div>
                     <div class="image-post">
                         <c:if test="${not empty post.getImageModels()}">
                             <div id="carouselImagePost_${post.getId()}" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
-                                        <button type="button" data-bs-target="#carouselImagePost_${post.getId()}" data-bs-slide-to="${loop.index}" class="<c:if test="${loop.index == 1}">active</c:if>" aria-current="true" aria-label="Slide 1"></button>
-                                    </c:forEach>
-                                </div>
+                                <c:if test="${post.getImageModels().size() > 1}">
+                                    <div class="carousel-indicators">
+                                        <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
+                                            <button type="button" data-bs-target="#carouselImagePost_${post.getId()}" data-bs-slide-to="${loop.index}" class="<c:if test="${loop.index == 1}">active</c:if>" aria-current="true" aria-label="Slide 1"></button>
+                                        </c:forEach>
+                                    </div>
+                                </c:if>
                                 <div class="carousel-inner">
                                     <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
-                                        <div class="carousel-item <c:if test="${loop.index == 1}">active</c:if>" data-bs-interval="10000">
+                                        <div class="carousel-item <c:if test="${loop.index == 0}">active</c:if>" data-bs-interval="10000">
                                             <img src="${imgPost.getUrl()}" class="d-block w-100" alt="...">
                                         </div>
                                     </c:forEach>
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
+                                <c:if test="${post.getImageModels().size() > 1}">
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselImagePost_${post.getId()}"" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </c:if>
                             </div>
                         </c:if>
                     </div>

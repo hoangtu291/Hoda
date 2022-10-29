@@ -10,22 +10,12 @@
             <c:if test="${not empty sessionScope.account}">
                 <ul class="navbar-nav ms-auto" id="header-icon">
                     <li class="nav-item dropdown">
-                        <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                            <img class="d-block" src="<c:url value='/template/images/Ellipse 20.png' />" width="30px" height="30px" alt=""></a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Link 1</a></li>
-                            <li><a class="dropdown-item" href="#">Link 2</a></li>
-                            <li><a class="dropdown-item" href="#">Link 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
                         <a class="nav-link" data-bs-toggle="dropdown" id="nav-user">
                             <img class="d-block radius-100" src="${sessionScope.account.getProfileModel().getAvatar()}" width="30px" height="30px" alt="">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="/personal?id=${sessionScope.account.getId()}">Thông tin cá nhân</a></li>
-                            <li><a class="dropdown-item" href="#">Link 2</a></li>
-                            <li><a class="dropdown-item" href="#">Link 3</a></li>
+                            <li><a class="dropdown-item text-danger" href="/logout?action=logout">Đăng xuất</a></li>
                         </ul>
                     </li>
 
