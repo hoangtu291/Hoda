@@ -10,4 +10,10 @@ public class CommentDao extends AbstractDao implements ICommentDao{
         String sql = "INSERT INTO comment(content, createdtime, modifiedtime, interactid) VALUES(?, ?, ?, ?);";
         return insert(sql, commentModel.getContent(), commentModel.getCreatedTime(), commentModel.getModifiedTime(), commentModel.getInteractId());
     }
+    @Override
+    public void update(CommentModel commentModel) {
+        String sql = "UPDATE comment "
+                    + "SET content = ?, createdtime = ?, modifiedtime = ?, interactid = ? WHERE id = ?";
+        update(sql, commentModel.getContent(), commentModel.getCreatedTime(), commentModel.getModifiedTime(), commentModel.getInteractId(),commentModel.getId());
+    }
 }
