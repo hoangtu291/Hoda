@@ -66,6 +66,15 @@ button {
 .image-post{
     background-color: #3D3D3D;
 }
+
+.image-post .carousel-item{
+    height: 300px;
+}
+
+.image-post .carousel-item img{
+    height: 100%;
+    margin: 0 auto;
+}
 .interact-post{
     /* height: 10%; */
     background-color: #fff;

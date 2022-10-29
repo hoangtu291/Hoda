@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 @MultipartConfig
 @WebServlet(urlPatterns = {"/api-post"})
@@ -137,5 +140,21 @@ public class PostAPI extends HttpServlet {
         // return object Product json
         new ObjectMapper().writeValue(response.getOutputStream(), postModel.getId());
     }
-
+    
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
+        String strJson = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        Object obj = JSONValue.parse(strJson);
+        JSONObject jsonObject = (JSONObject) obj;
+        
+        long pid = (Long.parseLong((String) jsonObject.get("pid")));
+        postService.delete(pid);
+        // return object Product json
+        new ObjectMapper().writeValue(response.getOutputStream(), pid);
+    }
+    
 }

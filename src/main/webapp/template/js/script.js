@@ -27,6 +27,16 @@ $('.btn-updatePost').click(function () {
     $('body').addClass('modal-active');
 });
 
+$('.btn-deletePost').click(function () {
+    window.location.hash = "#bottom-sheet";
+    var pid = $(this).attr('id');
+    pid = pid.substring(pid.lastIndexOf("_") + 1);
+    var result = confirm("Bạn có chắc muốn xóa bài viết này không");
+    if(result){
+        deletePost(pid);
+    }
+});
+
 setInterval(function () {
     $('#form-addPost .txt-title').html($('#input-title').val());
 }, 2000);
@@ -191,9 +201,29 @@ $('#btn-submit-addPost').click(function (e) {
         }
 
     });
-    $('#form-addPost').submit();
+//    $('#form-addPost').submit();
 });
 
+
+function deletePost(pid) {
+    data = {};
+    data['pid'] = pid;
+    console.log(JSON.stringify(data));
+    $.ajax({
+        type: "DELETE",
+        url: "/api-post",
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function () {
+            window.location.href = "/home";
+        },
+        error: function () {
+            window.location.href = "/home";
+        }
+
+    });
+}
 
 //UPDATE INFO AJAX
 $('#btn-submitInfo').click(function (e) {

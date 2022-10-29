@@ -226,7 +226,7 @@
                             <ul class="list-group list-group-flush">
                                 <c:if test="${sessionScope.account.getId() == post.getUserid()}">
                                     <div class="list-group-item btn btn-updatePost" id="btn-updatePost_${post.getId()}">Chỉnh sửa bài viết</div>
-                                    <div class="list-group-item btn text-danger">Xóa bài viết</div>
+                                    <div class="list-group-item btn text-danger btn-deletePost" id="btn-deletePost_${post.getId()}">Xóa bài viết</div>
                                 </c:if>
                                 <c:if test="${sessionScope.account.getId() != post.getUserid()}">
                                     <div class="list-group-item btn">Ẩn bài viết này</div>
@@ -270,7 +270,7 @@
                                 <div class="carousel-inner">
                                     <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
                                         <div class="carousel-item <c:if test="${loop.index == 0}">active</c:if>" data-bs-interval="10000">
-                                            <img src="${imgPost.getUrl()}" class="d-block w-100" alt="...">
+                                            <img src="${imgPost.getUrl()}" class="d-block" alt="...">
                                         </div>
                                     </c:forEach>
                                 </div>

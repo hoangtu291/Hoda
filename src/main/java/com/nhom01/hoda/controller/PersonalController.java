@@ -27,10 +27,10 @@ public class PersonalController extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
-        Long id = Long.parseLong(request.getParameter("id"));
+        Long uid = Long.parseLong(request.getParameter("id"));
 
-        UserModel userModel = userService.findUserById(id);
-        List<PostModel> postModels = postService.getAllPost();
+        UserModel userModel = userService.findUserById(uid);
+        List<PostModel> postModels = postService.getAllPostOfUser(uid);
         
         request.setAttribute("USER", userModel);
         request.setAttribute("POSTS", postModels);

@@ -49,5 +49,22 @@ public class PostService implements IPostService{
         imageDao.deleteAllImageOfPost(postModel.getId());
         imageDao.saveList(postModel.getImageModels(), postModel.getId());
     }
+
+    @Override
+    public void delete(long pid) {
+        imageDao.deleteAllImageOfPost(pid);
+        postDao.delete(pid);
+    }
+
+    @Override
+    public List<PostModel> getAllPostOfUser(long uid) {
+        List<PostModel> postModels = postDao.getAllPostOfUser(uid);
+        
+        for(int i = 0; i< postModels.size(); i++){
+            postModels.get(i).setImageModels(imageDao.getAllImagesOfPost(postModels.get(i).getId()));
+            postModels.get(i).setInteractModels(interactDao.getAllInteractOfPost(postModels.get(i).getId()));
+        }
+        return postModels;
+    }
     
 }

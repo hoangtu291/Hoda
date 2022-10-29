@@ -53,13 +53,13 @@
 
                                 <p>Giới tính</p>
 
-                                <div class="form-check gender-select col-md-6">
+                                <div class="form-check gender-select col-6">
                                     <input type='radio' id='male' checked='checked' name='gender' value="1">
                                     <label for='male'>Nam</label>
 
                                 </div>
 
-                                <div class="form-check gender-select col-md-6">
+                                <div class="form-check gender-select col-6">
                                     <input type='radio' id='female' name='gender' value="0">
                                     <label for='female'>Nữ</label>
                                 </div>
@@ -97,10 +97,7 @@
                 <div class="col-md-3"></div>
             </div>
         </div>
-    </main>
-    <footer>
 
-    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script>
