@@ -43,6 +43,10 @@ public class HomeController extends HttpServlet {
         request.setAttribute("POSTS", postModels);
         request.setAttribute("CATEGORIES", categoryModels);
         
+        HttpSession session  = request.getSession();
+        session.setAttribute("lang", "en-US");
+//        session.setAttribute("lang", "vi-VN");
+        
         RequestDispatcher rd = request.getRequestDispatcher("/views/post.jsp");
         rd.forward(request, response);
     }

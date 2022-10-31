@@ -1,4 +1,8 @@
 var labelLang = {
+    "HOME_TITLE": {
+        "vi-VN": "HODA | Trang chủ",
+        "en-US": "HODA | Home"
+    },
     "HOME_TOPIC": {
         "vi-VN": "Thể loại",
         "en-US": "Categories"
@@ -57,12 +61,90 @@ var labelLang = {
     "POST_VIEW_CONTENT": {
         "vi-VN": "Xem nội dung",
         "en-US": "View content"
+    },
+    "PERSONAL_TXT_FOLLOWER": {
+        "vi-VN": "người theo dõi",
+        "en-US": "followers"
+    },
+    "PERSONAL_TXT_FOLLOWING_1": {
+        "vi-VN": "Đang theo dõi",
+        "en-US": "Following"
+    },
+    "PERSONAL_TXT_FOLLOWING_2": {
+        "vi-VN": "người dùng",
+        "en-US": "users"
+    },
+    "PERSONAL_BTN_UPDATEINFO": {
+        "vi-VN": "Cập nhật thông tin",
+        "en-US": "Update profile"
+    },
+    "PERSONAL_BTN_FOLLOW": {
+        "vi-VN": "Theo dõi",
+        "en-US": "Follow"
+    },
+    "PERSONAL_BTN_FOLLOWING": {
+        "vi-VN": "Đang theo dõi",
+        "en-US": "Following"
+    },
+    "PERSONAL_TAB_POSTS": {
+        "vi-VN": "Bài viết",
+        "en-US": "Posts"
+    },
+    "PERSONAL_TAB_PHOTOS": {
+        "vi-VN": "Ảnh",
+        "en-US": "Photos"
+    },
+    "UPDATEPROFILE_TXT_PROFILE": {
+        "vi-VN": "Thông tin cá nhân",
+        "en-US": "Profile"
+    },
+    "UPDATEPROFILE_LABEL_ADDRESS": {
+        "vi-VN": "Địa chỉ",
+        "en-US": "Address"
+    },
+    "UPDATEPROFILE_LABEL_GENDER": {
+        "vi-VN": "Giới tính",
+        "en-US": "Gender"
+    },
+    "UPDATEPROFILE_LABEL_GENDER_MALE": {
+        "vi-VN": "Nam",
+        "en-US": "Male"
+    },
+    "UPDATEPROFILE_LABEL_GENDER_FEMALE": {
+        "vi-VN": "Nữ",
+        "en-US": "Female"
+    },
+    "UPDATEPROFILE_LABEL_PHONE": {
+        "vi-VN": "Điện thoại",
+        "en-US": "Phone number"
+    },
+    "UPDATEPROFILE_LABEL_BIRTH": {
+        "vi-VN": "Ngày sinh",
+        "en-US": "Date of birth"
+    },
+    "UPDATEPROFILE_LABEL_STUDY": {
+        "vi-VN": "Học vấn",
+        "en-US": "Study"
+    },
+    "UPDATEPROFILE_LABEL_WORK": {
+        "vi-VN": "Nghề nghiệp",
+        "en-US": "Work"
+    },
+    "FOLLOWUSER_TAB_FOLLOWER": {
+        "vi-VN": "Người theo dõi",
+        "en-US": "Follower"
+    },
+    "FOLLOWUSER_TAB_FOLLOWING": {
+        "vi-VN": "Đang theo dõi",
+        "en-US": "Following"
     }
 };
-
-var lang="vi-VN";
-for (let i = 0; i < $('span.multilang').length; i++) {
-    console.log($("span#" + $("span.multilang:eq(" + i + ")").attr('label-lang')));
-    $($("span.multilang:eq(" + i + ")")).html(labelLang[$("span.multilang:eq(" + i + ")").attr('label-lang')][lang]);
-    // $("img#" + itemLang[i].id).attr("data-bs-original-title", labels[itemLang[i].id][lang]);
+//var lang = "vi-VN";
+var lang = "en-US";
+function changeLang () {
+    for (let i = 0; i < $('span.multilang').length; i++) {
+        $($("span.multilang:eq(" + i + ")")).html(labelLang[$("span.multilang:eq(" + i + ")").attr('label-lang')][lang]);
+    }
 }
+
+changeLang();

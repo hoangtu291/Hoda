@@ -184,25 +184,25 @@ insert into login_type(name) values('google');
 
 -- ----------------------------------------
 
-insert into category(code, name) values('cong-nghe', 'Công nghệ');
-insert into category(code, name) values('suc-khoe', 'Sức khỏe');
-insert into category(code, name) values('cuoc-song', 'Cuộc sống');
+insert into category(code, name, nameEng) values('cong-nghe', 'Công nghệ', 'Technology');
+insert into category(code, name) values('suc-khoe', 'Sức khỏe', 'Health');
+insert into category(code, name) values('cuoc-song', 'Cuộc sống', 'Life');
 
-insert into category(code, name) values('the-thao', 'Thể thao');
-insert into category(code, name) values('thoi-trang', 'Thời trang');
-insert into category(code, name) values('xe-co', 'Xe cộ');
-insert into category(code, name) values('toi-pham', 'Tội phạm');
-insert into category(code, name) values('lap-trinh', 'Lập trình');
-insert into category(code, name) values('toan-hoc', 'Toán học');
-insert into category(code, name) values('giao-duc', 'Giáo dục');
-insert into category(code, name) values('sach-bao', 'Sách, báo');
-insert into category(code, name) values('thiet-bi-dien-tu', 'Thiết bị điện tử');
-insert into category(code, name) values('thuc-pham', 'Thực phẩm');
-insert into category(code, name) values('nau-an', 'Nấu ăn');
-insert into category(code, name) values('chung-khoan', 'Chứng khoán');
-insert into category(code, name) values('thoi-tiet', 'Thời tiết');
-insert into category(code, name) values('giao-thong', 'Giao thông');
-insert into category(code, name) values('khac', 'Khác');
+insert into category(code, name) values('the-thao', 'Thể thao', 'Sport');
+insert into category(code, name) values('thoi-trang', 'Thời trang', 'Fashion');
+insert into category(code, name) values('xe-co', 'Xe cộ', 'Vehicle');
+insert into category(code, name) values('toi-pham', 'Tội phạm', 'Criminal');
+insert into category(code, name) values('lap-trinh', 'Lập trình', 'Programing');
+insert into category(code, name) values('toan-hoc', 'Toán học', 'Mathematics');
+insert into category(code, name) values('giao-duc', 'Giáo dục', 'Education');
+insert into category(code, name) values('sach-bao', 'Sách, báo', 'Books, news');
+insert into category(code, name) values('thiet-bi-dien-tu', 'Thiết bị điện tử', 'Electronic device');
+insert into category(code, name) values('thuc-pham', 'Thực phẩm', 'Food');
+insert into category(code, name) values('nau-an', 'Nấu ăn', 'Cooking');
+insert into category(code, name) values('chung-khoan', 'Chứng khoán', 'Stock');
+insert into category(code, name) values('thoi-tiet', 'Thời tiết', 'Weather');
+insert into category(code, name) values('giao-thong', 'Giao thông', 'Traffic');
+insert into category(code, name) values('khac', 'Khác', 'Others');
 
 
 

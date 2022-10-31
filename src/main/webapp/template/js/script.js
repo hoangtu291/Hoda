@@ -15,9 +15,9 @@ function showPictures(fileInput) {
 
 function checkFollowUser() {
     if ($('.btn-follow-user input[type=checkbox]').prop("checked") === false) {
-        $('.btn-follow-user input[type=checkbox] + label').html("Đang theo dõi");
+        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOWING" class="multilang"></span>`);
     } else {
-        $('.btn-follow-user input[type=checkbox] + label').html("Theo dõi");
+        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOW" class="multilang"></span>`);
     }
 }
 checkFollowUser();
@@ -32,17 +32,17 @@ function dataFollowUser(uid1, uid2) {
     followUser(data);
     var num = $('#personal span.num-follower').text();
     if ($('.btn-follow-user input[type=checkbox]').prop("checked") === true) {
-        $('.btn-follow-user input[type=checkbox] + label').html("Đang theo dõi");
+        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOWING" class="multilang"></span>`);
 
         num++;
 
     } else {
-        $('.btn-follow-user input[type=checkbox] + label').html("Theo dõi");
+        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOW" class="multilang"></span>`);
         num--;
     }
     $('#personal span.num-follower').html(num);
 
-
+    changeLang();
 
 }
 

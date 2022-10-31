@@ -29,10 +29,10 @@
                     <div class="tabs">
                         <div class="tab">
                             <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
-                            <label for="tab-1" class="tab-label">Người theo dõi</label>
+                            <label for="tab-1" class="tab-label"><span label-lang="FOLLOWUSER_TAB_FOLLOWER" class="multilang"></span></label>
                             <div class="tab-content">
                                 <div class="follow-status d-flex">
-                                    <div class="num-follow"><span class="num-follower">${requestScope.FOLLOWERS.size()}</span> người theo dõi</div>
+                                    <div class="num-follow"><span class="num-follower">${requestScope.FOLLOWERS.size()}</span> <span label-lang="PERSONAL_TXT_FOLLOWER" class="multilang"></span></div>
                                     <div class="search-follow">
                                         <div class="search">
                                             <input type="text" id="filterFollower" onkeyup="filterFollow('filterFollower', 'list-follower')" title="Type in a name" placeholder=" ">
@@ -79,10 +79,10 @@
                         </div>
                         <div class="tab">
                             <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
-                            <label for="tab-2" class="tab-label">Đang theo dõi</label>
+                            <label for="tab-2" class="tab-label"><span label-lang="FOLLOWUSER_TAB_FOLLOWING" class="multilang"></span></label>
                             <div class="tab-content">
                                 <div class="follow-status d-flex">
-                                    <div class="num-follow">Đang theo dõi <span class="num-following">${requestScope.FOLLOWINGS.size()}</span> người dùng</div>
+                                    <div class="num-follow"><span label-lang="PERSONAL_TXT_FOLLOWING_1" class="multilang"></span> <span class="num-following">${requestScope.FOLLOWINGS.size()}</span> <span label-lang="PERSONAL_TXT_FOLLOWING_2" class="multilang"></span></div>
                                     <div class="search-follow">
                                         <div class="search">
                                             <input type="text" id="filterFollowing" onkeyup="filterFollow("filterFollowing", "list-following")" title="Type in a name" placeholder=" ">
@@ -145,6 +145,7 @@
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+        <script src="../template/js/language.js"></script>
     </body>
 
 </html>

@@ -20,7 +20,7 @@
                     <div class="background-1"></div>
                     <div class="background-2"></div>
                     <div class="content-top mt-3">
-                        <h2>Thông tin cá nhân</h2>
+                        <h2><span label-lang="UPDATEPROFILE_TXT_PROFILE" class="multilang"></span></h2>
                     </div>
                     <form enctype="multipart/form-data" id="form-updateInfo">
                         <div class="row">
@@ -47,45 +47,45 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label class="form-label">Địa chỉ</label>
+                                    <label class="form-label"><span label-lang="UPDATEPROFILE_LABEL_ADDRESS" class="multilang"></span></label>
                                     <input class="form-control" type="text" name="address" value="${requestScope.USER.getProfileModel().getAddress()}">
                                 </div>
 
-                                <p>Giới tính</p>
+                                <p><span label-lang="UPDATEPROFILE_LABEL_GENDER" class="multilang"></span></p>
 
                                 <div class="form-check gender-select col-6">
                                     <input type='radio' id='male' checked='checked' name='gender' value="1">
-                                    <label for='male'>Nam</label>
+                                    <label for='male'><span label-lang="UPDATEPROFILE_LABEL_GENDER_MALE" class="multilang"></span></label>
 
                                 </div>
 
                                 <div class="form-check gender-select col-6">
                                     <input type='radio' id='female' name='gender' value="0">
-                                    <label for='female'>Nữ</label>
+                                    <label for='female'><span label-lang="UPDATEPROFILE_LABEL_GENDER_FEMALE" class="multilang"></span></label>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label">Điện thoại</label>
+                                    <label class="form-label"><span label-lang="UPDATEPROFILE_LABEL_PHONE" class="multilang"></span></label>
                                     <input class="form-control" type="text" name="phone" id="" pattern="[0-9]+" value="${requestScope.USER.getProfileModel().getPhone()}">
                                 </div>
                                 <div class="col-md-6">
-                                    <Label class="form-label">Ngày sinh</Label>
+                                    <Label class="form-label"><span label-lang="UPDATEPROFILE_LABEL_BIRTH" class="multilang"></span></Label>
                                     <input class="form-control" type="date" name="birth" id="" value="${requestScope.USER.getProfileModel().getDateOfBirth().toString()}">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label">Học vấn</label>
+                                    <label class="form-label"><span label-lang="UPDATEPROFILE_LABEL_STUDY" class="multilang"></span></label>
                                     <input class="form-control" type="text" name="study" id="" value="${requestScope.USER.getProfileModel().getStudy()}">
                                 </div>
                                 <div class="col-md-6">
-                                    <Label class="form-label">Nghề nghiệp</Label>
+                                    <Label class="form-label"><span label-lang="UPDATEPROFILE_LABEL_WORK" class="multilang"></span></Label>
                                     <input class="form-control" type="text" name="work" id="" value="${requestScope.USER.getProfileModel().getWork()}">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 my-3" style="text-align: center;">
                                     <!--<a href="/home">-->
-                                        <button class="btn btn-success signUp" type="button" id="btn-submitInfo">Xác nhận</button>
+                                        <button class="btn btn-success signUp" type="button" id="btn-submitInfo"><span label-lang="UPDATEPROFILE_BTN_SUBMIT" class="multilang"></span></button>
                                     <!--</a>-->
                                     <!--<button class="btn btn-success signUp" type="submit">Xác nhận</button>-->
                                 </div>
@@ -115,5 +115,6 @@
                                                     }
     </script>
     <script src="../template/js/script.js"></script>
+    <script src="../template/js/language.js"></script>
 </body>
 </html>

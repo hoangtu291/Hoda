@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 
-    <title>HODA | Trang chủ</title>
+    <title label-lang="HOME_TITLE"></title>
 </head>
 
 <body>
@@ -64,9 +64,10 @@
                                                     <div class="col box-topic">
                                                         <input type="radio" id="control_${category.getId()}" name="categoryid" value="${category.getId()}">
                                                         <label class="text-nowrap" for="control_${category.getId()}">
-                                                            ${category.getName()}
-                                                        </label>
-                                                    </div>
+                                                            <c:if test="${sessionScope.lang == 'en-US'}">${category.getNameEng()}</c:if>
+                                                            <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getName()}</c:if>
+                                                            </label>
+                                                        </div>
                                                 </c:forEach>
                                             </div>
                                             <!-- </div> -->
@@ -97,7 +98,7 @@
                                             </div>
                                             <div class="text-content emoji-picker-container">
                                                 <span label-lang="HOME_MODAL_INPUT_CONTENT" class="multilang"></span>
-                                                
+
                                                 <div class="footer-input-post d-flex">
                                                     <div class="footer-bottom footer-bottom--left" id="select">
                                                         <select class="js-example-basic-multiple list-acc-tag d-none"
@@ -160,9 +161,10 @@
                         <div class="col box-topic">
                             <input type="radio" id="head_topic_${category.getId()}" name="categoryid" value="${category.getId()}">
                             <label class="text-nowrap" for="head_topic_${category.getId()}">
-                                ${category.getName()}
-                            </label>
-                        </div>
+                                <c:if test="${sessionScope.lang == 'en-US'}">${category.getNameEng()}</c:if>
+                                <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getName()}</c:if>
+                                </label>
+                            </div>
                     </c:forEach>
 
                 </ul>
@@ -213,12 +215,12 @@
                                 <c:if test="${sessionScope.account.getId() == post.getUserid()}">
                                     <div class="list-group-item btn btn-updatePost" id="btn-updatePost_${post.getId()}"><span label-lang="POST_BOTTOMSHEET_POST_EDIT" class="multilang"></span></div>
                                     <div class="list-group-item btn text-danger btn-deletePost" id="btn-deletePost_${post.getId()}"><span label-lang="POST_BOTTOMSHEET_POST_DELETE" class="multilang"></span></div>
-                                </c:if>
-                                <c:if test="${sessionScope.account.getId() != post.getUserid()}">
+                                    </c:if>
+                                    <c:if test="${sessionScope.account.getId() != post.getUserid()}">
                                     <div class="list-group-item btn">Ẩn bài viết này</div>
                                     <div class="list-group-item btn">Chặn bài viết từ người dùng này</div>
                                     <div class="list-group-item btn text-danger"><span label-lang="POST_BOTTOMSHEET_POST_REPORT" class="multilang"></span></div>
-                                </c:if>
+                                    </c:if>
 
 
                             </ul>
@@ -227,9 +229,10 @@
                     </div>
                     <div class="content-post p-2">
                         <div class="post-category post-category_${post.getId()}" id="post-category_${post.getCategoryid()}">
-                            ${post.getCategoryModel().getName()}
-                        </div>
-                        <h6>${post.getTitle()}</h6>
+                            <c:if test="${sessionScope.lang == 'en-US'}">${post.getCategoryModel().getNameEng()}</c:if>
+                            <c:if test="${sessionScope.lang == 'vi-VN'}">${post.getCategoryModel().getName()}</c:if>
+                            </div>
+                            <h6>${post.getTitle()}</h6>
                         <p>
                             <a data-bs-toggle="collapse" href="#collapseContent_${post.getId()}" aria-expanded="false"
                                aria-controls="collapseContent_${post.getId()}">
