@@ -32,14 +32,15 @@ create table login_type (
 
 create table follow_user (
 	id bigint NOT NULL PRIMARY KEY auto_increment,
-    follower bigint not null,
-    following bigint not null
+    following bigint not null,
+    follower bigint not null
 );
 
 create table category (
 	id bigint NOT NULL PRIMARY KEY auto_increment,
     code VARCHAR(80) NOT NULL,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    nameEng VARCHAR(255) NOT NULL
 );
 
 create table post (

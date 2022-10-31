@@ -1,5 +1,7 @@
+com\nhom01\hoda\dao\IFollowUserDao.class
 com\nhom01\hoda\dao\ICommentDao.class
 com\nhom01\hoda\controller\API\CommentAPI.class
+com\nhom01\hoda\service\IFollowUserService.class
 com\nhom01\hoda\dao\impl\InteractDao.class
 com\nhom01\hoda\model\CommentModel.class
 com\nhom01\hoda\dao\impl\AbstractDao.class
@@ -8,17 +10,19 @@ com\nhom01\hoda\model\UserModel.class
 com\nhom01\hoda\service\ICategoryService.class
 com\nhom01\hoda\dao\impl\LoginTypeDao.class
 com\nhom01\hoda\controller\API\CategoryAPI.class
+com\nhom01\hoda\controller\TestController.class
 com\nhom01\hoda\mapper\CategoryMapper.class
 com\nhom01\hoda\service\impl\CategoryService.class
 com\nhom01\hoda\mapper\RowMapper.class
+com\nhom01\hoda\service\impl\FollowUserService.class
 com\nhom01\hoda\dao\IGenericDao.class
 com\nhom01\hoda\dao\impl\CommentDao.class
+com\nhom01\hoda\controller\FollowUserController.class
 com\nhom01\hoda\model\ProfileModel.class
 com\nhom01\hoda\controller\PersonalController.class
 com\nhom01\hoda\model\ImageModel.class
 com\nhom01\hoda\model\CategoryModel.class
 com\nhom01\hoda\dao\impl\CategoryDao.class
-com\nhom01\hoda\controller\FollowController.class
 com\nhom01\hoda\mapper\UserMapper.class
 com\nhom01\hoda\dao\ICategoryDao.class
 com\nhom01\hoda\mapper\InteractMapper.class
@@ -26,7 +30,9 @@ com\nhom01\hoda\dao\impl\ImageDao.class
 com\nhom01\hoda\utils\HttpUtil.class
 com\nhom01\hoda\controller\InfoController.class
 com\nhom01\hoda\controller\API\UserAPI.class
+com\nhom01\hoda\mapper\FollowUserMapper.class
 com\nhom01\hoda\mapper\PostMapper.class
+com\nhom01\hoda\controller\API\FollowUserAPI.class
 com\nhom01\hoda\model\InteractModel.class
 com\nhom01\hoda\mapper\CommentMapper.class
 com\nhom01\hoda\dao\IUserDao.class
@@ -37,6 +43,8 @@ com\nhom01\hoda\dao\impl\ProfileDao.class
 com\nhom01\hoda\mapper\ImageMapper.class
 com\nhom01\hoda\dao\IProfileDao.class
 com\nhom01\hoda\service\impl\UserService.class
+com\nhom01\hoda\model\FollowUserModel.class
+com\nhom01\hoda\dao\impl\FollowUserDao.class
 com\nhom01\hoda\service\IPostService.class
 com\nhom01\hoda\controller\API\PostAPI.class
 com\nhom01\hoda\model\LoginTypeModel.class

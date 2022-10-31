@@ -86,49 +86,49 @@
 
     <span id="ketqua"> </span>
 
-    <!--<textarea rows="5" id="editor"></textarea>-->
-    <!--        <div id="editor" style="border: 1px solid; margin-top: 20px;">
-            </div>-->
+    <textarea rows="5" id="editor"></textarea>
+                <div id="editor" style="border: 1px solid; margin-top: 20px; height: 40px">
+                </div>
 
     <img src="" id="rs-image">
-    <!--        <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/balloon-block/ckeditor.js"></script>
-            <script>
-                    BalloonEditor
-                            .create(document.querySelector('#editor'))
-                            .catch(error => {
-                                console.log("error");
-                            });
-            </script>-->
-
-            <script>
-                $('#btn-submit').click(function (e) {
-                    e.preventDefault();
-    //                var data = {};
-    //                console.log($("#image").get(0).files.length);
-    
-    
-                    for (var i = 0; i < $("#image").get(0).files.length; i++) {
-                        var varA = $("#image").get(0).files[i];
-                        var formData = new FormData();
-                        formData.append("image", varA);
-                    }
-    
-    //                for (var item in $('#form #image').prop("files")) {
-    //                    data["image"] = item.name;
-    //                }
-    
-                    $.ajax({
-                        url: "/api-post",
-                        method: "POST",
-                        processData: false,
-                        contentType: 'multipart/form-data',
-                        data: formData,
-                        dataType: 'json'
-    
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/balloon-block/ckeditor.js"></script>
+    <script>
+            BalloonEditor
+                    .create(document.querySelector('#editor'))
+                    .catch(error => {
+                        console.log("error");
                     });
-                    $('#form').submit();
-                });
-    
-            </script>
+    </script>
+
+    <script>
+        $('#btn-submit').click(function (e) {
+            e.preventDefault();
+//                var data = {};
+//                console.log($("#image").get(0).files.length);
+
+
+            for (var i = 0; i < $("#image").get(0).files.length; i++) {
+                var varA = $("#image").get(0).files[i];
+                var formData = new FormData();
+                formData.append("image", varA);
+            }
+
+//                for (var item in $('#form #image').prop("files")) {
+//                    data["image"] = item.name;
+//                }
+
+            $.ajax({
+                url: "/api-post",
+                method: "POST",
+                processData: false,
+                contentType: 'multipart/form-data',
+                data: formData,
+                dataType: 'json'
+
+            });
+            $('#form').submit();
+        });
+
+    </script>
 </body>
 </html>

@@ -14,6 +14,39 @@
         <!--        <link rel="stylesheet" href="./css/style.css">-->
         <style>
             .fixed-top, .fixed-bottom{z-index: auto}
+
+            .switch {
+                /* position: relative; */
+                width: fit-content;
+                height: 100%;
+            }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                /* position: absolute; */
+                cursor: pointer;
+                width: fit-content;
+                height: fit-content;
+                background-color: #fff;
+                border-radius: 3px;
+                padding: 5px 35px;
+                transition: .3s;
+                font-size: 15px;
+                font-weight: 600;
+                color: #000;
+                border: 1px solid;
+            }
+
+
+            input:checked+.slider {
+                background-color: #1d9000;
+                color: #fff;
+            }
         </style>
         <title>Trang cá nhân</title>
     </head>
@@ -30,11 +63,13 @@
                         </div>
                         <div class="right-side">
                             <div class="person-name">
-                                <span>Hoàng Tú</span>
+                                <span>${requestScope.USER.getProfileModel().getFullName()}</span>
                             </div>
                             <div class="info-follow">
-                                <p>12 người theo dõi</p>
-                                <p>Đang theo dõi 70 người dùng</p>
+                                <a style="color: #535353;" href="/personal/follow?id=${requestScope.USER.getId()}">
+                                    <p><span class="num-follower">${requestScope.FOLLOWERS.size()}</span> người theo dõi</p>
+                                    <p>Đang theo dõi <span class="num-following">${requestScope.FOLLOWINGS.size()}</span> người dùng</p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -45,11 +80,14 @@
                             </a>
                         </div>
                     </c:if>
-                    <c:if test="${sessionScope.account.getId()!=requestScope.USER.getId()}">
+                    <c:if test="${sessionScope.account.getId()!=requestScope.USER.getId() and not empty sessionScope.account}">
                         <div class="update-info">
-                            <a href="/update/info?id=${sessionScope.account.getId()}">
-                                <button>Theo dõi</button>
-                            </a>
+                            <label class="switch btn-follow-user" id="btn-followUser_${requestScope.USER.getId()}" 
+                                   onmousedown="dataFollowUser(${sessionScope.account.getId()}, ${requestScope.USER.getId()})">
+                                <input type="checkbox" id="chb-follower_${requestScope.USER.getId()}"
+                                       <c:if test="${requestScope.ISFOLLOW == false}">checked</c:if>>
+                                <label class="slider" for="chb-follower_${requestScope.USER.getId()}">Theo dõi</label>
+                            </label>
                         </div>
                     </c:if>
                 </div>
