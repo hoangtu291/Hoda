@@ -11,5 +11,6 @@ public interface IPostDao {
     
     List<PostModel> getAllPost();
     List<PostModel> getAllPostOfUser(long uid);
+    List<PostModel> getAllPostReport();
     
 }

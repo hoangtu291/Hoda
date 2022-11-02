@@ -6,7 +6,6 @@
 package com.nhom01.hoda.mapper;
 
 import com.nhom01.hoda.model.ImageModel;
-import com.nhom01.hoda.model.PostModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

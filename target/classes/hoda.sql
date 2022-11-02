@@ -20,7 +20,8 @@ create table user (
     createdtime datetime not null,
     modifiedtime datetime not null,
     type_accountid bigint not null,
-    profileid bigint unique not null
+    profileid bigint unique not null,
+    role varchar(20)
     -- CONSTRAINT FK_ProfileUser FOREIGN KEY (profileid) REFERENCES profile(id)
 );
 
@@ -105,7 +106,8 @@ create table comment (
 
 create table report_type (
 	id bigint NOT NULL PRIMARY KEY auto_increment,
-    content VARCHAR(255) NOT NULL
+    content VARCHAR(255) NOT NULL,
+    contentEng VARCHAR(255) NOT NULL
 );
 
 create table report (
@@ -185,29 +187,30 @@ insert into login_type(name) values('google');
 -- ----------------------------------------
 
 insert into category(code, name, nameEng) values('cong-nghe', 'Công nghệ', 'Technology');
-insert into category(code, name) values('suc-khoe', 'Sức khỏe', 'Health');
-insert into category(code, name) values('cuoc-song', 'Cuộc sống', 'Life');
+insert into category(code, name, nameEng) values('suc-khoe', 'Sức khỏe', 'Health');
+insert into category(code, name, nameEng) values('cuoc-song', 'Cuộc sống', 'Life');
 
-insert into category(code, name) values('the-thao', 'Thể thao', 'Sport');
-insert into category(code, name) values('thoi-trang', 'Thời trang', 'Fashion');
-insert into category(code, name) values('xe-co', 'Xe cộ', 'Vehicle');
-insert into category(code, name) values('toi-pham', 'Tội phạm', 'Criminal');
-insert into category(code, name) values('lap-trinh', 'Lập trình', 'Programing');
-insert into category(code, name) values('toan-hoc', 'Toán học', 'Mathematics');
-insert into category(code, name) values('giao-duc', 'Giáo dục', 'Education');
-insert into category(code, name) values('sach-bao', 'Sách, báo', 'Books, news');
-insert into category(code, name) values('thiet-bi-dien-tu', 'Thiết bị điện tử', 'Electronic device');
-insert into category(code, name) values('thuc-pham', 'Thực phẩm', 'Food');
-insert into category(code, name) values('nau-an', 'Nấu ăn', 'Cooking');
-insert into category(code, name) values('chung-khoan', 'Chứng khoán', 'Stock');
-insert into category(code, name) values('thoi-tiet', 'Thời tiết', 'Weather');
-insert into category(code, name) values('giao-thong', 'Giao thông', 'Traffic');
-insert into category(code, name) values('khac', 'Khác', 'Others');
+insert into category(code, name, nameEng) values('the-thao', 'Thể thao', 'Sport');
+insert into category(code, name, nameEng) values('thoi-trang', 'Thời trang', 'Fashion');
+insert into category(code, name, nameEng) values('xe-co', 'Xe cộ', 'Vehicle');
+insert into category(code, name, nameEng) values('toi-pham', 'Tội phạm', 'Criminal');
+insert into category(code, name, nameEng) values('lap-trinh', 'Lập trình', 'Programing');
+insert into category(code, name, nameEng) values('toan-hoc', 'Toán học', 'Mathematics');
+insert into category(code, name, nameEng) values('giao-duc', 'Giáo dục', 'Education');
+insert into category(code, name, nameEng) values('sach-bao', 'Sách, báo', 'Books, news');
+insert into category(code, name, nameEng) values('thiet-bi-dien-tu', 'Thiết bị điện tử', 'Electronic device');
+insert into category(code, name, nameEng) values('thuc-pham', 'Thực phẩm', 'Food');
+insert into category(code, name, nameEng) values('nau-an', 'Nấu ăn', 'Cooking');
+insert into category(code, name, nameEng) values('chung-khoan', 'Chứng khoán', 'Stock');
+insert into category(code, name, nameEng) values('thoi-tiet', 'Thời tiết', 'Weather');
+insert into category(code, name, nameEng) values('giao-thong', 'Giao thông', 'Traffic');
+insert into category(code, name, nameEng) values('khac', 'Khác', 'Others');
 
+insert into report_type(content, contentEng) values('Nội dung có tính bạo lực, khiêu khích', 'Violent and provocative content');
+insert into report_type(content, contentEng) values('Hình ảnh và từ ngữ phản cảm', 'Erotic images and words');
+insert into report_type(content, contentEng) values('Nội dung phân biệt chủng tộc', 'Racist content');
+insert into report_type(content, contentEng) values('Buôn bán hàng cấm', 'Sale of prohibited goods');
 
-
-insert into user(fullname) values('Người dùng 01');
-insert into user(fullname) values('Người dùng 02');
 
 
 

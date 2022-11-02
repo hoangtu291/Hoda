@@ -130,6 +130,10 @@ var labelLang = {
         "vi-VN": "Nghề nghiệp",
         "en-US": "Work"
     },
+    "UPDATEPROFILE_BTN_SUBMIT": {
+        "vi-VN": "Xác nhận",
+        "en-US": "Submit"
+    },
     "FOLLOWUSER_TAB_FOLLOWER": {
         "vi-VN": "Người theo dõi",
         "en-US": "Follower"

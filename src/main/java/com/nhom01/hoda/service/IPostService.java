@@ -10,4 +10,5 @@ public interface IPostService {
     
     List<PostModel> getAllPost();
     List<PostModel> getAllPostOfUser(long uid);
+    List<PostModel> getAllPostReport();
 }

@@ -170,6 +170,22 @@
                 </ul>
             </nav>
         </div>
+        <!-- BOOTOM SHEET MODAL REPORT TYPE -->
+        <div id="list-report-type" tabindex="-1" class="overlay">
+            <aside class="social" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+                <a href="#" class="btn-close" aria-hidden="true"><span class="mdi mdi-close"></span><span
+                        class="sr-only">Close</span></a>
+                <ul class="list-group list-group-flush">
+                    <c:forEach items="${requestScope.REPORT_TYPES}" var="reportType">
+                        <div class="list-group-item btn btn-report-type" id="item-reportType_${reportType.getId()}"
+                             onclick="submitReport(${sessionScope.account.getId()}, ${reportType.getId()}, '${sessionScope.lang}')">
+                            <c:if test="${sessionScope.lang == 'en-US'}">${reportType.getContentEng()}</c:if>
+                            <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getContent()}</c:if>
+                            </div>
+                    </c:forEach>
+                </ul>
+            </aside>
+        </div>
         <div class="list-post">
             <c:forEach items="${requestScope.POSTS}" var="post">
                 <div class="post" id="post_${post.getId()}">
@@ -219,14 +235,13 @@
                                     <c:if test="${sessionScope.account.getId() != post.getUserid()}">
                                     <div class="list-group-item btn">Ẩn bài viết này</div>
                                     <div class="list-group-item btn">Chặn bài viết từ người dùng này</div>
-                                    <div class="list-group-item btn text-danger"><span label-lang="POST_BOTTOMSHEET_POST_REPORT" class="multilang"></span></div>
+                                    <div id="btn-report_${post.getId()}" class="list-group-item btn text-danger btn-report"><span label-lang="POST_BOTTOMSHEET_POST_REPORT" class="multilang"></span></div>
                                     </c:if>
-
-
                             </ul>
                         </aside>
-
                     </div>
+
+
                     <div class="content-post p-2">
                         <div class="post-category post-category_${post.getId()}" id="post-category_${post.getCategoryid()}">
                             <c:if test="${sessionScope.lang == 'en-US'}">${post.getCategoryModel().getNameEng()}</c:if>

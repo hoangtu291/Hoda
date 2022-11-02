@@ -48,4 +48,14 @@ public class PostDao extends AbstractDao implements IPostDao {
         return query(sql, new PostMapper(), uid);
     }
 
+    @Override
+    public List<PostModel> getAllPostReport() {
+        String sql = "SELECT DISTINCT user.id as uid, profile.id as pfid, socialid, fullname, email, avatarimg, post.id as pid,"
+                + " post.title, post.content, post.createdtime, post.modifiedtime, category.id as cid, category.code as ccode,"
+                + " category.name as cname, category.nameEng as cnameEng FROM post INNER JOIN category ON post.categoryid = category.id"
+                + " INNER JOIN user ON post.userid = user.id INNER JOIN profile ON user.profileid=profile.id"
+                + " INNER JOIN report ON report.postid = post.id  ORDER BY createdtime DESC;";
+        return query(sql, new PostMapper());
+    }
+
 }

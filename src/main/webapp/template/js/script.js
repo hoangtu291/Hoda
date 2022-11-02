@@ -45,6 +45,43 @@ function dataFollowUser(uid1, uid2) {
     changeLang();
 
 }
+//show list report type
+$('.btn-report').click(function () {
+    var pid = $(this).attr('id');
+    pid = pid.substring(pid.lastIndexOf("_") + 1);
+    window.location.hash = "#list-report-type";
+    $('#list-report-type').attr("post-id", pid);
+});
+
+function submitReport(uid, reportTypeId, lang) {
+    var pid = $('#list-report-type').attr("post-id");
+    var message = "Bạn có chắc muốn báo cáo bài viết này không?";
+    if (lang === "en-US") {
+        message = "Would you like to report this post?";
+    }
+    var result = confirm(message);
+    if (result) {
+        var data = {};
+        data["uid"] = uid + "";
+        data["reportTypeid"] = reportTypeId + "";
+        data["pid"] = pid;
+
+        console.log(JSON.stringify(data));
+
+        $.ajax({
+            type: "POST",
+            url: "/api-report",
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function () {
+                alert("Báo cáo thành công");
+                window.location.hash = "#list-report-type";
+            }
+        });
+
+    }
+}
 
 
 $('.btn-add-post').click(function () {
@@ -55,14 +92,18 @@ $('.btn-add-post').click(function () {
 
 //ẩn modal bottom để show modal update post
 $('.btn-updatePost').click(function () {
-    window.location.hash = "#bottom-sheet";
+    var pid = $(this).attr('id');
+    pid = pid.substring(pid.lastIndexOf("_") + 1);
+    window.location.hash = "#menu-post_" + pid;
     var buttonId = $(this).attr('id');
     $('#modal-container').removeAttr('class').addClass("two");
     $('body').addClass('modal-active');
 });
 
 $('.btn-deletePost').click(function () {
-    window.location.hash = "#bottom-sheet";
+    var pid = $(this).attr('id');
+    pid = pid.substring(pid.lastIndexOf("_") + 1);
+    window.location.hash = "#menu-post_" + pid;
     var pid = $(this).attr('id');
     pid = pid.substring(pid.lastIndexOf("_") + 1);
     var result = confirm("Bạn có chắc muốn xóa bài viết này không");
