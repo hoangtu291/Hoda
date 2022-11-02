@@ -6,14 +6,10 @@ const indicator = tabbar.querySelector('.indicator')
 const listEntries = tabbar.querySelectorAll('li')
 
 listEntries.forEach(entry => {
-
     let button = entry.querySelector('button')
-
     button.addEventListener('click', e => {
-
         let active = tabbar.querySelector('li.active'),
                 left = entry.offsetLeft + entry.offsetWidth / 2 - indicator.getBBox().width / 2 + 'px'
-
         to(active, {
             '--icon-circle': '0px',
             duration: .25,
@@ -21,7 +17,6 @@ listEntries.forEach(entry => {
                 active.classList.remove('active')
             }
         })
-
         to(indicator.querySelector('path'), {
             keyframes: [{
                     morphSVG: 'M34 58C45.4078 58 48.3887 68.7534 68 72H0C19.6113 68.7534 22.5922 58 34 58Z',
@@ -70,38 +65,106 @@ listEntries.forEach(entry => {
                     duration: .2
                 }]
         })
-
         to(tabbar, {
             keyframes: [{
                     '--indicator-x': left,
                     duration: .3
                 }]
         })
-
     })
-
-
 })
 
 
-//var btn_dislike_id = $($('.btn-dislike')).attr("id");
-//var btn_comment_id = $($('.btn-comment')).attr("id");
-//var btn_close_id = $($('.btn-close')).attr("id");
-function like(pid) {
-    console.log(pid);
-    console.log('#btn-dislike_id_' + pid);
-    if (document.querySelector('#' + 'btn-dislike_id_' + pid).classList.contains('green')) {
-        document.querySelector('#' + 'btn-dislike_id_' + pid).classList.remove('green');
-    }
-    document.querySelector('#' + 'btn-like_id_' + pid).classList.toggle('green');
-}
-function dislike(pid) {
-    console.log(pid);
-    console.log('#btn-like_id_' + pid);
+function like(sessionid, pid) {
+    var totalDislike = $('#total-dislike_id_' + pid).text();
+    var totalLike = $('#total-like_id_' + pid).text();
+    var status = 1;
+    var cancel = 0;
     if (document.querySelector('#' + 'btn-like_id_' + pid).classList.contains('green')) {
+        totalLike--;
+        $('#total-like_id_' + pid).html(totalLike);
         document.querySelector('#' + 'btn-like_id_' + pid).classList.remove('green');
+//        Cancel Like
+//        status = 1;
+        cancel = 1;
+
+    } else {
+        if (document.querySelector('#' + 'btn-dislike_id_' + pid).classList.contains('green')) {
+            document.querySelector('#' + 'btn-dislike_id_' + pid).classList.remove('green');
+
+            if (totalDislike > 0)
+                totalDislike--;
+            $('#total-dislike_id_' + pid).html(totalDislike);
+        }
+        document.querySelector('#' + 'btn-like_id_' + pid).classList.toggle('green');
+        totalLike++;
+        $('#total-like_id_' + pid).html(totalLike);
+        status = 1;
+//        save like
+        cancel = 0;
     }
-    document.querySelector('#' + 'btn-dislike_id_' + pid).classList.toggle('green');
+
+    var data = {};
+    data["status"] = status;
+    data["uid"] = sessionid;
+    data["pid"] = pid;
+    data["cancel"] = cancel;
+    console.log(data);
+    $.ajax({
+        type: "POST",
+        url: "/api-feel",
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+        }
+    });
+}
+
+function dislike(sessionid, pid) {
+    var totalDislike = $('#total-dislike_id_' + pid).text();
+    var totalLike = $('#total-like_id_' + pid).text();
+    var status = 0;
+    var cancel = 0;
+    if (document.querySelector('#' + 'btn-dislike_id_' + pid).classList.contains('green')) {
+        totalDislike--;
+        $('#total-dislike_id_' + pid).html(totalDislike);
+        document.querySelector('#' + 'btn-dislike_id_' + pid).classList.remove('green');
+//        Cancel Dislike
+        cancel = 1;
+    } else {
+        if (document.querySelector('#' + 'btn-like_id_' + pid).classList.contains('green')) {
+            document.querySelector('#' + 'btn-like_id_' + pid).classList.remove('green');
+
+            if (totalLike > 0)
+                totalLike--;
+            $('#total-like_id_' + pid).html(totalLike);
+        }
+        document.querySelector('#' + 'btn-dislike_id_' + pid).classList.toggle('green');
+        totalDislike++;
+        $('#total-dislike_id_' + pid).html(totalDislike);
+        status = 0;
+//        save dislike
+        cancel=0;
+    }
+
+    var data = {};
+    data["status"] = status;
+    data["uid"] = sessionid;
+    data["pid"] = pid;
+    data["cancel"]=cancel;
+    console.log(data);
+    $.ajax({
+        type: "POST",
+        url: "/api-feel",
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+        }
+    });
 }
 function openComment(pid) {
     console.log(pid);
@@ -113,16 +176,14 @@ function closeComment(pid) {
     console.log('#btn-close_id_' + pid);
     document.querySelector('#' + 'btn-comment_id_' + pid).classList.remove('green');
 }
-function sendCommentToInput(id, pid, uid, sessionId,cmtid) {
+function sendCommentToInput(id, pid, uid, sessionId, cmtid) {
     console.log(uid === sessionId);
     if (uid === sessionId) {
         var comment = document.querySelector('#' + 'comment_' + id + "_" + pid + "_" + uid);
         var content = comment.querySelector('.content-comment').textContent;
         console.log();
         document.querySelector('#' + 'content-comment_id_' + pid).value = content;
-//        console.log(document.querySelector('#' + 'btn-send_' + pid).classList);
         document.querySelector('#' + 'btn-send_' + pid).remove('btn-send');
-//        document.querySelector('#' + 'btn-send_' + pid).classList.toggle('btn-update-comment');
         $('.send').append(`<button class="d-block btn-update-comment" id="btn-send_` + pid + `">
                                                         <svg>
                                                             <use xlink:href="#icon-send" />
@@ -137,16 +198,13 @@ function sendCommentToInput(id, pid, uid, sessionId,cmtid) {
 
                                                         </svg>
                                                     </button>`);
-//        console.log(document.querySelector('#' + 'btn-send_' + pid).classList);
         $('.btn-update-comment').click(function (e) {
-            console.log(pid);
             var data = {};
             var formData = $('#form-comment_' + pid).serializeArray();
             $.each(formData, function (i, v) {
                 data["" + v.name + ""] = v.value;
             });
             data["cmtid"] = cmtid;
-            console.log(data);
 
             $.ajax({
                 url: "/api-comment",
@@ -155,10 +213,67 @@ function sendCommentToInput(id, pid, uid, sessionId,cmtid) {
                 data: JSON.stringify(data),
                 dataType: 'json',
                 success: function (data, textStatus, jqXHR) {
-                    $('#form-comment_' + id)[0].reset();
+                    document.querySelector('#' + 'content-comment_id_' + pid).value = "";
                     console.log(data);
+                    $('#comment_' + cmtid).remove();
+                    $('.list-comment').prepend(`<li class="d-flex flex-row" id="comment_${data.commentModel.id}">
+                                                            <div class="pe-2">
+                                                                <img src="${data.userModel.profileModel.avatar}"
+                                                                     class="d-block rounded-circle" alt=""
+                                                                     style="height: 30px; width: 30px;">
+                                                            </div>
+                                                            <div class="d-flex flex-column" id="comment_` + id + `_` + pid + `_` + uid + `">
+                                                                
+                                                                <div class="user-comment"><b>${data.userModel.profileModel.fullName}</b></div>
+                                                                <div class="time-comment">bây giờ</div>
+                                                                <div class="content-comment">${data.commentModel.content}</div>
+                                                            </div>
+                                                                
+                                                                    <div class="navbar navbar-expand ms-auto">
+
+                                                                        <ul class="navbar-nav">
+
+                                                                            <li class="nav-item dropdown">
+                                                                                <a class="nav-link" data-bs-toggle="dropdown">
+                                                                                    <button class="btn-comment d-block pe-2" >
+                                                                                        <span class="material-symbols-outlined">
+                                                                                            more_horiz
+                                                                                        </span>
+                                                                                    </button>
+                                                                                </a>
+
+                                                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                                                    <li onclick="sendCommentToInput(${data.id},${pid},${data.userId},${sessionId}, ${data.commentModel.id})"><a class="dropdown-item">Chỉnh sửa bình luận</a></li>
+                                                                                    <li><a class="dropdown-item">Xóa bình luận</a></li>
+                                                                                </ul>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                
+                                                        </li>`);
+                },
+                error: function (data) {
+                    alert(data);
                 }
+
             });
+
         });
     }
+}
+function deleteComment(id, cmtid) {
+    var data = {};
+    data['cmtid'] = cmtid;
+    data['id'] = id;
+    $.ajax({
+        url: "/api-comment",
+        type: "DELETE",
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            $('#comment_' + cmtid).remove();
+        }
+    })
+    console.log(data);
 }

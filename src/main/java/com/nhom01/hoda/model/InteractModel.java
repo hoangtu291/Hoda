@@ -1,12 +1,22 @@
 package com.nhom01.hoda.model;
 
 public class InteractModel {
+
     private long id;
     private long postId;
     private long userId;
-    
+
+    private FeelModel feelModel = new FeelModel();
     private CommentModel commentModel = new CommentModel();
     private UserModel userModel = new UserModel();
+
+    public FeelModel getFeelModel() {
+        return feelModel;
+    }
+
+    public void setFeelModel(FeelModel feelModel) {
+        this.feelModel = feelModel;
+    }
 
     public UserModel getUserModel() {
         return userModel;
@@ -16,7 +26,6 @@ public class InteractModel {
         this.userModel = userModel;
     }
 
-    
     public CommentModel getCommentModel() {
         return commentModel;
     }
@@ -24,7 +33,7 @@ public class InteractModel {
     public void setCommentModel(CommentModel commentModel) {
         this.commentModel = commentModel;
     }
-    
+
     public long getId() {
         return id;
     }
@@ -49,9 +58,3 @@ public class InteractModel {
         this.userId = userId;
     }
 }
-
-
-
-//    private UserModel userModel = new UserModel();
-//    private PostModel postModel = new PostModel();
- 

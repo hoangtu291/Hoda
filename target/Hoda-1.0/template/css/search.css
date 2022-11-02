@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito');
+
+body {
+    background-color: #fff;
+}
+
+.fas,
+.fab,
+.far {
+    color: #1D9000;
+}
+
+button {
+    color: #fff;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+/*HEADER*/
+header {
+    height: 6vh;
+}
+
+#header-name {
+    color: #1D9000;
+    font-weight: bold;
+    font-family: 'RocknRoll One', sans-serif;
+    -webkit-text-stroke: 0.1px #fff;
+}
+
+#header-nav {
+    height: 6vh;
+    border-bottom: 1px solid #D9D9D9;
+    background-color: #fff;
+}
+
+#header-input {
+    width: 150px;
+     height: 28px; 
+    border-radius: 20px;
+    border-color: #1D9000;
+    font-family: "Nunito";
+    font-size: 12px;
+}
+
+input:focus{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}
+
+#header-icon {
+    list-style: none;
+    font-size: 18px;
+    /* background-color: #fff; */
+}
+
+#header-nav .btn-login{
+    background-color: #1d9000;
+    width: fit-content;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 999px;
+    padding: 5px 16px;
+}
+main {
+    background-color: #D9D9D9;
+    overflow: auto;
+    width: 100%;
+    height: 100vh;
+}
+/*TAB*/
+.wrapper {
+    /*width: 100%;*/
+            /*width: 40%;*/
+    /*margin: 0 auto;*/
+    
+}
+
+.tabs {
+    position: relative;
+    /*margin: 20px 0;*/
+
+}
+
+.tabs::before,
+.tabs::after {
+    content: "";
+    display: table;
+}
+
+.tabs::after {
+    clear: both;
+}
+
+.tab {
+    float: left;
+    
+    width: 50%;
+}
+
+.tab-switch {
+    display: none;
+}
+
+.tab-label {
+    position: relative;
+    display: block;
+    line-height: 2.75em;
+    cursor: pointer;
+    top: 0;
+    transition: all 0.25s;
+    width: 100%;
+    text-align: center;
+    color: #535353;
+    font-weight: 600;
+}
+
+.tab-content {
+    position: absolute;
+    z-index: 1;
+    top: 60px;
+    left: 0;
+    opacity: 0;
+    /*width: 100%;*/
+}
+
+.tab-switch:checked+.tab-label {
+    transition: .3s;
+    background: #fff;
+    color: #000;
+    border-bottom: 1px solid;
+    border-right: 0;
+    z-index: 1;
+    color: #000;
+
+}
+
+.tab-switch:checked+label+.tab-content {
+    z-index: 2;
+    opacity: 1;
+    transition: all 0.35s;
+}
+
+
+
+
+@media only screen and (min-width: 760px) {
+    .center{
+        width: 40%;
+        margin: 0 auto;
+    }
+    main #search{
+        display: flex;
+    }
+
+    .left, .right{
+        width: 30%;
+        /*height: 100px;*/
+    }
+}

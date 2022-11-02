@@ -8,22 +8,16 @@ import com.nhom01.hoda.service.ICommentService;
 import java.sql.Timestamp;
 import javax.inject.Inject;
 
-public class CommentService implements ICommentService{
-        
+public class CommentService implements ICommentService {
     @Inject
     ICommentDao commentDao;
 
     @Inject
     IInteractDao interactDao;
-    
-    
+
     @Override
     public Long save(InteractModel interactModel) {
-        
-        Long cid;
-//        commentModel.setInteractId(interactDao.save(commentModel.getInteractModel()));   
-//        
-//        
+        Long cid;    
         interactModel.getCommentModel().setCreatedTime(new Timestamp(System.currentTimeMillis()));
         interactModel.getCommentModel().setModifiedTime(new Timestamp(System.currentTimeMillis()));
         interactModel.setId(interactDao.save(interactModel));
@@ -31,10 +25,13 @@ public class CommentService implements ICommentService{
         cid = commentDao.save(interactModel.getCommentModel());
         return cid;
     }
-//    @Override
-//    public CommentModel findUserById(Long id) {
-//        return commentDao.findUserById(id);
-//    }
+
+    @Override
+    public void delete(Long cmtid, Long interactid) {
+        commentDao.delete(cmtid);
+        interactDao.delete(interactid);
+    }
+
     @Override
     public void update(InteractModel interactModel) {
         interactModel.getCommentModel().setModifiedTime(new Timestamp(System.currentTimeMillis()));

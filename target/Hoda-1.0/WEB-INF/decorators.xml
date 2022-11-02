@@ -19,4 +19,8 @@
     <decorator name="followList" page="">
         <pattern>/personal/follow</pattern>
     </decorator>
+    
+    <decorator name="search" page="">
+        <pattern>/search</pattern>
+    </decorator>
 </decorators>
