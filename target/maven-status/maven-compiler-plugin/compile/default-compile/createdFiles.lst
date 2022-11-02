@@ -26,9 +26,8 @@ com\nhom01\hoda\controller\PersonalController.class
 com\nhom01\hoda\model\ImageModel.class
 com\nhom01\hoda\model\CategoryModel.class
 com\nhom01\hoda\dao\impl\CategoryDao.class
-com\nhom01\hoda\service\impl\ReportTypeService.class
-com\nhom01\hoda\controller\FollowController.class
 com\nhom01\hoda\controller\SearchController.class
+com\nhom01\hoda\service\impl\ReportTypeService.class
 com\nhom01\hoda\model\FeelModel.class
 com\nhom01\hoda\mapper\UserMapper.class
 com\nhom01\hoda\dao\ICategoryDao.class
