@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<c:url value='/template/css/home.css' />">
     <script src="https://use.fontawesome.com/fe459689b4.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
     <title>HODA | Trang chủ</title>
 </head>
 
@@ -34,7 +35,7 @@
                                                     <i class="fa-solid fa-arrow-left"></i>
                                                 </div>
 
-                                                <div class="person-name w-100 text-center">Thêm bài viết</div>
+                                                <div class="person-name w-100 text-center"><span label-lang="HOME_MODAL_TXT_ADDPOST" class="multilang"></span></div>
                                                 <div class="add-post--prev carousel-control-next" type="button"
                                                      data-bs-target="#carouselExampleControls" data-bs-slide="next">
                                                     <i class="fa-solid fa-arrow-right"></i>
@@ -44,14 +45,13 @@
                                         <div class="main-dialog">
                                             <div class="suggest-title">
                                                 <ul>
-                                                    <li>Gợi ý 1: Trong câu nên có dấu '?'</li>
-                                                    <li>Gợi ý 2: Nên có các từ để hỏi</li>
-                                                    <li>Gợi ý 3: Nên trình bày cụ thể về chủ đề bài viết</li>
+                                                    <li><span label-lang="HOME_MODAL_SUGGEST_1" class="multilang"></span></li>
+                                                    <li><span label-lang="HOME_MODAL_SUGGEST_2" class="multilang"></span></li>
+                                                    <li><span label-lang="HOME_MODAL_SUGGEST_3" class="multilang"></span></li>
                                                 </ul>
                                             </div>
                                             <div class="text-title emoji-picker-container">
-                                                <textarea form="form-addPost" placeholder="Viết tiêu đề... ?" name="title" id="input-title"
-                                                          data-emojiable="true" data-emoji-input="unicode"></textarea>
+                                                <span label-lang="HOME_MODAL_INPUT_TITLE" class="multilang"></span>
                                                 <div class="footer-input-post"></div>
                                             </div>
 
@@ -62,15 +62,16 @@
                                                     <div class="col box-topic">
                                                         <input type="radio" id="control_${category.getId()}" name="categoryid" value="${category.getId()}">
                                                         <label class="text-nowrap" for="control_${category.getId()}">
-                                                            ${category.getName()}
-                                                        </label>
-                                                    </div>
+                                                            <c:if test="${sessionScope.lang == 'en-US'}">${category.getNameEng()}</c:if>
+                                                            <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getName()}</c:if>
+                                                            </label>
+                                                        </div>
                                                 </c:forEach>
                                             </div>
                                             <!-- </div> -->
                                         </div>
                                         <div class="foot-dialog">
-                                            Xem trước
+                                            <span label-lang="HOME_MODAL_PREVIEW" class="multilang"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -83,9 +84,9 @@
                                                      data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                                                     <i class="fa-solid fa-arrow-left"></i>
                                                 </div>
-                                                <div class="person-name w-100 text-center">Thêm bài viết</div>
+                                                <div class="person-name w-100 text-center"><span label-lang="HOME_MODAL_TXT_ADDPOST" class="multilang"></span></div>
                                                 <div id="btn-submit-addPost" class="add-post--prev carousel-control-next" type="button">
-                                                    Đăng
+                                                    <span label-lang="HOME_MODAL_BTN_POST" class="multilang"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -94,9 +95,8 @@
                                                 Title ?
                                             </div>
                                             <div class="text-content emoji-picker-container">
-                                                <textarea form="form-addPost" placeholder="Viết nội dung..." style="height: 150px;"
-                                                          name="content" id="input-content" data-emojiable="true"
-                                                          data-emoji-input="unicode"></textarea>
+                                                <span label-lang="HOME_MODAL_INPUT_CONTENT" class="multilang"></span>
+
                                                 <div class="footer-input-post d-flex">
                                                     <div class="footer-bottom footer-bottom--left" id="select">
                                                         <select class="js-example-basic-multiple list-acc-tag d-none"
@@ -133,7 +133,7 @@
                                             </div>
                                         </div>
                                         <div class="foot-dialog">
-                                            Xem trước
+                                            <span label-lang="HOME_MODAL_PREVIEW" class="multilang"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -150,7 +150,8 @@
 
 
         <div class="container-fluid p-0 ps-2" id="category">
-            <h5 class="p-0 pt-2">Thể loại </h5>
+            <!--<h5 class="p-0 pt-2">Thể loại</h5>-->
+            <h5 class="p-0 pt-2"><span label-lang="HOME_TOPIC" class="multilang"></span></h5>
             <nav class="navbar navbar-expand p-0">
                 <ul class="navbar-nav gap-1 me-auto list-topic d-flex" id="list-category">
                     <c:forEach items="${requestScope.CATEGORIES}" var="category">
@@ -158,25 +159,47 @@
                         <div class="col box-topic">
                             <input type="radio" id="head_topic_${category.getId()}" name="categoryid" value="${category.getId()}">
                             <label class="text-nowrap" for="head_topic_${category.getId()}">
-                                ${category.getName()}
-                            </label>
-                        </div>
+                                <c:if test="${sessionScope.lang == 'en-US'}">${category.getNameEng()}</c:if>
+                                <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getName()}</c:if>
+                                </label>
+                            </div>
                     </c:forEach>
 
                 </ul>
             </nav>
+        </div>
+        <!-- BOOTOM SHEET MODAL REPORT TYPE -->
+        <div id="list-report-type" tabindex="-1" class="overlay">
+            <aside class="social" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+                <a href="#" class="btn-close" aria-hidden="true"><span class="mdi mdi-close"></span><span
+                        class="sr-only">Close</span></a>
+                <ul class="list-group list-group-flush">
+                    <c:forEach items="${requestScope.REPORT_TYPES}" var="reportType">
+                        <div class="list-group-item btn btn-report-type" id="item-reportType_${reportType.getId()}"
+                             onclick="submitReport(${sessionScope.account.getId()}, ${reportType.getId()}, '${sessionScope.lang}')">
+                            <c:if test="${sessionScope.lang == 'en-US'}">${reportType.getContentEng()}</c:if>
+                            <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getContent()}</c:if>
+                            </div>
+                    </c:forEach>
+                </ul>
+            </aside>
         </div>
         <div class="list-post">
             <c:forEach items="${requestScope.POSTS}" var="post">
                 <div class="post" id="post_${post.getId()}">
                     <div class="header-post">
                         <nav class="navbar navbar-expand ps-2 pe-2 gap-2">
-                            <img src="<c:url value='${post.getUserModel().getProfileModel().getAvatar()}' />" class="d-block rounded-circle" alt=""
-                                 style="height: 35px; width: 35px;">
+                            <a href="/personal?id=${post.getUserid()}" style="text-decoration: none">
+                                <img src="<c:url value='${post.getUserModel().getProfileModel().getAvatar()}' />" class="d-block rounded-circle" alt=""
+                                     style="height: 35px; width: 35px;">
+                            </a>
                             <div>
-                                <h5>${post.getUserModel().getProfileModel().getFullName()}</h5>
+                                <a href="/personal?id=${post.getUserid()}" style="text-decoration: none; color: black;">
+                                    <h5>${post.getUserModel().getProfileModel().getFullName()}</h5>
+                                </a>
                                 <p>${post.getCreatedTime()}</p>
                             </div>
+
                             <ul class="navbar-nav ms-auto gap-3" id="list-header">
 
                                 <li class="nav-item">
@@ -204,30 +227,29 @@
                                     class="sr-only">Close</span></a>
                             <ul class="list-group list-group-flush">
                                 <c:if test="${sessionScope.account.getId() == post.getUserid()}">
-                                    <div class="list-group-item btn btn-updatePost" id="btn-updatePost_${post.getId()}">Chỉnh sửa bài viết</div>
-                                    <div class="list-group-item btn text-danger btn-deletePost" id="btn-deletePost_${post.getId()}">Xóa bài viết</div>
-                                </c:if>
-                                <c:if test="${sessionScope.account.getId() != post.getUserid()}">
+                                    <div class="list-group-item btn btn-updatePost" id="btn-updatePost_${post.getId()}"><span label-lang="POST_BOTTOMSHEET_POST_EDIT" class="multilang"></span></div>
+                                    <div class="list-group-item btn text-danger btn-deletePost" id="btn-deletePost_${post.getId()}"><span label-lang="POST_BOTTOMSHEET_POST_DELETE" class="multilang"></span></div>
+                                    </c:if>
+                                    <c:if test="${sessionScope.account.getId() != post.getUserid()}">
                                     <div class="list-group-item btn">Ẩn bài viết này</div>
                                     <div class="list-group-item btn">Chặn bài viết từ người dùng này</div>
-                                    <div class="list-group-item btn text-danger">Báo cáo</div>
-                                </c:if>
-
-
+                                    <div id="btn-report_${post.getId()}" class="list-group-item btn text-danger btn-report"><span label-lang="POST_BOTTOMSHEET_POST_REPORT" class="multilang"></span></div>
+                                    </c:if>
                             </ul>
-
                         </aside>
-
                     </div>
+
+
                     <div class="content-post p-2">
                         <div class="post-category post-category_${post.getId()}" id="post-category_${post.getCategoryid()}">
-                            ${post.getCategoryModel().getName()}
-                        </div>
-                        <h6>${post.getTitle()}</h6>
+                            <c:if test="${sessionScope.lang == 'en-US'}">${post.getCategoryModel().getNameEng()}</c:if>
+                            <c:if test="${sessionScope.lang == 'vi-VN'}">${post.getCategoryModel().getName()}</c:if>
+                            </div>
+                            <h6>${post.getTitle()}</h6>
                         <p>
                             <a data-bs-toggle="collapse" href="#collapseContent_${post.getId()}" aria-expanded="false"
                                aria-controls="collapseContent_${post.getId()}">
-                                Xem nội dung
+                                <span label-lang="POST_VIEW_CONTENT" class="multilang"></span>
                             </a>
                         </p>
                         <div class="collapse" id="collapseContent_${post.getId()}">

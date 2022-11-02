@@ -24,7 +24,7 @@ public class CategoryDao extends AbstractDao implements ICategoryDao{
 
     @Override
     public List<CategoryModel> getAll() {
-        String sql = "SELECT * FROM category ORDER BY name";
+        String sql = "SELECT * FROM category";
         return query(sql, new CategoryMapper());
     }
     

@@ -6,12 +6,83 @@ function showPictures(fileInput) {
                 $('.list-image').append(`<div class="image-item">
                                                     <img src="` + e.target.result + `" alt="" class="w-100">
                                                 </div>`);
-            }
+            };
             reader.readAsDataURL(fileInput.files[i]);
         }
     }
 
 }
+
+function checkFollowUser() {
+    if ($('.btn-follow-user input[type=checkbox]').prop("checked") === false) {
+        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOWING" class="multilang"></span>`);
+    } else {
+        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOW" class="multilang"></span>`);
+    }
+}
+checkFollowUser();
+
+// follow user
+function dataFollowUser(uid1, uid2) {
+    var data = {};
+    data['following'] = uid1;
+    data['follower'] = uid2;
+    console.log(data);
+    console.log($('.btn-follow-user input[type=checkbox]').prop("checked"));
+    followUser(data);
+    var num = $('#personal span.num-follower').text();
+    if ($('.btn-follow-user input[type=checkbox]').prop("checked") === true) {
+        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOWING" class="multilang"></span>`);
+
+        num++;
+
+    } else {
+        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOW" class="multilang"></span>`);
+        num--;
+    }
+    $('#personal span.num-follower').html(num);
+
+    changeLang();
+
+}
+//show list report type
+$('.btn-report').click(function () {
+    var pid = $(this).attr('id');
+    pid = pid.substring(pid.lastIndexOf("_") + 1);
+    window.location.hash = "#list-report-type";
+    $('#list-report-type').attr("post-id", pid);
+});
+
+function submitReport(uid, reportTypeId, lang) {
+    var pid = $('#list-report-type').attr("post-id");
+    var message = "Bạn có chắc muốn báo cáo bài viết này không?";
+    if (lang === "en-US") {
+        message = "Would you like to report this post?";
+    }
+    var result = confirm(message);
+    if (result) {
+        var data = {};
+        data["uid"] = uid + "";
+        data["reportTypeid"] = reportTypeId + "";
+        data["pid"] = pid;
+
+        console.log(JSON.stringify(data));
+
+        $.ajax({
+            type: "POST",
+            url: "/api-report",
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function () {
+                alert("Báo cáo thành công");
+                window.location.hash = "#list-report-type";
+            }
+        });
+
+    }
+}
+
 
 $('.btn-add-post').click(function () {
     var buttonId = $(this).attr('id');
@@ -21,18 +92,22 @@ $('.btn-add-post').click(function () {
 
 //ẩn modal bottom để show modal update post
 $('.btn-updatePost').click(function () {
-    window.location.hash = "#bottom-sheet";
+    var pid = $(this).attr('id');
+    pid = pid.substring(pid.lastIndexOf("_") + 1);
+    window.location.hash = "#menu-post_" + pid;
     var buttonId = $(this).attr('id');
     $('#modal-container').removeAttr('class').addClass("two");
     $('body').addClass('modal-active');
 });
 
 $('.btn-deletePost').click(function () {
-    window.location.hash = "#bottom-sheet";
+    var pid = $(this).attr('id');
+    pid = pid.substring(pid.lastIndexOf("_") + 1);
+    window.location.hash = "#menu-post_" + pid;
     var pid = $(this).attr('id');
     pid = pid.substring(pid.lastIndexOf("_") + 1);
     var result = confirm("Bạn có chắc muốn xóa bài viết này không");
-    if(result){
+    if (result) {
         deletePost(pid);
     }
 });
@@ -56,8 +131,8 @@ $('.btn-updatePost').click(function () {
     $('#input-content + .emoji-wysiwyg-editor').html($(`#post_${pid} #collapseContent_${pid} .card`).html());
     $('#input-title').val($(`#post_${pid} .content-post h6`).html());
     $('#input-content').val($(`#post_${pid} #collapseContent_${pid} .card`).html());
-    
-    
+
+
     var cateid = $(`.post-category_${pid}`).attr('id');
     cateid = cateid.substring(cateid.lastIndexOf("_") + 1);
 
@@ -84,21 +159,21 @@ $('.btn-updatePost').click(function () {
             formData.append("image" + i, varA);
         }
         console.log(formData.get("title"));
-    $.ajax({
-        url: "/api-post",
-        method: "PUT",
-        processData: false,
-        mimeType: "multipart/form-data",
-        contentType: false,
-        data: formData,
-        success: function () {
-            window.location.href = "/home";
-        },
-        error: function () {
-            window.location.href = "/home";
-        }
+        $.ajax({
+            url: "/api-post",
+            method: "PUT",
+            processData: false,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            data: formData,
+            success: function () {
+                window.location.href = "/home";
+            },
+            error: function () {
+                window.location.href = "/home";
+            }
 
-    });
+        });
 //    $('#form-addPost').submit();
     });
 });
@@ -259,4 +334,16 @@ $('#btn-submitInfo').click(function (e) {
     });
     $('#form-updateInfo').submit();
 });
+
+
+// Follow User
+function followUser(data) {
+    $.ajax({
+        type: "POST",
+        url: "/api-follow/user",
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json'
+    });
+}
 

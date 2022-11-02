@@ -4,7 +4,16 @@ public class CategoryModel {
     private long id;
     private String code;
     private String name;
+    private String nameEng;
 
+    public String getNameEng() {
+        return nameEng;
+    }
+
+    public void setNameEng(String nameEng) {
+        this.nameEng = nameEng;
+    }
+    
     public long getId() {
         return id;
     }

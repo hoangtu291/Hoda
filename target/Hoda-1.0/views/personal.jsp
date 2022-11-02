@@ -14,6 +14,39 @@
         <!--        <link rel="stylesheet" href="./css/style.css">-->
         <style>
             .fixed-top, .fixed-bottom{z-index: auto}
+
+            .switch {
+                /* position: relative; */
+                width: fit-content;
+                height: 100%;
+            }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                /* position: absolute; */
+                cursor: pointer;
+                width: fit-content;
+                height: fit-content;
+                background-color: #fff;
+                border-radius: 3px;
+                padding: 5px 35px;
+                transition: .3s;
+                font-size: 15px;
+                font-weight: 600;
+                color: #000;
+                border: 1px solid;
+            }
+
+
+            input:checked+.slider {
+                background-color: #1d9000;
+                color: #fff;
+            }
         </style>
         <title>Trang cá nhân</title>
     </head>
@@ -30,26 +63,31 @@
                         </div>
                         <div class="right-side">
                             <div class="person-name">
-                                <span>Hoàng Tú</span>
+                                <span>${requestScope.USER.getProfileModel().getFullName()}</span>
                             </div>
                             <div class="info-follow">
-                                <p>12 người theo dõi</p>
-                                <p>Đang theo dõi 70 người dùng</p>
+                                <a style="color: #535353;" href="/personal/follow?id=${requestScope.USER.getId()}">
+                                    <p><span class="num-follower">${requestScope.FOLLOWERS.size()}</span> <span label-lang="PERSONAL_TXT_FOLLOWER" class="multilang"></span></p>
+                                    <p><span label-lang="PERSONAL_TXT_FOLLOWING_1" class="multilang"></span> <span class="num-following">${requestScope.FOLLOWINGS.size()}</span> <span label-lang="PERSONAL_TXT_FOLLOWING_2" class="multilang"></span></p>
+                                </a>
                             </div>
                         </div>
                     </div>
                     <c:if test="${sessionScope.account.getId()==requestScope.USER.getId()}">
                         <div class="update-info">
                             <a href="/update/info?id=${sessionScope.account.getId()}">
-                                <button>Cập nhật thông tin</button>
+                                <button><span label-lang="PERSONAL_BTN_UPDATEINFO" class="multilang"></span></button>
                             </a>
                         </div>
                     </c:if>
-                    <c:if test="${sessionScope.account.getId()!=requestScope.USER.getId()}">
+                    <c:if test="${sessionScope.account.getId()!=requestScope.USER.getId() and not empty sessionScope.account}">
                         <div class="update-info">
-                            <a href="/update/info?id=${sessionScope.account.getId()}">
-                                <button>Theo dõi</button>
-                            </a>
+                            <label class="switch btn-follow-user" id="btn-followUser_${requestScope.USER.getId()}" 
+                                   onmousedown="dataFollowUser(${sessionScope.account.getId()}, ${requestScope.USER.getId()})">
+                                <input type="checkbox" id="chb-follower_${requestScope.USER.getId()}"
+                                       <c:if test="${requestScope.ISFOLLOW == false}">checked</c:if>>
+                                <label class="slider" for="chb-follower_${requestScope.USER.getId()}"><span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOW" class="multilang"></span></label>
+                            </label>
                         </div>
                     </c:if>
                 </div>
@@ -59,7 +97,7 @@
                     <div class="tabs">
                         <div class="tab">
                             <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
-                            <label for="tab-1" class="tab-label">Bài viết</label>
+                            <label for="tab-1" class="tab-label"><span label-lang="PERSONAL_TAB_POSTS" class="multilang"></span></label>
                             <div class="tab-content">
                                 <div class="list-post">
                                     <c:forEach items="${requestScope.POSTS}" var="post">
@@ -352,7 +390,7 @@
                         </div>
                         <div class="tab">
                             <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
-                            <label for="tab-2" class="tab-label">Ảnh</label>
+                            <label for="tab-2" class="tab-label"><span label-lang="PERSONAL_TAB_PHOTOS" class="multilang"></span></label>
                             <div class="tab-content">
 
                                 <style>

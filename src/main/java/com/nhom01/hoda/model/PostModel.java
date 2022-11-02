@@ -15,7 +15,18 @@ public class PostModel extends AbstractModel{
     private CategoryModel categoryModel = new CategoryModel();
     private List<ImageModel> imageModels = new ArrayList<>();
     
+    
     private List<InteractModel> interactModels = new ArrayList<>();
+    private List<ReportModel> reportModels = new ArrayList<>();
+
+    public List<ReportModel> getReportModels() {
+        return reportModels;
+    }
+
+    public void setReportModels(List<ReportModel> reportModels) {
+        this.reportModels = reportModels;
+    }
+    
 
     public List<InteractModel> getInteractModels() {
         return interactModels;

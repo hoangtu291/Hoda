@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        
+
         <title><dec:title default="Home" /></title>
         <!--<meta name="color-scheme" content="dark"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> 
@@ -52,11 +52,13 @@
 
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="../template/js/script.js"></script>
+        <script src="../template/js/language.js"></script>
 
         <script src="../template/lib/js/config.min.js"></script>
         <script src="../template/lib/js/util.min.js"></script>
         <script src="../template/lib/js/jquery.emojiarea.min.js"></script>
         <script src="../template/lib/js/emoji-picker.min.js"></script>
+
 
         <script>
             $(function () {
@@ -68,7 +70,6 @@
                 });
                 window.emojiPicker.discover();
             });
-
             var pathname = window.location.pathname;
             if (pathname.indexOf("home") !== -1) {
                 $('.icon-home').addClass("active");
