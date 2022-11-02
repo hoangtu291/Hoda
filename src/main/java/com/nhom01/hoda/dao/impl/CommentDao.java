@@ -16,4 +16,9 @@ public class CommentDao extends AbstractDao implements ICommentDao{
                     + "SET content = ?, modifiedtime = ?, interactid = ? WHERE id = ?";
         update(sql, commentModel.getContent(), commentModel.getModifiedTime(), commentModel.getInteractId(),commentModel.getId());
     }
+    @Override
+    public void delete(Long cmtid){
+        String sql = "DELETE FROM comment WHERE id=?";
+        update(sql, cmtid);
+    }
 }

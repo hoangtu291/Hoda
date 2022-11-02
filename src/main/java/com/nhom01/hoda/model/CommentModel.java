@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nhom01.hoda.model;
 
 public class CommentModel extends AbstractModel{
@@ -9,14 +5,6 @@ public class CommentModel extends AbstractModel{
     private long id;
     private String content;
     private long interactId;
-//    private InteractModel interactModel= new InteractModel();
-//    public InteractModel getInteractModel() {
-//        return interactModel;
-//    }
-//
-//    public void setInteractModel(InteractModel interactModel) {
-//        this.interactModel = interactModel;
-//    }
 
     public long getId() {
         return id;

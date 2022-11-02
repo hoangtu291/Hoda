@@ -7,11 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="<c:url value='/template/css/post.css' />">
     <link rel="stylesheet" href="<c:url value='/template/css/home.css' />">
-
     <script src="https://use.fontawesome.com/fe459689b4.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-
     <title>HODA | Trang chủ</title>
 </head>
 
@@ -269,26 +266,48 @@
                             </div>
                         </c:if>
                     </div>
+                    <c:set var="totalLike" scope="session" value="${0}"/>
+                    <c:set var="totalDislike" scope="session" value="${0}"/>
+                    <c:set var="like" scope="session" value=" "/>
+
+                    <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
+                        <c:if test="${interact.getFeelModel().getId()!=0 && interact.getFeelModel().getStatus()==1 }">
+                            <c:if test="${interact.getUserModel().getId() == sessionScope.account.getId()}">
+                                <c:set var="like" scope="session" value="green"/>
+                            </c:if>
+                            <c:set var="totalLike" scope="session" value="${totalLike+1}"/>
+                        </c:if>
+                    </c:forEach>
+                    
+                    <c:set var="dislike" scope="session" value=" "/>
+                    <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
+                        <c:if test="${interact.getFeelModel().getId()!=0 && interact.getFeelModel().getStatus()==0 }">
+                            <c:if test="${interact.getUserModel().getId() == sessionScope.account.getId()}">
+                                <c:set var="dislike" scope="session" value="green"/>
+                            </c:if>
+                            <c:set var="totalDislike" scope="session" value="${totalDislike+1}"/>
+                        </c:if>
+                    </c:forEach>
                     <div class="interact-post d-flex flex-row p-2">
                         <div class="d-flex justify-content-start">
-                            <button class="btn-like d-block pe-2" id="btn-like_id_${post.getId()}" onclick="like(${post.getId()})">
+                            <button class="${like} btn-like d-block pe-2" id="btn-like_id_${post.getId()}" onclick="like(${sessionScope.account.getId()},${post.getId()})">
                                 <span class="material-symbols-outlined">
                                     thumb_up_off
                                 </span>
                             </button>
-                            <p class="pe-3">95</p>
-                            <button class="btn-dislike d-block pe-2" id="btn-dislike_id_${post.getId()}" onclick="dislike(${post.getId()})">
+                            <p class="pe-3" id="total-like_id_${post.getId()}">${totalLike}</p>
+                            <button class="${dislike} btn-dislike d-block pe-2" id="btn-dislike_id_${post.getId()}" onclick="dislike(${sessionScope.account.getId()},${post.getId()})">
                                 <span class="material-symbols-outlined">
                                     thumb_down
                                 </span>
                             </button>
-                            <p class="pe-3">28</p>
+                            <p class="pe-3" id="total-dislike_id_${post.getId()}">${totalDislike}</p>
                             <button class="btn-comment d-block pe-2" id="btn-comment_id_${post.getId()}" onclick="openComment(${post.getId()})" data-bs-toggle="modal" data-bs-target="#modalComment_pid_${post.getId()}">
                                 <span class="material-symbols-outlined">
                                     chat_bubble
                                 </span>
                             </button>
-                            <p class="pe-3">8</p>
+                            <p class="pe-3" id="total-comment_id_${post.getId()}">0</p>
                         </div>
                         <div class="footer-post d-flex flex-row">                        
                             <div id="modalComment_pid_${post.getId()}" class="modal fade" role="dialog" tabindex="-1">
@@ -300,42 +319,45 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="comment-post">
-                                                <ul class="list-comment p-0 m-0">
+                                                <ul class="list-comment p-0">
                                                     <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
-                                                        <li class="d-flex flex-row comment-1">
-                                                            <div class="pe-2">
-                                                                <img src="<c:url value='${interact.getUserModel().getProfileModel().getAvatar()}' />"
-                                                                     class="d-block rounded-circle" alt=""
-                                                                     style="height: 30px; width: 30px;">
-                                                            </div>
-                                                            <div class="d-flex flex-column" id="comment_${interact.getId()}_${post.getId()}_${interact.getUserId()}">
-                                                                <!--${sessionScope.account.getProfileModel().getFullName()}-->
-                                                                <div class="user-comment"><b>${interact.getUserModel().getProfileModel().getFullName()}</b></div>
-                                                                <div class="time-comment">${interact.getCommentModel().getCreatedTime()}</div>
-                                                                <div class="content-comment">${interact.getCommentModel().getContent()}</div>
-                                                            </div>
-                                                            
-                                                            <div class="navbar navbar-expand ms-auto">
+                                                        <c:if test="${interact.getCommentModel().getId()!=0}">
+                                                            <li class="d-flex flex-row" id="comment_${interact.getCommentModel().getId()}">
+                                                                <div class="pe-2">
+                                                                    <img src="<c:url value='${interact.getUserModel().getProfileModel().getAvatar()}' />"
+                                                                         class="d-block rounded-circle" alt=""
+                                                                         style="height: 30px; width: 30px;">
+                                                                </div>
+                                                                <div class="d-flex flex-column" id="comment_${interact.getId()}_${post.getId()}_${interact.getUserId()}">
+                                                                    <!--${sessionScope.account.getProfileModel().getFullName()}-->
+                                                                    <div class="user-comment"><b>${interact.getUserModel().getProfileModel().getFullName()}</b></div>
+                                                                    <div class="time-comment">${interact.getCommentModel().getCreatedTime()}</div>
+                                                                    <div class="content-comment">${interact.getCommentModel().getContent()}</div>
+                                                                </div>
+                                                                <c:if test="${sessionScope.account.getId() == interact.getUserId()}">
+                                                                    <div class="navbar navbar-expand ms-auto">
 
-                                                                <ul class="navbar-nav">
+                                                                        <ul class="navbar-nav">
 
-                                                                    <li class="nav-item dropdown">
-                                                                        <a class="nav-link" data-bs-toggle="dropdown">
-                                                                            <button class="btn-comment d-block pe-2" >
-                                                                                <span class="material-symbols-outlined">
-                                                                                    more_horiz
-                                                                                </span>
-                                                                            </button>
-                                                                        </a>
-                                                                        
-                                                                        <ul class="dropdown-menu dropdown-menu-end">
-                                                                            <li onclick="sendCommentToInput(${interact.getId()},${post.getId()},${interact.getUserId()},${sessionScope.account.getId()}, ${interact.getCommentModel().getId()})"><a class="dropdown-item">Chỉnh sửa bình luận</a></li>
-                                                                            <li><a class="dropdown-item">Xóa bình luận</a></li>
+                                                                            <li class="nav-item dropdown">
+                                                                                <a class="nav-link" data-bs-toggle="dropdown">
+                                                                                    <button class="btn-comment d-block pe-2" >
+                                                                                        <span class="material-symbols-outlined">
+                                                                                            more_horiz
+                                                                                        </span>
+                                                                                    </button>
+                                                                                </a>
+
+                                                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                                                    <li onclick="sendCommentToInput(${interact.getId()},${post.getId()},${interact.getUserId()},${sessionScope.account.getId()}, ${interact.getCommentModel().getId()})"><a class="dropdown-item">Chỉnh sửa bình luận</a></li>
+                                                                                    <li><a class="dropdown-item" onclick="deleteComment(${interact.getId()},${interact.getCommentModel().getId()})">Xóa bình luận</a></li>
+                                                                                </ul>
+                                                                            </li>
                                                                         </ul>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
+                                                                    </div>
+                                                                </c:if>
+                                                            </li>
+                                                        </c:if>
                                                     </c:forEach>
                                                 </ul>
                                             </div>
