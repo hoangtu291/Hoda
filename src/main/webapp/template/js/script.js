@@ -94,7 +94,9 @@ $('.btn-add-post').click(function () {
 $('.btn-updatePost').click(function () {
     var pid = $(this).attr('id');
     pid = pid.substring(pid.lastIndexOf("_") + 1);
-    window.location.hash = "#menu-post_" + pid;
+//    window.location.hash = "#menu-post_" + pid;
+    window.location.hash = "";
+    console.log(pid);
     var buttonId = $(this).attr('id');
     $('#modal-container').removeAttr('class').addClass("two");
     $('body').addClass('modal-active');
