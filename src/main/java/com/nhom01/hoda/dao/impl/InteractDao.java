@@ -14,12 +14,17 @@ public class InteractDao extends AbstractDao<InteractModel> implements IInteract
 
     @Override
     public List<InteractModel> getAllInteractOfPost(long pid) {
-        String sql ="SELECT interact.id as interactid, postid, userid, fullname, "
-                + "email, avatarimg , comment.id as cmtid, comment.content as cmtcontent, "
-                + "comment.createdtime as cmtcreatedtime, comment.modifiedtime as cmtmodifiedtime "
-                + "FROM interact INNER JOIN comment ON interact.id = comment.interactid "
-                + "INNER JOIN user ON user.id=interact.userid INNER JOIN profile ON user.profileid=profile.id "
-                + "WHERE postid = ? ORDER BY cmtcreatedtime DESC";
+        String sql ="SELECT interact.id as interactid, postid, userid, fullname, email, avatarimg , "
+                    + "comment.id as cmtid, comment.content as cmtcontent, comment.createdtime as cmtcreatedtime,"
+                    + " comment.modifiedtime as cmtmodifiedtime, feel.id as feelid, feel.status as feelstatus "
+                    + "FROM interact LEFT JOIN comment ON interact.id = comment.interactid"
+                    + " INNER JOIN user ON user.id=interact.userid INNER JOIN profile ON user.profileid=profile.id "
+                    + "LEFT JOIN feel ON interact.id = feel.interactid WHERE postid=?";
         return query(sql, new InteractMapper(), pid);
+    }
+    @Override
+    public void delete(Long interactid){
+        String sql = "DELETE FROM interact WHERE id=?";
+        update(sql, interactid);
     }
 }

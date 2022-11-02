@@ -25,6 +25,10 @@ public class InteractMapper implements RowMapper<InteractModel>{
             interactModel.getUserModel().getProfileModel().setAvatar(resultSet.getString("avatarimg"));
             interactModel.getUserModel().getProfileModel().setEmail(resultSet.getString("email"));
             
+            interactModel.getFeelModel().setId(resultSet.getLong("feelid"));
+            interactModel.getFeelModel().setStatus(resultSet.getLong("feelstatus"));
+            interactModel.getFeelModel().setInteractId(resultSet.getLong("interactid"));
+ 
             return interactModel;
         } catch (SQLException e) {
             return null;
