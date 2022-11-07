@@ -227,7 +227,7 @@ $('.btn-send').click(function (event) {
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
 //            console.log(data.userModel);
-            $('.list-comment').prepend(`<li class="d-flex flex-row">
+            $('#list-comment_'+id).prepend(`<li class="d-flex flex-row">
                                                         <div class="pe-2">
                                                             <img src="${data.userModel.profileModel.avatar}"
                                                                  class="d-block rounded-circle" alt=""

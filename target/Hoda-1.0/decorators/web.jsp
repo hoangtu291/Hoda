@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link href="../template/lib/css/emoji.css" rel="stylesheet">
         <link rel="stylesheet" href="<c:url value='/template/css/style.css' />">
         <link rel="stylesheet" href="<c:url value='/template/css/header.css' />">
@@ -72,9 +73,17 @@
             });
             var pathname = window.location.pathname;
             if (pathname.indexOf("home") !== -1) {
-                $('.icon-home').addClass("active");
-            } else if (pathname.indexOf("personal") !== -1) {
-                $('.icon-user').addClass("active");
+                $('.btn-home').children().removeClass('bi-house-door');
+                $('.btn-home').children().addClass('bi-house-door-fill');             
+            } else if (pathname.indexOf("suggestion") !== -1) {
+                $('.btn-people').children().removeClass('bi-people');
+                $('.btn-people').children().addClass('bi-people-fill');   
+            }else if (pathname.indexOf("notification") !== -1) {
+                $('.btn-notification').children().removeClass('bi-bell');
+                $('.btn-notification').children().addClass('bi-bell-fill');   
+            }else if (pathname.indexOf("setting") !== -1) {
+                $('.btn-setting').children().removeClass('bi-gear');
+                $('.btn-setting').children().addClass('bi-gear-fill');   
             }
         </script>
     </body>

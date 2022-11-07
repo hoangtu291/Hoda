@@ -4,8 +4,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" id="header-name" href="#">hoda</a>
             <form class="d-block" id="header-search">
-                <input class="form-control" id="header-input" type="search" placeholder="Tìm kiếm..."
-                       aria-label="Search">
+                <input class="form-control" id="header-input" type="search" placeholder="Tìm kiếm..." aria-label="Search" >
             </form>
             <c:if test="${not empty sessionScope.account}">
                 <ul class="navbar-nav ms-auto" id="header-icon">
