@@ -17,7 +17,7 @@
             rel="stylesheet">
     </head>
 
-    <body>
+    <body lang="${sessionScope.lang}">
         <main class="center">
             <div class="content-top">
                 <a style="text-decoration: none; color: #000;" href="/personal?id=${requestScope.USER.getId()}"><div class="btn-back"><i class="fa-solid fa-arrow-left-long"></i></div></a>

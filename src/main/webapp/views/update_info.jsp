@@ -12,7 +12,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body lang="${sessionScope.lang}">
         <div class="container">
             <div class="row">
                 <div class="col-md-3"></div>

@@ -14,4 +14,10 @@ public class FeelDao extends AbstractDao implements IFeelDao{
         String sql = "DELETE FROM feel WHERE interactid=?";
         update(sql, iid);
     }
+
+    @Override
+    public void deleteAllFeelOfPost(long pid) {
+        String sql = "DELETE f FROM feel f INNER JOIN interact i ON f.interactid = i.id WHERE postid=?";
+        update(sql, pid);
+    }
 }

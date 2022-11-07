@@ -178,3 +178,75 @@ button {
     font-size: 18px;
     background-color: #fff;
 }
+
+
+.imgView{
+    cursor: pointer;
+}
+
+
+#viewImage.modal.image-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999999; /* Sit on top */
+    padding-top: 50px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+
+}
+
+/* Modal Content (image) */
+#viewImage .img-modal-content {
+    margin: auto;
+    display: block;
+    max-height: 600px;
+}
+
+
+/* Add Animation */
+#viewImage .img-modal-content {  
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0.3)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0.3)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+#viewImage .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: red;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#viewImage .close:hover,
+#viewImage .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    #viewImage .modal-content {
+        width: 100%;
+    }
+}

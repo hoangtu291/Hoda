@@ -37,7 +37,7 @@ public class UserAPI extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
         UserModel userModel = new UserModel();
 
         userModel.getLoginTypeModel().setName(request.getParameter("type"));
@@ -85,17 +85,28 @@ public class UserAPI extends HttpServlet {
         userModel.getProfileModel().setWork("");
 
         //login
-        if (userService.findUserBySocialIdAndType(userModel.getSocialId(), userModel.getLoginTypeModel().getName()) != null) {
-            userModel = userService.findUserBySocialIdAndType(userModel.getSocialId(), userModel.getLoginTypeModel().getName());
-            HttpSession session = request.getSession();
-            session.setAttribute("account", userModel);
-            new ObjectMapper().writeValue(response.getOutputStream(), "login_successfully");
+        UserModel dbUserModel = userService.findUserBySocialIdAndType(userModel.getSocialId(), userModel.getLoginTypeModel().getName());
+        if (dbUserModel != null) {
+            if (dbUserModel.getRole().equals("admin")) {
+                HttpSession session = request.getSession();
+                session.setAttribute("admin", dbUserModel);
+                session.removeAttribute("account");
+                new ObjectMapper().writeValue(response.getOutputStream(), "login_admin");
+            } else {
+                userModel = dbUserModel;
+                HttpSession session = request.getSession();
+                session.setAttribute("account", userModel);
+                session.removeAttribute("admin");
+                new ObjectMapper().writeValue(response.getOutputStream(), "login_successfully");
+            }
+
         } else {//register
             userModel.setId(userService.save(userModel));
 
 //            Tạm
             HttpSession session = request.getSession();
             session.setAttribute("account", userModel);
+            session.removeAttribute("admin");
             new ObjectMapper().writeValue(response.getOutputStream(), userModel.getId());
         }
     }
@@ -139,12 +150,16 @@ public class UserAPI extends HttpServlet {
                 realPath += "src\\main\\webapp\\upload\\images";
                 realPath = realPath.replace("\\", "/");
                 FileUtils.copyFile(new File(source), new File(realPath + "/" + userDir + "/avatar/" + fileName));
-                response.getWriter().write("/upload/images" + "/" + fileName);
+                if (request.getParameter("updatetype") == null) {
+                    new ObjectMapper().writeValue(response.getOutputStream(), "personal");
+                } else {
+                    new ObjectMapper().writeValue(response.getOutputStream(), "home");
+                }
                 userModel.getProfileModel().setAvatar("/upload/images" + "/" + userDir + "/avatar/" + fileName);
             }
         }
 
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date utilDate = new java.util.Date();
         try {
             if (request.getParameter("birth") != null) {
@@ -181,6 +196,13 @@ public class UserAPI extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("account", userModel);
+
+        if (request.getParameter("updatetype") == null) {
+            new ObjectMapper().writeValue(response.getOutputStream(), "personal");
+        } else {
+            new ObjectMapper().writeValue(response.getOutputStream(), "home");
+        }
+
     }
 
 }

@@ -23,7 +23,7 @@ function checkFollowUser() {
 checkFollowUser();
 
 // follow user
-function dataFollowUser(uid1, uid2) {
+function dataFollowUser(uid1, uid2, lang) {
     var data = {};
     data['following'] = uid1;
     data['follower'] = uid2;
@@ -42,7 +42,7 @@ function dataFollowUser(uid1, uid2) {
     }
     $('#personal span.num-follower').html(num);
 
-    changeLang();
+    changeLang(lang);
 
 }
 //show list report type
@@ -76,7 +76,7 @@ function submitReport(uid, reportTypeId, lang) {
             dataType: 'json',
             success: function () {
                 alert("Báo cáo thành công");
-                window.location.hash = "#list-report-type";
+                window.location.hash = "";
             }
         });
 
@@ -306,18 +306,18 @@ function deletePost(pid) {
 $('#btn-submitInfo').click(function (e) {
     e.preventDefault();
 
-    var data = new FormData();
-    data = $('#form-updateInfo').serializeArray();
+    var datat = new FormData();
+    datat = $('#form-updateInfo').serializeArray();
 
     if ($('#inp-avatar').get(0).files.length > 0) {
 //        data.append('avatar', $('#inp-avatar').get(0).files[0]);
-        data['avatar'] = $('#inp-avatar').get(0).files[0];
+        datat['avatar'] = $('#inp-avatar').get(0).files[0];
     }
     var formData = new FormData();
-    $.each(data, function (i, v) {
+    $.each(datat, function (i, v) {
         formData.append("" + v.name + "", v.value);
     });
-    formData.append("avatar", data['avatar']);
+    formData.append("avatar", datat['avatar']);
     console.log(formData.get("avatar"));
     $.ajax({
         url: "/api-user",
@@ -325,16 +325,24 @@ $('#btn-submitInfo').click(function (e) {
         processData: false,
         mimeType: "multipart/form-data",
         contentType: false,
-        data: formData
-//        success: function (data) {
-//            window.location.href = "/" + data;
-//        },
-//        error: function (data) {
-//            window.location.href = "/" + data;
-//        }
+        data: formData,
+        success: function (data) {
+            if(data === "\"personal\""){
+                window.location.href = "/personal?id="+formData.get('uid');
+            }else{
+                window.location.href = "/";
+            }
+            
+        },
+        error: function (data) {
+            if(data === "\"personal\""){
+                window.location.href = "/personal?id="+formData.get('uid');
+            }else{
+                window.location.href = "/";
+            }
+        }
 
     });
-    $('#form-updateInfo').submit();
 });
 
 
@@ -349,3 +357,36 @@ function followUser(data) {
     });
 }
 
+
+
+//MODAL IMAGES
+// Get the modal
+var modal = document.getElementById("viewImage");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+
+var modalImg = document.getElementById("imageView");
+$('.imgView').click(function () {
+    modal.style.display = "block";
+    $('#imageView').attr('src', $(this).attr('src'));
+});
+
+// Get the <span> element that closes the modal
+
+// When the user clicks on <span> (x), close the modal
+$('#viewImage span').click(function () {
+    modal.style.display = "none";
+});
+
+
+
+//select LANG
+$('#select_Lang').change(function () {
+    $.ajax({
+        type: "GET",
+        url: "/api-lang?lang="+$('#select_Lang').val(),
+        success: function () {
+            window.location.href = "/home";
+        }
+    });
+});

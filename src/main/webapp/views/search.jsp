@@ -28,7 +28,7 @@
     <title>HODA | Tìm kiếm</title>
 </head>
 
-<body>
+<body lang="${sessionScope.lang}">
 <header>
     <nav class="navbar navbar-expand fixed-top p-0" id="header-nav">
         <div class="container-fluid">

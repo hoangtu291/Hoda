@@ -1,4 +1,12 @@
 var labelLang = {
+    "WEB_HEADER_USER_PERSONALITY": {
+        "vi-VN": "Trang cá nhân",
+        "en-US": "Personal page"
+    },
+    "WEB_HEADER_USER_LOGOUT": {
+        "vi-VN": "Đăng xuất",
+        "en-US": "Sign out"
+    },
     "HOME_TITLE": {
         "vi-VN": "HODA | Trang chủ",
         "en-US": "HODA | Home"
@@ -143,12 +151,12 @@ var labelLang = {
         "en-US": "Following"
     }
 };
-//var lang = "vi-VN";
-var lang = "en-US";
-function changeLang () {
+var lang = $('body').attr("lang");
+//var lang = "en-US";
+function changeLang (lang) {
     for (let i = 0; i < $('span.multilang').length; i++) {
         $($("span.multilang:eq(" + i + ")")).html(labelLang[$("span.multilang:eq(" + i + ")").attr('label-lang')][lang]);
     }
 }
 
-changeLang();
+changeLang(lang);

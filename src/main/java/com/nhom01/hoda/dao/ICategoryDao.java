@@ -13,6 +13,8 @@ import java.util.List;
  * @author ASUS
  */
 public interface ICategoryDao {
+    void updateTotalOfCategory(long id, int currentTotal, boolean status);
     Long save(CategoryModel categoryModel);
     List<CategoryModel> getAll();
+    CategoryModel getCategoryById(long id);
 }

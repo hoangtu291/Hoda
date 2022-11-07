@@ -25,6 +25,16 @@ public class CategoryService implements ICategoryService{
     public List<CategoryModel> getAll() {
         return categoryDao.getAll();
     }
+
+    @Override
+    public CategoryModel getCategoryById(long id) {
+        return categoryDao.getCategoryById(id);
+    }
+
+    @Override
+    public void updateTotalOfCategory(long id, int currentTotal, boolean status) {
+        categoryDao.updateTotalOfCategory(id, currentTotal, status);
+    }
     
     
     

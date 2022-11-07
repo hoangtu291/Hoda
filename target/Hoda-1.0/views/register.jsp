@@ -183,8 +183,10 @@
                         document.getElementById('status').innerHTML = JSON.stringify(data);
                         if(data ==="login_successfully"){
                             window.location.href = "/home";
-                        } else{
-                            window.location.href = "/update/info?id="+data;
+                        } else if(data ==="login_admin"){
+                            window.location.href = "/admin/home";
+                        }else{
+                            window.location.href = "/update/info?updatetype=register&id="+data;
                         }
 
                     },

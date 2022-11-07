@@ -17,6 +17,7 @@ public class UserMapper implements RowMapper<UserModel>{
             model.setSocialId(resultSet.getString("socialid"));
             model.setCreatedTime(resultSet.getTimestamp("createdtime"));//uid, pfid, lgid, socialid, createdtime, modifiedtime, fullname, email, avatarimg, lgname
             model.setModifiedTime(resultSet.getTimestamp("modifiedtime"));
+            model.setRole(resultSet.getString("role"));
             
             model.getProfileModel().setFullName(resultSet.getString("fullname"));
             model.getProfileModel().setEmail(resultSet.getString("email"));

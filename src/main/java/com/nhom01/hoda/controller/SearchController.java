@@ -31,6 +31,11 @@ public class SearchController extends HttpServlet{
 
         List<PostModel> postModels = postService.getAllPost();
         request.setAttribute("POSTS", postModels);
+        
+        HttpSession session = request.getSession();
+        if (session.getAttribute("lang") == null) {
+            session.setAttribute("lang", "en-US");
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/search.jsp");
         rd.forward(request, response);

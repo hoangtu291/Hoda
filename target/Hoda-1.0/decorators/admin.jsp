@@ -36,7 +36,7 @@
     </head>
 
 
-    <body>
+    <body lang="${sessionScope.lang}">
         <div class="container-scroller"> 
             <!-- partial:../../partials/_navbar.html -->
             <%@ include file="/common/ADMIN/navbar.jsp" %>
@@ -55,9 +55,19 @@
 
 
         <script src="<c:url value='/template/ADMIN/vendors/js/vendor.bundle.base.js' />"></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page -->
+
         <script src="<c:url value='/template/ADMIN/vendors/chart.js/Chart.min.js' />"></script>
+        <script>
+            var dataChart = [];
+            var dataLabels = [];
+            <c:forEach items="${requestScope.CATEGORIES}" var="cate" varStatus="loop">
+                dataChart[${loop.index}] = ${cate.getTotal()};
+                
+                dataLabels[${loop.index}] = '${cate.getName()}';
+            </c:forEach>
+            console.log(dataChart);
+
+        </script>
         <script src="<c:url value='/template/ADMIN/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' />"></script>
         <script src="<c:url value='/template/ADMIN/vendors/progressbar.js/progressbar.min.js' />"></script>
 
@@ -72,6 +82,7 @@
         <!-- Custom js for this page-->
         <script src="<c:url value='/template/ADMIN/js/dashboard.js' />"></script>
         <script src="<c:url value='/template/ADMIN/js/Chart.roundedBarCharts.js' />"></script>
+        <script src="<c:url value='/template/js/language.js' />"></script>
         <!-- End custom js for this page-->
     </body>
 </html>

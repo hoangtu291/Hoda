@@ -14,12 +14,12 @@ import java.util.List;
  *
  * @author ASUS
  */
-public class CategoryDao extends AbstractDao implements ICategoryDao{
-    
+public class CategoryDao extends AbstractDao implements ICategoryDao {
+
     @Override
     public Long save(CategoryModel categoryModel) {
         String sql = "INSERT INTO category(code,name) VALUES(?, ?);";
-        return insert(sql, categoryModel.getCode(),categoryModel.getName());
+        return insert(sql, categoryModel.getCode(), categoryModel.getName());
     }
 
     @Override
@@ -27,5 +27,18 @@ public class CategoryDao extends AbstractDao implements ICategoryDao{
         String sql = "SELECT * FROM category";
         return query(sql, new CategoryMapper());
     }
-    
+
+    @Override
+    public CategoryModel getCategoryById(long id) {
+        String sql = "SELECT * FROM category WHERE id = ?";
+        List<CategoryModel> categoryModels = query(sql, new CategoryMapper(), id);
+        return categoryModels.size() > 0 ? categoryModels.get(0) : null;
+    }
+
+    @Override
+    public void updateTotalOfCategory(long id, int currentTotal, boolean status) {
+        String sql = "UPDATE category SET total = ? WHERE id = ?";
+        update(sql, status ? currentTotal + 1 : currentTotal - 1, id);
+    }
+
 }

@@ -16,5 +16,15 @@ public class ReportService implements IReportService{
         reportModel.setCreatedtime(new Timestamp(System.currentTimeMillis()));
         return reportDao.insert(reportModel);
     }
+
+    @Override
+    public ReportModel getReportOfPostByUserAndType(long pid, long uid, long typeid) {
+        return reportDao.getReportOfPostByUserAndType(pid, uid, typeid);
+    }
+
+    @Override
+    public void deleteAllReportOfPost(long pid) {
+        reportDao.deleteAllReportOfPost(pid);
+    }
     
 }

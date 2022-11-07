@@ -6,10 +6,19 @@ public class UserModel extends AbstractModel {
     private String socialId;
     private long loginTypeId;
     private long profileId;
+    private String role;
 
     private LoginTypeModel loginTypeModel = new LoginTypeModel();
     private ProfileModel profileModel = new ProfileModel();
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
     public long getId() {
         return id;
     }

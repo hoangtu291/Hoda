@@ -6,4 +6,6 @@ public interface ICommentDao {
     Long save(CommentModel commentModel);
     void update(CommentModel commentModel);
     void delete(Long cmtid);
+    
+    void deleteAllCommentOfPost(long pid);
 }

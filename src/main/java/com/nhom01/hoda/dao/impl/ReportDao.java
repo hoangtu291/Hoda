@@ -26,6 +26,23 @@ public class ReportDao extends AbstractDao implements IReportDao{
                 + " INNER JOIN report_type ON report.report_typeid = report_type.id WHERE report.postid=?;";
         return query(sql, new ReportMapper(), pid);
     }
+
+    @Override
+    public void deleteAllReportOfPost(long pid) {
+        String sql = "DELETE FROM report WHERE postid=?";
+        update(sql, pid);
+    }
+
+    @Override
+    public ReportModel getReportOfPostByUserAndType(long pid, long uid, long typeid) {
+        String sql = "SELECT report.id as repid, report.createdtime as repcreatedtime, report_typeid, report.postid as reppid,"
+                + " report.userid as repuid, report_type.id as reptypeid, report_type.content as reptypecontent,"
+                + " report_type.contentEng as reptypecontentEng FROM report"
+                + " INNER JOIN report_type ON report.report_typeid = report_type.id"
+                + " WHERE report.postid=? AND report.userid=? AND report.report_typeid=?;";
+        List<ReportModel> reportModels = query(sql, new ReportMapper(), pid, uid, typeid);
+        return reportModels.size() > 0 ? reportModels.get(0) : null;
+    }
     
 
 }

@@ -6,6 +6,7 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\InteractDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\CategoryMapper.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\PostService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\FollowUserController.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\SettingController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\IFeelDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\CommentDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\FeelDao.java
@@ -21,13 +22,16 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\UserService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\AbstractDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\model\AbstractModel.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\SearchController.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\IAnnounmentService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\IReportTypeDao.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\model\AnnounmentModel.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\FeelService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\InfoController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\CategoryService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\ICommentDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\ReportService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\CategoryAPI.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\LangAPI.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\LoginTypeMapper.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\ImageDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\PostMapper.java
@@ -44,8 +48,10 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\utils\HttpUtil.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\CommentAPI.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\ReportTypeMapper.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\model\ReportModel.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\CategoryController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\IImageDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\UserAPI.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\AnnounmentDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\FollowUserDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\HomeController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\CategoryDao.java
@@ -53,6 +59,7 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\ADMIN\HomeController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\LoginTypeDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\InteractMapper.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\ReportDao.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\IAnnounmentDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\ICategoryService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\model\CategoryModel.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\ReportTypeDao.java
@@ -60,6 +67,7 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\IReportTypeService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\ILoginTypeDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\model\FeelModel.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\CommentMapper.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\AnnounmentService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\ReportTypeService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\FollowUserService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\IInteractDao.java
@@ -74,7 +82,6 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\PostDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\IUserDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\ProfileDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\FollowUserMapper.java
-D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\TestController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\IPostService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\IFollowUserService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\IReportService.java

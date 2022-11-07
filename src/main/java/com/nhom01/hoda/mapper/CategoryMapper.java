@@ -15,6 +15,7 @@ public class CategoryMapper implements RowMapper<CategoryModel>{
             category.setCode(resultSet.getString("code"));
             category.setName(resultSet.getString("name"));
             category.setNameEng(resultSet.getString("nameEng"));
+            category.setTotal(resultSet.getInt("total"));
             
             return category;
         } catch (SQLException e) {
