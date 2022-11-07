@@ -48,7 +48,6 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\utils\HttpUtil.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\CommentAPI.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\ReportTypeMapper.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\model\ReportModel.java
-D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\CategoryController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\IImageDao.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\UserAPI.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\dao\impl\AnnounmentDao.java
