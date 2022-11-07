@@ -51,6 +51,10 @@ public class PersonalController extends HttpServlet {
         request.setAttribute("POSTS", postModels);
         request.setAttribute("FOLLOWERS", follower);
         request.setAttribute("FOLLOWINGS", following);
+        
+        if (session.getAttribute("lang") == null) {
+            session.setAttribute("lang", "en-US");
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/personal.jsp");
         rd.forward(request, response);

@@ -13,8 +13,8 @@
                             <img class="d-block radius-100" src="${sessionScope.account.getProfileModel().getAvatar()}" width="30px" height="30px" alt="">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="/personal?id=${sessionScope.account.getId()}">Thông tin cá nhân</a></li>
-                            <li><a class="dropdown-item text-danger" href="/logout?action=logout">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="/personal?id=${sessionScope.account.getId()}"><span label-lang="WEB_HEADER_USER_PERSONALITY" class="multilang"></span></a></li>
+                            <li><a class="dropdown-item text-danger" href="/logout?action=logout"><span label-lang="WEB_HEADER_USER_LOGOUT" class="multilang"></span></a></li>
                         </ul>
                     </li>
 

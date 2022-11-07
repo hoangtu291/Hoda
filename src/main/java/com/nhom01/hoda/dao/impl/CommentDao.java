@@ -21,4 +21,10 @@ public class CommentDao extends AbstractDao implements ICommentDao{
         String sql = "DELETE FROM comment WHERE id=?";
         update(sql, cmtid);
     }
+
+    @Override
+    public void deleteAllCommentOfPost(long pid) {
+        String sql = "DELETE c FROM comment c INNER JOIN interact  i ON c.interactid = i.id WHERE postid=?";
+        update(sql, pid);
+    }
 }

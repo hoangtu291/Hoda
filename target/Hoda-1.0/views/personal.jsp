@@ -50,7 +50,7 @@
         <title>Trang cá nhân</title>
     </head>
 
-    <body>
+    <body lang="${sessionScope.lang}">
         <main id="personal">
             <div class="info-person">
                 <div class="main-info">
@@ -82,7 +82,7 @@
                     <c:if test="${sessionScope.account.getId()!=requestScope.USER.getId() and not empty sessionScope.account}">
                         <div class="update-info">
                             <label class="switch btn-follow-user" id="btn-followUser_${requestScope.USER.getId()}" 
-                                   onmousedown="dataFollowUser(${sessionScope.account.getId()}, ${requestScope.USER.getId()})">
+                                   onmousedown="dataFollowUser(${sessionScope.account.getId()}, ${requestScope.USER.getId()}, '${sessionScope.lang}')">
                                 <input type="checkbox" id="chb-follower_${requestScope.USER.getId()}"
                                        <c:if test="${requestScope.ISFOLLOW == false}">checked</c:if>>
                                 <label class="slider" for="chb-follower_${requestScope.USER.getId()}"><span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOW" class="multilang"></span></label>

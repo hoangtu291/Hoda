@@ -1,4 +1,3 @@
-
 package com.nhom01.hoda.controller;
 
 import com.nhom01.hoda.model.CategoryModel;
@@ -18,42 +17,54 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = {"/home", "/logout"})
+@WebServlet(urlPatterns = {"/home", "/logout", "/category"})
 public class HomeController extends HttpServlet {
-    
+
     @Inject
     IPostService postService;
-    
+
     @Inject
     ICategoryService categoryService;
-    
+
     @Inject
     IReportTypeService reportTypeService;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String path = request.getServletPath();
         response.setContentType("text/html;charset=UTF-8");
-        
-        if(path.equals("/logout")){
-            HttpSession session = request.getSession();
-            session.removeAttribute("account");
+        HttpSession session = request.getSession();
+        List<PostModel> postModels;
+        String view = "/views/post.jsp";
+        switch (path) {
+            case "/logout":
+                session.removeAttribute("account");
+                postModels = postService.getAllPost();
+                break;
+            case "/category":
+                long cid = Long.parseLong(request.getParameter("cid"));
+                postModels = postService.getPostByCateld(cid);
+                break;
+            default:
+                postModels = postService.getAllPost();
+                break;
         }
+
         
-        List<PostModel> postModels = postService.getAllPost();
         List<CategoryModel> categoryModels = categoryService.getAll();
         List<ReportTypeModel> reportTypeModels = reportTypeService.getAll();
-        
+
         request.setAttribute("POSTS", postModels);
         request.setAttribute("CATEGORIES", categoryModels);
         request.setAttribute("REPORT_TYPES", reportTypeModels);
-        
-        HttpSession session  = request.getSession();
-        session.setAttribute("lang", "en-US");
+
+        if (session.getAttribute("lang") == null) {
+            session.setAttribute("lang", "en-US");
+        }
 //        session.setAttribute("lang", "vi-VN");
-        
+
         RequestDispatcher rd = request.getRequestDispatcher("/views/post.jsp");
         rd.forward(request, response);
     }

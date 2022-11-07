@@ -11,4 +11,6 @@ public interface IPostService {
     List<PostModel> getAllPost();
     List<PostModel> getAllPostOfUser(long uid);
     List<PostModel> getAllPostReport();
+    PostModel getPostById(long id);
+    List<PostModel> getPostByCateld(long categoryId);
 }

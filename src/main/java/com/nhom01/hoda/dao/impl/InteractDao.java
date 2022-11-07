@@ -27,4 +27,10 @@ public class InteractDao extends AbstractDao<InteractModel> implements IInteract
         String sql = "DELETE FROM interact WHERE id=?";
         update(sql, interactid);
     }
+
+    @Override
+    public void deleteAllInteractOfPost(long pid) {
+        String sql = "DELETE FROM interact WHERE postid=?";
+        update(sql, pid);
+    }
 }

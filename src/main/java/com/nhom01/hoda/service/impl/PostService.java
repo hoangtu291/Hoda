@@ -1,5 +1,8 @@
 package com.nhom01.hoda.service.impl;
 
+import com.nhom01.hoda.dao.ICategoryDao;
+import com.nhom01.hoda.dao.ICommentDao;
+import com.nhom01.hoda.dao.IFeelDao;
 import com.nhom01.hoda.dao.IImageDao;
 import com.nhom01.hoda.dao.IPostDao;
 import com.nhom01.hoda.dao.IReportDao;
@@ -23,6 +26,15 @@ public class PostService implements IPostService{
     
     @Inject
     IReportDao reportDao;
+    
+    @Inject
+    ICommentDao commentDao;
+    
+    @Inject
+    IFeelDao feelDao;
+    
+    @Inject
+    ICategoryDao categoryDao;
 
     @Override
     public Long save(PostModel postModel) {
@@ -30,6 +42,7 @@ public class PostService implements IPostService{
         postModel.setCreatedTime(new Timestamp(System.currentTimeMillis()));
         postModel.setModifiedTime(new Timestamp(System.currentTimeMillis()));
         pid = postDao.save(postModel);
+        categoryDao.updateTotalOfCategory(postModel.getCategoryid(), categoryDao.getCategoryById(postModel.getCategoryid()).getTotal(), true);
         imageDao.saveList(postModel.getImageModels(), pid);
         return pid;
     }
@@ -50,6 +63,7 @@ public class PostService implements IPostService{
     public void update(PostModel postModel) {
         postModel.setModifiedTime(new Timestamp(System.currentTimeMillis()));
         postDao.update(postModel);
+        categoryDao.updateTotalOfCategory(postModel.getCategoryid(), categoryDao.getCategoryById(postModel.getCategoryid()).getTotal(), true);
         imageDao.deleteAllImageOfPost(postModel.getId());
         imageDao.saveList(postModel.getImageModels(), postModel.getId());
     }
@@ -57,6 +71,10 @@ public class PostService implements IPostService{
     @Override
     public void delete(long pid) {
         imageDao.deleteAllImageOfPost(pid);
+        commentDao.deleteAllCommentOfPost(pid);
+        feelDao.deleteAllFeelOfPost(pid);
+        interactDao.deleteAllInteractOfPost(pid);
+        reportDao.deleteAllReportOfPost(pid);
         postDao.delete(pid);
     }
 
@@ -78,6 +96,22 @@ public class PostService implements IPostService{
         for(int i = 0; i< postModels.size(); i++){
             postModels.get(i).setImageModels(imageDao.getAllImagesOfPost(postModels.get(i).getId()));
             postModels.get(i).setReportModels(reportDao.getReportOfPost(postModels.get(i).getId()));
+        }
+        return postModels;
+    }
+
+    @Override
+    public PostModel getPostById(long id) {
+        return postDao.getPostById(id);
+    }
+
+    @Override
+    public List<PostModel> getPostByCateld(long categoryId) {
+         List<PostModel> postModels = postDao.getPostByCateld(categoryId);
+        
+        for(int i = 0; i< postModels.size(); i++){
+            postModels.get(i).setImageModels(imageDao.getAllImagesOfPost(postModels.get(i).getId()));
+            postModels.get(i).setInteractModels(interactDao.getAllInteractOfPost(postModels.get(i).getId()));
         }
         return postModels;
     }

@@ -41,7 +41,8 @@ create table category (
 	id bigint NOT NULL PRIMARY KEY auto_increment,
     code VARCHAR(80) NOT NULL,
     name VARCHAR(255) NOT NULL,
-    nameEng VARCHAR(255) NOT NULL
+    nameEng VARCHAR(255) NOT NULL,
+    total int default 0 not null
 );
 
 create table post (
@@ -129,7 +130,7 @@ create table announment (
     message text not null,
     status int NOT NULL,
     createdtime datetime not null,
-    announment_typeid bigint not null,
+    -- announment_typeid bigint not null,
     userid bigint not null
 );
 
@@ -173,7 +174,7 @@ alter table feel add constraint fk_feel_interact foreign key (interactid) refere
 
 alter table premium add constraint fk_premium_user foreign key (userid) references user(id);
 
-alter table announment add constraint fk_announment_type foreign key (announment_typeid) references announment_type(id);
+-- alter table announment add constraint fk_announment_type foreign key (announment_typeid) references announment_type(id);
 
 
 -- --------------------------------------------------------------------------------------------
@@ -211,6 +212,12 @@ insert into report_type(content, contentEng) values('Hình ảnh và từ ngữ 
 insert into report_type(content, contentEng) values('Nội dung phân biệt chủng tộc', 'Racist content');
 insert into report_type(content, contentEng) values('Buôn bán hàng cấm', 'Sale of prohibited goods');
 
+
+insert into profile(firstname, lastname, fullname, email, birth, gender, avatarimg, coverimg)
+values('Admin', 'Hoda', 'Admin Hoda', 'hoda.web.com@gmail.com', '2001-01-01', 1, 'https://lh3.googleusercontent.com/a/ALm5wu1-5QE_7P_9ZtuS4xIir70Im6hRWERgbvopUPaS=s96-c', '/upload/images/cover_default.png');
+
+insert into user(socialid, createdtime, modifiedtime, type_accountid, profileid, role)
+values(112995987703291376985, '2022-11-02 23:59:08', '2022-11-02 23:59:08', 2, 1, 'admin')
 
 
 

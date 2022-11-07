@@ -13,6 +13,12 @@ import java.util.List;
  * @author ASUS
  */
 public interface ICategoryService {
+
     Long save(CategoryModel categoryModel);
+
     List<CategoryModel> getAll();
+
+    CategoryModel getCategoryById(long id);
+
+    void updateTotalOfCategory(long id, int currentTotal, boolean status);
 }

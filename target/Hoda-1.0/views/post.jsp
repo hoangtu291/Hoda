@@ -155,14 +155,16 @@
             <nav class="navbar navbar-expand p-0">
                 <ul class="navbar-nav gap-1 me-auto list-topic d-flex" id="list-category">
                     <c:forEach items="${requestScope.CATEGORIES}" var="category">
+                        <a href="/category?cid=${category.getId()}">
     <!--                        <li class="nav-item"><button class="d-block">${category.getName()}</button></li>-->
-                        <div class="col box-topic">
-                            <input type="radio" id="head_topic_${category.getId()}" name="categoryid" value="${category.getId()}">
-                            <label class="text-nowrap" for="head_topic_${category.getId()}">
-                                <c:if test="${sessionScope.lang == 'en-US'}">${category.getNameEng()}</c:if>
-                                <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getName()}</c:if>
-                                </label>
-                            </div>
+                            <div class="col box-topic" style="pointer-events: none;">
+                                <input type="radio" id="head_topic_${category.getId()}" name="categoryid" value="${category.getId()}">
+                                <label class="text-nowrap" for="head_topic_${category.getId()}">
+                                    <c:if test="${sessionScope.lang == 'en-US'}">${category.getNameEng()}</c:if>
+                                    <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getName()}</c:if>
+                                    </label>
+                                </div>
+                            </a>
                     </c:forEach>
 
                 </ul>
@@ -178,11 +180,16 @@
                         <div class="list-group-item btn btn-report-type" id="item-reportType_${reportType.getId()}"
                              onclick="submitReport(${sessionScope.account.getId()}, ${reportType.getId()}, '${sessionScope.lang}')">
                             <c:if test="${sessionScope.lang == 'en-US'}">${reportType.getContentEng()}</c:if>
-                            <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getContent()}</c:if>
+                            <c:if test="${sessionScope.lang == 'vi-VN'}">${reportType.getContent()}</c:if>
                             </div>
                     </c:forEach>
                 </ul>
             </aside>
+        </div>
+        <!-- The Modal -->
+        <div id="viewImage" class="modal image-modal" >
+            <span class="close">&times;</span>
+            <img class="img-modal-content" id="imageView">
         </div>
         <div class="list-post">
             <c:forEach items="${requestScope.POSTS}" var="post">
@@ -202,21 +209,24 @@
 
                             <ul class="navbar-nav ms-auto gap-3" id="list-header">
 
-                                <li class="nav-item">
-                                    <button class="d-block menu-post" id="menu-list_${post.getId()}">
-                                        <svg>
-                                            <use xlink:href="#icon-ellipsis" />
-                                        </svg>
-                                        <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                            <symbol id="icon-ellipsis" viewBox="0 0 448 512"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M120 256c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm160 0c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm104 56c-30.9 0-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56s-25.1 56-56 56z" />
-                                            </symbol>
+                                <c:if test="${not empty sessionScope.account}">
 
-                                        </svg>
-                                    </button>
-                                </li>
+                                    <li class="nav-item">
+                                        <button class="d-block menu-post" id="menu-list_${post.getId()}">
+                                            <svg>
+                                                <use xlink:href="#icon-ellipsis" />
+                                            </svg>
+                                            <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                                <symbol id="icon-ellipsis" viewBox="0 0 448 512"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M120 256c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm160 0c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm104 56c-30.9 0-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56s-25.1 56-56 56z" />
+                                                </symbol>
+
+                                            </svg>
+                                        </button>
+                                    </li>
+                                </c:if>
                             </ul>
                         </nav>
                     </div>
@@ -271,7 +281,7 @@
                                 <div class="carousel-inner">
                                     <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
                                         <div class="carousel-item <c:if test="${loop.index == 0}">active</c:if>" data-bs-interval="10000">
-                                            <img src="${imgPost.getUrl()}" class="d-block" alt="...">
+                                            <img src="${imgPost.getUrl()}" class="imgView d-block" alt="...">
                                         </div>
                                     </c:forEach>
                                 </div>
@@ -301,7 +311,7 @@
                             <c:set var="totalLike" scope="session" value="${totalLike+1}"/>
                         </c:if>
                     </c:forEach>
-                    
+
                     <c:set var="dislike" scope="session" value=" "/>
                     <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
                         <c:if test="${interact.getFeelModel().getId()!=0 && interact.getFeelModel().getStatus()==0 }">

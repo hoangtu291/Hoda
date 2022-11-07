@@ -8,9 +8,9 @@
     <div class="content-wrapper">
         <div class="row">
 
-            <c:forEach items="${requestScope.POST_REPORTS}" var="postReport">
-                <div class="col-6 d-flex flex-column">
-                    <div class="col-12 grid-margin stretch-card">
+           <c:forEach items="${requestScope.POST_REPORTS}" var="postReport">
+               <div class="col-6 d-flex flex-column grid-margin stretch-card" id="item-Post_${postReport.getId()}">
+                    <div class="col-12">
                         <div class="card">
                             <div class="post">
                                 <div class="header-post">
@@ -93,8 +93,8 @@
                                 </div>
 
                                 <div class="footer-post mx-3">
-                                    <button type="button" class="btn btn-inverse-danger btn-fw btn-rounded me-3">Remove post</button>
-                                    <button type="button" class="btn btn-inverse-success btn-fw btn-rounded">Remove report</button>
+                                    <button type="button" class="btn btn-inverse-danger btn-fw btn-rounded me-3 btn-deletePost" id="btn-deletePost_${postReport.getId()}">Remove post</button>
+                                    <button type="button" class="btn btn-inverse-success btn-fw btn-rounded btn-deleteReport" id="btn-deleteReport_${postReport.getId()}">Remove report</button>
                                 </div>
                             </div>
                         </div>

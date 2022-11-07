@@ -39,6 +39,10 @@ public class FollowUserController extends HttpServlet {
         request.setAttribute("USER", userModel);
         request.setAttribute("FOLLOWERS", followers);
         request.setAttribute("FOLLOWINGS", following);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("lang") == null) {
+            session.setAttribute("lang", "en-US");
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/follow-list.jsp");
         rd.forward(request, response);

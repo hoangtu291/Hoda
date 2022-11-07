@@ -5,6 +5,17 @@ public class CategoryModel {
     private String code;
     private String name;
     private String nameEng;
+    private int total;
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+    
+    
 
     public String getNameEng() {
         return nameEng;

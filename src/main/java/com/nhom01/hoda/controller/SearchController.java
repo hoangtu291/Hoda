@@ -32,13 +32,7 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String path = request.getServletPath();
         response.setContentType("text/html;charset=UTF-8");
-
-        if (path.equals("/logout")) {
-            HttpSession session = request.getSession();
-            session.removeAttribute("account");
-        }
 
         List<PostModel> postModels = postService.getAllPost();
         List<UserModel> userModels = userService.getAll();
@@ -47,9 +41,11 @@ public class SearchController extends HttpServlet {
         request.setAttribute("USERS", userModels);
         request.setAttribute("POSTS", postModels);
         request.setAttribute("REPORT_TYPES", reportTypeModels);
-
         HttpSession session = request.getSession();
-        session.setAttribute("lang", "en-US");
+        if (session.getAttribute("lang") == null) {
+            session.setAttribute("lang", "en-US");
+        }
+
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/search.jsp");
         rd.forward(request, response);

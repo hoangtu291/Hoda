@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = {"/register"})
 @MultipartConfig
@@ -26,6 +27,10 @@ public class LoginController extends HttpServlet {
 //        List<UserModel> userModels  = userService.getAll();
 //        
 //        request.setAttribute("USERS", userModels);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("lang") == null) {
+            session.setAttribute("lang", "en-US");
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/register.jsp");
         rd.forward(request, response);

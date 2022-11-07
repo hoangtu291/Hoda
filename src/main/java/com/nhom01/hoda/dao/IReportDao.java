@@ -10,6 +10,9 @@ import java.util.List;
 
 public interface IReportDao {
     List<ReportModel> getReportOfPost(long pid);
+    ReportModel getReportOfPostByUserAndType(long pid, long uid, long typeid);
     
     long insert(ReportModel reportModel);
+    
+    void deleteAllReportOfPost(long pid);
 }

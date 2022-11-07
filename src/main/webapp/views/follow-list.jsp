@@ -16,7 +16,7 @@
             rel="stylesheet">
     </head>
 
-    <body>
+    <body lang="${sessionScope.lang}">
         <main class="center">
             <div class="content-top">
                 <a style="text-decoration: none; color: #000;" href="/personal?id=${requestScope.USER.getId()}"><div class="btn-back"><i class="fa-solid fa-arrow-left-long"></i></div></a>
@@ -84,7 +84,7 @@
                                     <div class="num-follow"><span label-lang="PERSONAL_TXT_FOLLOWING_1" class="multilang"></span> <span class="num-following">${requestScope.FOLLOWINGS.size()}</span> <span label-lang="PERSONAL_TXT_FOLLOWING_2" class="multilang"></span></div>
                                     <div class="search-follow">
                                         <div class="search">
-                                            <input type="text" id="filterFollowing" onkeyup="filterFollow("filterFollowing", "list-following")" title="Type in a name" placeholder=" ">
+                                            <input type="text" id="filterFollowing" onkeyup="filterFollow('filterFollowing', 'list-following')" title="Type in a name" placeholder=" ">
                                             <div>
                                                 <svg>
                                                 <use xlink:href="#path">
