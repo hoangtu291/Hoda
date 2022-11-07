@@ -154,10 +154,10 @@
                 <h1>Modal Animations</h1>
                 <div class="buttons">
                     <c:if test="${empty sessionScope.account}">
-                        <a href="/register"><div id="two" class="btn-add-post">Revealing</div></a>
+                        <a href="/register"><div id="btn-plus" class="btn-add-post">Revealing</div></a>
                     </c:if>
                     <c:if test="${not empty sessionScope.account}">
-                        <div id="two" class="btn-add-post">Revealing</div>
+                        <div id="btn-plus" class="btn-add-post">Revealing</div>
                     </c:if>
                 </div>
             </div>
