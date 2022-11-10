@@ -52,6 +52,135 @@
 
     <body lang="${sessionScope.lang}">
         <main id="personal">
+            <div id="modal-container">
+                <div class="modal-background">
+                    <div class="modal">
+                        <form id="form-addPost" enctype="multipart/form-data">
+                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"
+                                 data-bs-interval="false" data-bs-touch="false">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="dialog-add-post">
+                                            <div class="head-dialog">
+                                                <div class="person-info d-flex">
+                                                    <!-- <div class="avatar-person radius-100"></div> -->
+                                                    <div class="add-post--prev carousel-control-prev d-none" type="button"
+                                                         data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                        <i class="fa-solid fa-arrow-left"></i>
+                                                    </div>
+
+                                                    <div class="person-name w-100 text-center"><span label-lang="HOME_MODAL_TXT_ADDPOST" class="multilang"></span></div>
+                                                    <div class="add-post--prev carousel-control-next" type="button"
+                                                         data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                                        <i class="fa-solid fa-arrow-right"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="main-dialog">
+                                                <div class="suggest-title">
+                                                    <ul>
+                                                        <li><span label-lang="HOME_MODAL_SUGGEST_1" class="multilang"></span></li>
+                                                        <li><span label-lang="HOME_MODAL_SUGGEST_2" class="multilang"></span></li>
+                                                        <li><span label-lang="HOME_MODAL_SUGGEST_3" class="multilang"></span></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="text-title emoji-picker-container">
+                                                    <span label-lang="HOME_MODAL_INPUT_TITLE" class="multilang"></span>
+                                                    <div class="footer-input-post"></div>
+                                                </div>
+
+                                                <!-- <div class="list-topic"> -->
+                                                <div class="row list-topic">
+                                                    <c:forEach items="${requestScope.CATEGORIES}" var="category">
+        <!--                        <li class="nav-item"><button class="d-block">${category.getName()}</button></li>-->
+                                                        <div class="col box-topic">
+                                                            <input type="radio" id="control_${category.getId()}" name="categoryid" value="${category.getId()}">
+                                                            <label class="text-nowrap" for="control_${category.getId()}">
+                                                                <c:if test="${sessionScope.lang == 'en-US'}">${category.getNameEng()}</c:if>
+                                                                <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getName()}</c:if>
+                                                                </label>
+                                                            </div>
+                                                    </c:forEach>
+                                                </div>
+                                                <!-- </div> -->
+                                            </div>
+                                            <div class="foot-dialog">
+                                                <span label-lang="HOME_MODAL_PREVIEW" class="multilang"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="dialog-add-post carousel-content-post">
+                                            <div class="head-dialog">
+                                                <div class="person-info d-flex">
+                                                    <!-- <div class="avatar-person radius-100" style="background-color: red;"></div> -->
+                                                    <div class="add-post--prev carousel-control-prev" type="button"
+                                                         data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                        <i class="fa-solid fa-arrow-left"></i>
+                                                    </div>
+                                                    <div class="person-name w-100 text-center"><span label-lang="HOME_MODAL_TXT_ADDPOST" class="multilang"></span></div>
+                                                    <div id="btn-submit-addPost" class="add-post--prev carousel-control-next" type="button">
+                                                        <span label-lang="HOME_MODAL_BTN_POST" class="multilang"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="main-dialog">
+                                                <div class="txt-title" id="title-show">
+                                                    Title ?
+                                                </div>
+                                                <div class="text-content emoji-picker-container">
+                                                    <span label-lang="HOME_MODAL_INPUT_CONTENT" class="multilang"></span>
+
+                                                    <div class="footer-input-post d-flex">
+                                                        <div class="footer-bottom footer-bottom--left" id="select">
+                                                            <select class="js-example-basic-multiple list-acc-tag d-none"
+                                                                    style="width: 100%" name="states[]" multiple="multiple">
+                                                                <option value="AL">Alabama</option>
+                                                                <option value="WY">Wyoming</option>
+
+                                                                <option value="AL1">Alabama</option>
+                                                                <option value="WY1">Wyoming</option>
+
+                                                                <option value="AL2">Alabama</option>
+                                                                <option value="WY3">Wyoming</option>
+
+                                                                <option value="AL4">Alabama</option>
+                                                                <option value="WY4">Wyoming</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="footer-bottom footer-bottom--right">
+                                                            <i class="fa-solid fa-at"></i>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="add-image">
+                                                    <div class="list-image d-flex">
+
+                                                    </div>
+                                                    <div class="btn-add-image">
+                                                        <div class="file-upload">
+                                                            <input type="file" name="images" accept="image/*" id="images" onchange="showPictures(this)" multiple>
+                                                            <i class="fa-regular fa-images"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="foot-dialog">
+                                                <span label-lang="HOME_MODAL_PREVIEW" class="multilang"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <input type="hidden" name="userid" value="${sessionScope.account.getId()}">
+                        </form>
+                    </div>
+                    <div class="btn-close"></div>
+                </div>
+            </div>
+
             <div class="info-person">
                 <div class="main-info">
                     <div class="info-top">
@@ -116,21 +245,24 @@
 
                                                     <ul class="navbar-nav ms-auto gap-3" id="list-header">
 
-                                                        <li class="nav-item">
-                                                            <button class="d-block menu-post" id="menu-list_${post.getId()}">
-                                                                <svg>
-                                                                <use xlink:href="#icon-ellipsis" />
-                                                                </svg>
-                                                                <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                                                <symbol id="icon-ellipsis" viewBox="0 0 448 512"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M120 256c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm160 0c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm104 56c-30.9 0-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56s-25.1 56-56 56z" />
-                                                                </symbol>
+                                                        <c:if test="${not empty sessionScope.account}">
 
-                                                                </svg>
-                                                            </button>
-                                                        </li>
+                                                            <li class="nav-item">
+                                                                <button class="d-block menu-post" id="menu-list_${post.getId()}">
+                                                                    <svg>
+                                                                    <use xlink:href="#icon-ellipsis" />
+                                                                    </svg>
+                                                                    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                                                    <symbol id="icon-ellipsis" viewBox="0 0 448 512"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M120 256c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm160 0c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm104 56c-30.9 0-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56s-25.1 56-56 56z" />
+                                                                    </symbol>
+
+                                                                    </svg>
+                                                                </button>
+                                                            </li>
+                                                        </c:if>
                                                     </ul>
                                                 </nav>
                                             </div>
@@ -185,7 +317,7 @@
                                                         <div class="carousel-inner">
                                                             <c:forEach items="${post.getImageModels()}" var="imgPost" varStatus="loop">
                                                                 <div class="carousel-item <c:if test="${loop.index == 0}">active</c:if>" data-bs-interval="10000">
-                                                                    <img src="${imgPost.getUrl()}" class="d-block" alt="...">
+                                                                    <img src="${imgPost.getUrl()}" class="imgView d-block" alt="...">
                                                                 </div>
                                                             </c:forEach>
                                                         </div>
@@ -204,6 +336,7 @@
                                             </div>
                                             <c:set var="totalLike" scope="session" value="${0}"/>
                                             <c:set var="totalDislike" scope="session" value="${0}"/>
+                                            <c:set var="totalComment" scope="session" value="${0}"/>
                                             <c:set var="like" scope="session" value=" "/>
 
                                             <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
@@ -224,6 +357,15 @@
                                                     <c:set var="totalDislike" scope="session" value="${totalDislike+1}"/>
                                                 </c:if>
                                             </c:forEach>
+
+                                            <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
+                                                <c:if test="${interact.getCommentModel().getId()!=0}">
+                                                    <c:if test="${interact.getCommentModel().getId() == sessionScope.account.getId()}">
+                                                        <c:set var="comment" scope="session" value="green"/>
+                                                    </c:if>
+                                                    <c:set var="totalComment" scope="session" value="${totalComment+1}"/>
+                                                </c:if>
+                                            </c:forEach>
                                             <div class="interact-post d-flex flex-row p-2">
                                                 <div class="d-flex justify-content-start">
                                                     <button class="${like} btn-like d-block pe-2" id="btn-like_id_${post.getId()}" onclick="like(${sessionScope.account.getId()},${post.getId()})">
@@ -231,19 +373,19 @@
                                                             thumb_up_off
                                                         </span>
                                                     </button>
-                                                    <p class="pe-3" id="total-like_id_${post.getId()}">${totalLike}</p>
+                                                    <p class="ps-1 pe-3" id="total-like_id_${post.getId()}">${totalLike}</p>
                                                     <button class="${dislike} btn-dislike d-block pe-2" id="btn-dislike_id_${post.getId()}" onclick="dislike(${sessionScope.account.getId()},${post.getId()})">
                                                         <span class="material-symbols-outlined">
                                                             thumb_down
                                                         </span>
                                                     </button>
-                                                    <p class="pe-3" id="total-dislike_id_${post.getId()}">${totalDislike}</p>
+                                                    <p class="ps-1 pe-3" id="total-dislike_id_${post.getId()}">${totalDislike}</p>
                                                     <button class="btn-comment d-block pe-2" id="btn-comment_id_${post.getId()}" onclick="openComment(${post.getId()})" data-bs-toggle="modal" data-bs-target="#modalComment_pid_${post.getId()}">
                                                         <span class="material-symbols-outlined">
                                                             chat_bubble
                                                         </span>
                                                     </button>
-                                                    <p class="pe-3" id="total-comment_id_${post.getId()}">0</p>
+                                                    <p class="ps-1 pe-3" id="total-comment_id_${post.getId()}">${totalComment}</p>
                                                 </div>
                                                 <div class="footer-post d-flex flex-row">                        
                                                     <div id="modalComment_pid_${post.getId()}" class="modal fade" role="dialog" tabindex="-1">
@@ -255,10 +397,10 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="comment-post">
-                                                                        <ul class="list-comment p-0">
+                                                                        <ul class="list-comment p-0" id="list-comment_${post.getId()}">
                                                                             <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
                                                                                 <c:if test="${interact.getCommentModel().getId()!=0}">
-                                                                                    <li class="d-flex flex-row" id="comment_${interact.getCommentModel().getId()}">
+                                                                                    <li class="d-flex flex-row pb-3" id="comment_${interact.getCommentModel().getId()}">
                                                                                         <div class="pe-2">
                                                                                             <img src="<c:url value='${interact.getUserModel().getProfileModel().getAvatar()}' />"
                                                                                                  class="d-block rounded-circle" alt=""
@@ -372,11 +514,15 @@
                                         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
                                         grid-gap: 5px;
                                         align-items: stretch;
+
                                     }
 
                                     .grid img {
                                         border-radius: 3px;
                                         max-width: 100%;
+                                        max-height: 150px;
+
+                                        margin: 0 auto;
                                     }
                                 </style>
                                 <div class="grid">
@@ -399,5 +545,5 @@
         <script src="../template/js/script.js"></script>
         <script src="../template/js/home.js"></script>
     </body>
-    
+
 </html>

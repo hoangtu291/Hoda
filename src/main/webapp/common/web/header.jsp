@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" id="header-name" href="#">hoda</a>
             <form class="d-block" id="header-search">
-                <input class="form-control" id="header-input" type="search" placeholder="Tìm kiếm..." aria-label="Search" >
+                <span label-lang="WEB_HEADER_INPUT_SEARCH" class="multilang"></span>
             </form>
             <c:if test="${not empty sessionScope.account}">
                 <ul class="navbar-nav ms-auto" id="header-icon">
@@ -24,7 +24,7 @@
             <c:if test="${empty sessionScope.account}">
                 <a href="/register">
                     <div class="btn-login">
-                        Đăng nhập
+                        <span label-lang="WEB_HEADER_BTN_LOGIN" class="multilang"></span>
                     </div>
                 </a>
             </c:if>

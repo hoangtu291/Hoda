@@ -171,6 +171,7 @@ public class PostAPI extends HttpServlet {
         if (request.getParameter("type").equals("report")) {
             AnnounmentModel announmentModel = new AnnounmentModel();
             announmentModel.setMessage("Bài viết của bạn đã bị xóa do vi phạm quy tắc");
+            announmentModel.setMessageEng("Your post has been removed due to rule violations");
             announmentModel.setStatus(0);
             announmentModel.setUserid(postModel.getUserid());
             

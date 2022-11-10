@@ -1,11 +1,13 @@
 package com.nhom01.hoda.controller.ADMIN;
 
+import com.nhom01.hoda.dao.IViewDao;
 import com.nhom01.hoda.model.CategoryModel;
 import com.nhom01.hoda.model.PostModel;
 import com.nhom01.hoda.model.UserModel;
 import com.nhom01.hoda.service.ICategoryService;
 import com.nhom01.hoda.service.IPostService;
 import com.nhom01.hoda.service.IUserService;
+import com.nhom01.hoda.service.IViewService;
 import java.io.IOException;
 import java.util.List;
 import javax.inject.Inject;
@@ -28,6 +30,10 @@ public class HomeController extends HttpServlet {
     
     @Inject
     ICategoryService categoryService;
+    
+    @Inject
+    IViewService viewService;
+    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,7 +52,9 @@ public class HomeController extends HttpServlet {
             List<PostModel> postModels = postService.getAllPost();
             List<CategoryModel> categoryModels = categoryService.getAll();
             List<UserModel> userModels = userService.getAll();
+            int totalAccess = viewService.getTotalView();
             
+            request.setAttribute("TOTAL_VIEW", totalAccess);
             request.setAttribute("POSTS", postModels);
             request.setAttribute("USERS", userModels);
             request.setAttribute("CATEGORIES", categoryModels);

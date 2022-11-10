@@ -6,7 +6,7 @@
         <meta charset='utf-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Thông tin</title>
+        <title>Search | HODA</title>
         <link href="IMG/Logo_Xanh.png" rel="shortcut icon" type="images/vnd.microsoft.icon">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -23,7 +23,8 @@
                 </div>
                 <div class="search">
                     <div class="search-container">
-                        <input class="search-input" id="searchid" type="text" placeholder="Search" onkeyup="filterPostUser('searchid', 'item-search')">
+                        <span label-lang="SEARCH_INPUT" class="multilang"></span>
+                        
                     </div>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -338,7 +339,7 @@
                         </div>
                         <div class="tab">                           
                             <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
-                            <label for="tab-2" class="tab-label"><span label-lang="PERSONAL_TXT_FOLLOWING_2" class="multilang"></span></label>
+                            <label for="tab-2" class="tab-label"><span label-lang="SEARCH_TAB_USER" class="multilang"></span></label>
                             <div class="tab-content">
                                 <div class="list-user" id="list-user">
                                     <c:forEach items="${requestScope.USERS}" var="user">

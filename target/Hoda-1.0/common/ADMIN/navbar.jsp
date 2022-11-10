@@ -17,7 +17,7 @@
     <div class="navbar-menu-wrapper d-flex align-items-top"> 
         <ul class="navbar-nav">
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                <h4 class="welcome-text">Admin page</h4>
+                <h4 class="welcome-text"><span label-lang="ADMIN_HEADER_TXT_ADMINPAGE" class="multilang"></span></h4>
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -32,46 +32,7 @@
             </li>
 
             
-            <li class="nav-item dropdown"> 
-                <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="icon-bell"></i>
-                    <span class="count"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
-                    <a class="dropdown-item py-3">
-                        <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
-                        <span class="badge badge-pill badge-primary float-right">View all</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
-                        </div>
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                            <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
-                        </div>
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-                            <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
-                        </div>
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-                            <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                        </div>
-                    </a>
-                </div>
-            </li>
+            
             <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                 <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                     <img class="img-xs rounded-circle" src="${sessionScope.admin.getProfileModel().getAvatar()}" alt="Profile image"> </a>
@@ -81,11 +42,8 @@
                         <p class="mb-1 mt-3 font-weight-semibold">${sessionScope.admin.getProfileModel().getFullName()}</p>
                         <p class="fw-light text-muted mb-0">${sessionScope.admin.getProfileModel().getEmail()}</p>
                     </div>
-                    <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-                    <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-                    <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-                    <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-                    <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                   
+                    <a class="dropdown-item" href="/logout"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i><span label-lang="WEB_HEADER_USER_LOGOUT" class="multilang"></span></a>
                 </div>
             </li>
         </ul>

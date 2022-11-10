@@ -43,6 +43,13 @@ public class FollowUserController extends HttpServlet {
         if (session.getAttribute("lang") == null) {
             session.setAttribute("lang", "en-US");
         }
+        
+        if (session.getAttribute("admin") != null) {
+            session.removeAttribute("account");
+            String site = "/admin/home";
+            response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+            response.setHeader("Location", site);
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/follow-list.jsp");
         rd.forward(request, response);

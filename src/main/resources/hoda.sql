@@ -128,6 +128,7 @@ create table premium (
 create table announment (
 	id bigint NOT NULL PRIMARY KEY auto_increment,
     message text not null,
+    messageEng text not null,
     status int NOT NULL,
     createdtime datetime not null,
     -- announment_typeid bigint not null,
@@ -138,6 +139,11 @@ create table announment_type (
 	id bigint NOT NULL PRIMARY KEY auto_increment,
     name VARCHAR(255) not null,
     message text not null
+);
+
+create table view (
+	id bigint NOT NULL PRIMARY KEY auto_increment,
+    total int not null default 0
 );
 
 
@@ -217,7 +223,9 @@ insert into profile(firstname, lastname, fullname, email, birth, gender, avatari
 values('Admin', 'Hoda', 'Admin Hoda', 'hoda.web.com@gmail.com', '2001-01-01', 1, 'https://lh3.googleusercontent.com/a/ALm5wu1-5QE_7P_9ZtuS4xIir70Im6hRWERgbvopUPaS=s96-c', '/upload/images/cover_default.png');
 
 insert into user(socialid, createdtime, modifiedtime, type_accountid, profileid, role)
-values(112995987703291376985, '2022-11-02 23:59:08', '2022-11-02 23:59:08', 2, 1, 'admin')
+values(112995987703291376985, '2022-11-02 23:59:08', '2022-11-02 23:59:08', 2, 1, 'admin');
+
+insert into view(total) VALUES (0);
 
 
 

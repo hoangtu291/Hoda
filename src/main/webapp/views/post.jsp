@@ -114,9 +114,9 @@
                                                             <option value="WY4">Wyoming</option>
                                                         </select>
                                                     </div>
-                                                    <div class="footer-bottom footer-bottom--right">
+<!--                                                    <div class="footer-bottom footer-bottom--right">
                                                         <i class="fa-solid fa-at"></i>
-                                                    </div>
+                                                    </div>-->
 
                                                 </div>
                                             </div>
@@ -126,7 +126,7 @@
                                                 </div>
                                                 <div class="btn-add-image">
                                                     <div class="file-upload">
-                                                        <input type="file" name="images" id="images" onchange="showPictures(this)" multiple>
+                                                        <input type="file" name="images" accept="image/*" id="images" onchange="showPictures(this)" multiple>
                                                         <i class="fa-regular fa-images"></i>
                                                     </div>
                                                 </div>
@@ -158,7 +158,8 @@
                         <a href="/category?cid=${category.getId()}">
     <!--                        <li class="nav-item"><button class="d-block">${category.getName()}</button></li>-->
                             <div class="col box-topic" style="pointer-events: none;">
-                                <input type="radio" id="head_topic_${category.getId()}" name="categoryid" value="${category.getId()}">
+                                <input type="radio" id="head_topic_${category.getId()}" name="categoryid" value="${category.getId()}"
+                                       <c:if test="${sessionScope.category == category.getId()}"> checked</c:if>>
                                 <label class="text-nowrap" for="head_topic_${category.getId()}">
                                     <c:if test="${sessionScope.lang == 'en-US'}">${category.getNameEng()}</c:if>
                                     <c:if test="${sessionScope.lang == 'vi-VN'}">${category.getName()}</c:if>
@@ -255,7 +256,7 @@
                             <c:if test="${sessionScope.lang == 'en-US'}">${post.getCategoryModel().getNameEng()}</c:if>
                             <c:if test="${sessionScope.lang == 'vi-VN'}">${post.getCategoryModel().getName()}</c:if>
                             </div>
-                            <h6>${post.getTitle()}</h6>
+                            <h6 style="font-weight: 700;">${post.getTitle()}</h6>
                         <p>
                             <a data-bs-toggle="collapse" href="#collapseContent_${post.getId()}" aria-expanded="false"
                                aria-controls="collapseContent_${post.getId()}">
@@ -321,7 +322,7 @@
                             <c:set var="totalDislike" scope="session" value="${totalDislike+1}"/>
                         </c:if>
                     </c:forEach>
-                    
+
                     <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
                         <c:if test="${interact.getCommentModel().getId()!=0}">
                             <c:if test="${interact.getCommentModel().getId() == sessionScope.account.getId()}">

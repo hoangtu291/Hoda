@@ -6,10 +6,20 @@ import java.sql.Timestamp;
 public class AnnounmentModel  {
     private long id;
     private String message;
+    private String messageEng;
     private int status;
     private Timestamp createdtime;
     private long userid;
 
+    public String getMessageEng() {
+        return messageEng;
+    }
+
+    public void setMessageEng(String messageEng) {
+        this.messageEng = messageEng;
+    }
+
+    
     public long getId() {
         return id;
     }

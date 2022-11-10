@@ -27,6 +27,7 @@ public class UserMapper implements RowMapper<UserModel>{
             model.getProfileModel().setPhone(resultSet.getString("phone"));
             model.getProfileModel().setStudy(resultSet.getString("study"));
             model.getProfileModel().setWork(resultSet.getString("work"));
+            model.getProfileModel().setGender(resultSet.getBoolean("gender"));
             
             model.getLoginTypeModel().setName(resultSet.getString("lgname"));
             

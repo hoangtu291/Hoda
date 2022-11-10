@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -54,13 +55,13 @@
                                 <p><span label-lang="UPDATEPROFILE_LABEL_GENDER" class="multilang"></span></p>
 
                                 <div class="form-check gender-select col-6">
-                                    <input type='radio' id='male' checked='checked' name='gender' value="1">
+                                    <input type='radio' id='male' <c:if test="${requestScope.USER.getProfileModel().isGender()}">checked='checked'</c:if> name='gender' value="1">
                                     <label for='male'><span label-lang="UPDATEPROFILE_LABEL_GENDER_MALE" class="multilang"></span></label>
 
                                 </div>
 
                                 <div class="form-check gender-select col-6">
-                                    <input type='radio' id='female' name='gender' value="0">
+                                    <input type='radio' <c:if test="${!requestScope.USER.getProfileModel().isGender()}">checked='checked'</c:if> id='female' name='gender' value="0">
                                     <label for='female'><span label-lang="UPDATEPROFILE_LABEL_GENDER_FEMALE" class="multilang"></span></label>
                                 </div>
 

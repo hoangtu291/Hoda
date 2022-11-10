@@ -6,12 +6,17 @@
 package com.nhom01.hoda.service;
 
 import com.nhom01.hoda.model.AnnounmentModel;
+import java.util.List;
 
 /**
  *
  * @author ASUS
  */
 public interface IAnnounmentService {
+    List<AnnounmentModel> getAllAnnoumentOfUser(long uid);
+    List<AnnounmentModel> getAllAnnoumentSeenOfUser(long uid);
+    
     long insertAnnReport(AnnounmentModel announmentModel);
+    void updateAllStatus(long uid);
 
 }

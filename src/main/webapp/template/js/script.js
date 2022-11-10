@@ -13,38 +13,7 @@ function showPictures(fileInput) {
 
 }
 
-function checkFollowUser() {
-    if ($('.btn-follow-user input[type=checkbox]').prop("checked") === false) {
-        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOWING" class="multilang"></span>`);
-    } else {
-        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOW" class="multilang"></span>`);
-    }
-}
-checkFollowUser();
 
-// follow user
-function dataFollowUser(uid1, uid2, lang) {
-    var data = {};
-    data['following'] = uid1;
-    data['follower'] = uid2;
-    console.log(data);
-    console.log($('.btn-follow-user input[type=checkbox]').prop("checked"));
-    followUser(data);
-    var num = $('#personal span.num-follower').text();
-    if ($('.btn-follow-user input[type=checkbox]').prop("checked") === true) {
-        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOWING" class="multilang"></span>`);
-
-        num++;
-
-    } else {
-        $('.btn-follow-user input[type=checkbox] + label').html(`<span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOW" class="multilang"></span>`);
-        num--;
-    }
-    $('#personal span.num-follower').html(num);
-
-    changeLang(lang);
-
-}
 //show list report type
 $('.btn-report').click(function () {
     var pid = $(this).attr('id');
@@ -108,7 +77,12 @@ $('.btn-deletePost').click(function () {
     window.location.hash = "#menu-post_" + pid;
     var pid = $(this).attr('id');
     pid = pid.substring(pid.lastIndexOf("_") + 1);
-    var result = confirm("Bạn có chắc muốn xóa bài viết này không");
+    var message = "Bạn có chắc muốn xóa bài viết này không";
+    lang = $('body').attr('lang');
+    if(lang === 'en-US'){
+        message = "Are you sure delete this post?";
+    }
+    var result = confirm(message);
     if (result) {
         deletePost(pid);
     }
@@ -142,8 +116,18 @@ $('.btn-updatePost').click(function () {
 
     //replace btn Đăng by Btn update
     $('#btn-submit-addPost').remove();
+    var lang = $('body').attr('lang');
+    var btnVal = "Cập nhật";
+    var headTitle = "Cập nhật bài viết";
+    if(lang === "en-US"){
+        btnVal = "Update";
+        headTitle = "Update post";
+    }
+//    changeLang(lang);
+    
+    $('#form-addPost .head-dialog .person-name').html(headTitle);
     $('#form-addPost .carousel-content-post .person-info').append(`<div id="btn-submit-updatePost" class="add-post--prev carousel-control-next" type="button">
-                                                    Xong
+                                                    ${btnVal}
                                                 </div>`);
     //UPDATE POST AJAX
     $('#btn-submit-updatePost').click(function (e) {
@@ -191,12 +175,12 @@ $('.btn-close').click(function () {
     $('#form-addPost input[name="pid"]').remove();
 });
 
-$('.fa-solid.fa-at').click(function () {
-    $('.js-example-basic-multiple').removeClass('d-none');
-    $('.js-example-basic-multiple').select2({
-        maximumSelectionLength: 2
-    });
-});
+//$('.fa-solid.fa-at').click(function () {
+//    $('.js-example-basic-multiple').removeClass('d-none');
+//    $('.js-example-basic-multiple').select2({
+//        maximumSelectionLength: 2
+//    });
+//});
 
 $('.menu-post').click(function () {
     var id = $(this).attr("id");

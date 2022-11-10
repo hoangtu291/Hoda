@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <footer>
     <nav class="navbar navbar-expand fixed-bottom p-0" id="footer-nav">
@@ -11,22 +12,54 @@
                     </a>
                 </li>
                 <li class="nav-item my-auto" onclick="changeColorIcon()">
-                    <a href="#">
-                        <button class="btn-people d-block">
-                            <i class="bi bi-people"></i>
-                        </button>
-                    </a>
+                    <c:if test="${not empty sessionScope.account}">
+                        <a href="#">
+                            <button class="btn-people d-block">
+                                <i class="bi bi-people"></i>
+                            </button>
+                        </a>
+                    </c:if>
+                    <c:if test="${empty sessionScope.account}">
+                        <a href="/register">
+                            <button class="btn-people d-block">
+                                <i class="bi bi-people"></i>
+                            </button>
+                        </a>
+                    </c:if>
                 </li>
                 <li class="nav-item my-auto" onclick="changeColorIcon()">
-            
-                    <button class="btn-add-post d-block" id="two">
-                        <i class="bi bi-plus-circle"></i>
-                    </button>        
+                    <c:if test="${not empty sessionScope.account}">
+                        <button class="btn-add-post d-block" id="two">
+                            <i class="bi bi-plus-circle"></i>
+                        </button>        
+                    </c:if>
+
+                    <c:if test="${empty sessionScope.account}">
+                        <a href="/register">
+                            <button class="btn-add-post d-block" id="two">
+                                <i class="bi bi-plus-circle"></i>
+                            </button>        
+                        </a>
+                    </c:if>
                 </li>
                 <li class="nav-item my-auto" onclick="changeColorIcon()">
-                    <button class="btn-notification d-block">
-                        <i class="bi bi-bell"></i>
-                    </button>
+                    <c:if test="${not empty sessionScope.account}">
+                        <a href="/notification">
+                            <button id="nav-Notification" class="btn-notification d-block position-relative ">
+                                
+                                <i class="bi bi-bell"></i>
+                            </button>
+                        </a>
+                    </c:if>
+
+                    <c:if test="${empty sessionScope.account}">
+                        <a href="/register">
+                            <button class="btn-notification d-block position-relative">
+                            
+                            <i class="bi bi-bell"></i>
+                            </button>
+                        </a>
+                    </c:if>
                 </li>
                 <li class="nav-item my-auto" onclick="changeColorIcon()">
                     <a href="/setting">
@@ -51,6 +84,6 @@
 //        document.querySelector('#' + 'btn-like_id_' + pid).classList.toggle('green');
 //
 //    }
-}
+        }
     </script>
 </footer>

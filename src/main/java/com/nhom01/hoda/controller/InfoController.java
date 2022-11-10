@@ -46,6 +46,12 @@ public class InfoController extends HttpServlet {
                 rd.forward(request, response);
             }
         }
+        if (session.getAttribute("admin") != null) {
+            session.removeAttribute("account");
+            String site = "/admin/home";
+            response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+            response.setHeader("Location", site);
+        }
     }
 
     @Override
