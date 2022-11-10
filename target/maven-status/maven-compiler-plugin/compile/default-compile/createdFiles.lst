@@ -4,6 +4,7 @@ com\nhom01\hoda\dao\ICommentDao.class
 com\nhom01\hoda\mapper\ReportMapper.class
 com\nhom01\hoda\controller\API\CommentAPI.class
 com\nhom01\hoda\service\IFollowUserService.class
+com\nhom01\hoda\controller\SuggestController.class
 com\nhom01\hoda\dao\impl\InteractDao.class
 com\nhom01\hoda\model\CommentModel.class
 com\nhom01\hoda\service\impl\ReportService.class

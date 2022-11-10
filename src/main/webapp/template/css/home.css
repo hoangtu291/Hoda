@@ -4,33 +4,9 @@ body {
     background-color: #fff;
 }
 
-.fas,
-.fab,
-.far {
+.fas, .fab, .far {
     color: #1D9000;
 }
-
-/* width */
-/*::-webkit-scrollbar {
-    height: 3px;
-    width: 5px;
-}
-
- Track 
-::-webkit-scrollbar-track {
-    border-radius: 3px;
-}
-
- Handle 
-::-webkit-scrollbar-thumb {
-    background: #aaa;
-    border-radius: 3px;
-}
-
- Handle on hover 
-::-webkit-scrollbar-thumb:hover {
-    background: #1d9000; 
-}*/
 
 button {
     color: #fff;
@@ -48,11 +24,6 @@ button {
 }
 /* MAIN */
 main {
-    /* overflow-x: hidden; */
-    /* overflow-y: visible; */
-    /* overflow-y: auto; */
-    /* margin-top: 30px; */
-    /* padding-top: 10px; */
     background-color: #D9D9D9;
     overflow: auto;
     width: 100%;
@@ -96,15 +67,16 @@ main {
         width: 40%;
         margin: 0 auto;
     }
+    
     main#home{
-        display: flex
+        display: flex;
     }
 
     .left, .right{
         width: 30%;
         height: 100px;
-        /*background: red;*/
     }
+    
     #category{
         margin: 0;
         height: 12vh;
