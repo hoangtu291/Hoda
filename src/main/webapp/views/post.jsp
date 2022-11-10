@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="<c:url value='/template/css/home.css' />">
     <script src="https://use.fontawesome.com/fe459689b4.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
     <title>HODA | Trang chủ</title>
 </head>
 
@@ -407,10 +406,10 @@
                                         <div class="modal-footer p-2 d-block">
                                             <c:if test="${not empty sessionScope.account}">
                                                 <nav class="navbar navbar-expand p-2">
-                                                    <img src="<c:url value='/template/images/Ellipse 20.png' />" class="d-block rounded-circle" alt=""
+                                                    <img src="${sessionScope.account.getProfileModel().getAvatar()}" class="d-block rounded-circle" alt=""
                                                          style="height: 28px; width: 28px;">
                                                     <form id="form-comment_${post.getId()}">
-                                                        <input class="add-comment" id="content-comment_id_${post.getId()}" name="content" type="text" value=""
+                                                        <input class="add-comment ps-3" id="content-comment_id_${post.getId()}" name="content" type="text" value=""
                                                                placeholder="Thêm bình luận...">
                                                         <input type="hidden" name="pid" value="${post.getId()}">
                                                         <input type="hidden" name="uid" value="${sessionScope.account.getId()}">

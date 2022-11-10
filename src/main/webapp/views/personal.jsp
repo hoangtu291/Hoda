@@ -46,6 +46,15 @@
                 background-color: #1d9000;
                 color: #fff;
             }
+            .modal-backdrop.show {
+                opacity: .5;
+            }
+            .modal-backdrop.fade {
+                opacity: 0;
+            }
+            .modal-backdrop {
+                z-index: 1;
+            }
         </style>
         <title>Trang cá nhân</title>
     </head>
@@ -205,7 +214,8 @@
                                             <c:set var="totalLike" scope="session" value="${0}"/>
                                             <c:set var="totalDislike" scope="session" value="${0}"/>
                                             <c:set var="like" scope="session" value=" "/>
-
+                                            <c:set var="totalComment" scope="session" value="${0}"/>
+                                            
                                             <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
                                                 <c:if test="${interact.getFeelModel().getId()!=0 && interact.getFeelModel().getStatus()==1 }">
                                                     <c:if test="${interact.getUserModel().getId() == sessionScope.account.getId()}">
@@ -224,6 +234,15 @@
                                                     <c:set var="totalDislike" scope="session" value="${totalDislike+1}"/>
                                                 </c:if>
                                             </c:forEach>
+
+                                            <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
+                                                <c:if test="${interact.getCommentModel().getId()!=0}">
+                                                    <c:if test="${interact.getCommentModel().getId() == sessionScope.account.getId()}">
+                                                        <c:set var="comment" scope="session" value="green"/>
+                                                    </c:if>
+                                                    <c:set var="totalComment" scope="session" value="${totalComment+1}"/>
+                                                </c:if>
+                                            </c:forEach>
                                             <div class="interact-post d-flex flex-row p-2">
                                                 <div class="d-flex justify-content-start">
                                                     <button class="${like} btn-like d-block pe-2" id="btn-like_id_${post.getId()}" onclick="like(${sessionScope.account.getId()},${post.getId()})">
@@ -231,22 +250,23 @@
                                                             thumb_up_off
                                                         </span>
                                                     </button>
-                                                    <p class="pe-3" id="total-like_id_${post.getId()}">${totalLike}</p>
+                                                    <p class="ps-1 pe-3" id="total-like_id_${post.getId()}">${totalLike}</p>
                                                     <button class="${dislike} btn-dislike d-block pe-2" id="btn-dislike_id_${post.getId()}" onclick="dislike(${sessionScope.account.getId()},${post.getId()})">
                                                         <span class="material-symbols-outlined">
                                                             thumb_down
                                                         </span>
                                                     </button>
-                                                    <p class="pe-3" id="total-dislike_id_${post.getId()}">${totalDislike}</p>
+                                                    <p class="ps-1 pe-3" id="total-dislike_id_${post.getId()}">${totalDislike}</p>
                                                     <button class="btn-comment d-block pe-2" id="btn-comment_id_${post.getId()}" onclick="openComment(${post.getId()})" data-bs-toggle="modal" data-bs-target="#modalComment_pid_${post.getId()}">
                                                         <span class="material-symbols-outlined">
                                                             chat_bubble
                                                         </span>
                                                     </button>
-                                                    <p class="pe-3" id="total-comment_id_${post.getId()}">0</p>
+                                                    <p class="ps-1 pe-3" id="total-comment_id_${post.getId()}">${totalComment}</p>
                                                 </div>
                                                 <div class="footer-post d-flex flex-row">                        
                                                     <div id="modalComment_pid_${post.getId()}" class="modal fade" role="dialog" tabindex="-1">
+                                                        <div style="background: #000; width: 100vw; height: 100vh; position: fixed; opacity: .5;"></div>
                                                         <div class="modal-dialog modal-dialog-centered mx-auto p-0">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -399,5 +419,5 @@
         <script src="../template/js/script.js"></script>
         <script src="../template/js/home.js"></script>
     </body>
-    
+
 </html>

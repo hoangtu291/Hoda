@@ -63,12 +63,12 @@
                                                         </div>
                                                     </div>
 
-                                                    <!--                                                <div class="btn-follow-item">
-                                                                                                        <label class="switch">
-                                                                                                            <input type="checkbox" id="chb-follower_${follower.getUserModel().getId()}">
-                                                                                                            <label class="slider" for="chb-follower_${follower.getUserModel().getId()}">Theo dõi</label>
-                                                                                                        </label>
-                                                                                                    </div>-->
+<!--                                                    <div class="btn-follow-item">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="chb-follower_${follower.getUserModel().getId()}">
+                                                            <label class="slider" for="chb-follower_${follower.getUserModel().getId()}">Theo dõi</label>
+                                                        </label>
+                                                    </div>-->
                                                 </div>
                                             </div>
                                         </a>
@@ -107,12 +107,12 @@
                                                         </div>
                                                     </div>
 
-                                                    <!--                                                <div class="btn-follow-item">
-                                                                                                        <label class="switch">
-                                                                                                            <input type="checkbox" id="chb-follower_${follower.getUserModel().getId()}">
-                                                                                                            <label class="slider" for="chb-follower_${follower.getUserModel().getId()}">Theo dõi</label>
-                                                                                                        </label>
-                                                                                                    </div>-->
+<!--                                                    <div class="btn-follow-item">
+                                                        <label class="switch">
+                                                            <input type="checkbox" id="chb-follower_${follower.getUserModel().getId()}">
+                                                            <label class="slider" for="chb-follower_${follower.getUserModel().getId()}">Theo dõi</label>
+                                                        </label>
+                                                    </div>-->
                                                 </div>
                                             </div>
                                         </a>
