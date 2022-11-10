@@ -10,6 +10,7 @@ import com.nhom01.hoda.dao.impl.*;
 import com.nhom01.hoda.model.AnnounmentModel;
 import com.nhom01.hoda.service.IAnnounmentService;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.inject.Inject;
 
 
@@ -25,6 +26,21 @@ public class AnnounmentService extends AbstractDao implements IAnnounmentService
         announmentModel.setCreatedtime(new Timestamp(System.currentTimeMillis()));
         
         return announmentDao.insertAnnReport(announmentModel);
+    }
+
+    @Override
+    public List<AnnounmentModel> getAllAnnoumentOfUser(long uid) {
+        return announmentDao.getAllAnnoumentOfUser(uid);
+    }
+
+    @Override
+    public List<AnnounmentModel> getAllAnnoumentSeenOfUser(long uid) {
+        return announmentDao.getAllAnnoumentSeenOfUser(uid);
+    }
+
+    @Override
+    public void updateAllStatus(long uid) {
+        announmentDao.updateAllStatus(uid);
     }
 
     

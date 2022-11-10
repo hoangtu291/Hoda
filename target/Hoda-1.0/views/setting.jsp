@@ -22,9 +22,9 @@
             <div class="left"></div>
             <div class="center" style="background: #fff;">
                 <ul class="list-group list-group-flush">
-                    <li class="btn list-group-item text-start" type="button" data-bs-toggle="collapse" data-bs-target="#selectLangCollapse" aria-expanded="false" aria-controls="selectLangCollapse">Language</li>
+                    <li class="btn list-group-item text-start" type="button" data-bs-toggle="collapse" data-bs-target="#selectLangCollapse" aria-expanded="false" aria-controls="selectLangCollapse"><span label-lang="SETTING_BUTTON_LANGUAGES" class="multilang"></span></li>
                     <div class="collapse multi-collapse" id="selectLangCollapse">
-                        <span class="mx-3" style="font-size: 14px; font-weight: 700">Language:</span>
+                        <span class="mx-3" style="font-size: 14px; font-weight: 700"><span label-lang="SETTING_BUTTON_LANGUAGES" class="multilang"></span>:</span>
                         <div class="card card-body" style="border:none">
 
                             <select id="select_Lang" class="form-select" aria-label="Default select example">
@@ -39,9 +39,9 @@
                             </select>
                         </div>
                     </div>
-                    <li class="btn list-group-item text-start" type="button" data-bs-toggle="collapse" data-bs-target="#aboutUsCollapse" aria-expanded="false" aria-controls="aboutUsCollapse">About us</li>
+                    <li class="btn list-group-item text-start" type="button" data-bs-toggle="collapse" data-bs-target="#aboutUsCollapse" aria-expanded="false" aria-controls="aboutUsCollapse"><span label-lang="SETTING_BUTTON_ABOUT_US" class="multilang"></span></li>
                     <div class="collapse multi-collapse" id="aboutUsCollapse">
-                        <span class="mx-3" style="font-size: 14px; font-weight: 700">About us:</span>
+                        <span class="mx-3" style="font-size: 14px; font-weight: 700"><span label-lang="SETTING_BUTTON_ABOUT_US" class="multilang"></span>:</span>
                         <div class="card card-body" style="border:none">
                             <ul>
                                 <li>Lê Hoàng Tú</li>

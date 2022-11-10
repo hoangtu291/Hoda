@@ -6,6 +6,7 @@ import com.nhom01.hoda.model.ReportTypeModel;
 import com.nhom01.hoda.service.ICategoryService;
 import com.nhom01.hoda.service.IPostService;
 import com.nhom01.hoda.service.IReportTypeService;
+import com.nhom01.hoda.service.IViewService;
 import java.io.IOException;
 import java.util.List;
 import javax.inject.Inject;
@@ -28,6 +29,9 @@ public class HomeController extends HttpServlet {
 
     @Inject
     IReportTypeService reportTypeService;
+    
+    @Inject
+    IViewService viewService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,18 +45,31 @@ public class HomeController extends HttpServlet {
         switch (path) {
             case "/logout":
                 session.removeAttribute("account");
+                session.removeAttribute("admin");
+                String site = "/";
+                response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+                response.setHeader("Location", site);
                 postModels = postService.getAllPost();
+                session.removeAttribute("category");
                 break;
             case "/category":
                 long cid = Long.parseLong(request.getParameter("cid"));
+                session.setAttribute("category", cid);
                 postModels = postService.getPostByCateld(cid);
                 break;
             default:
+                session.removeAttribute("category");
                 postModels = postService.getAllPost();
                 break;
         }
 
-        
+        if (session.getAttribute("admin") != null) {
+            session.removeAttribute("account");
+            String site = "/admin/home";
+            response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+            response.setHeader("Location", site);
+        }
+
         List<CategoryModel> categoryModels = categoryService.getAll();
         List<ReportTypeModel> reportTypeModels = reportTypeService.getAll();
 
@@ -64,6 +81,7 @@ public class HomeController extends HttpServlet {
             session.setAttribute("lang", "en-US");
         }
 //        session.setAttribute("lang", "vi-VN");
+        viewService.updateView();
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/post.jsp");
         rd.forward(request, response);

@@ -47,13 +47,14 @@
         <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.17.1/extensions/mobile/bootstrap-table-mobile.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-        <script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+        <!--        <script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>-->
+        <script src="../template/js/language.js"></script>
         <script src="<c:url value='/template/js/home.js' />"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="../template/js/script.js"></script>
-        <script src="../template/js/language.js"></script>
+
 
         <script src="../template/lib/js/config.min.js"></script>
         <script src="../template/lib/js/util.min.js"></script>
@@ -77,14 +78,41 @@
                 $('.btn-home').children().addClass('bi-house-door-fill');             
             } else if (pathname.indexOf("suggest") !== -1) {
                 $('.btn-people').children().removeClass('bi-people');
-                $('.btn-people').children().addClass('bi-people-fill');   
-            }else if (pathname.indexOf("notification") !== -1) {
-                $('.btn-notification').children().removeClass('bi-bell');
-                $('.btn-notification').children().addClass('bi-bell-fill');   
-            }else if (pathname.indexOf("setting") !== -1) {
+                $('.btn-people').children().addClass('bi-people-fill');
+            } else if (pathname.indexOf("notification") !== -1) {
+                $('.btn-notification .bi').removeClass('bi-bell');
+                $('.btn-notification .bi').addClass('bi-bell-fill');
+            } else if (pathname.indexOf("setting") !== -1) {
                 $('.btn-setting').children().removeClass('bi-gear');
-                $('.btn-setting').children().addClass('bi-gear-fill');   
+                $('.btn-setting').children().addClass('bi-gear-fill');
             }
+
+
+            <c:if test="${not empty sessionScope.account}">
+            (function () {
+                function getNumNotification() {
+                    $.ajax({
+                        url: '/api-announment',
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (data) { // check if available
+                            if (data > 0) { // get and check data value
+                                $('#nav-Notification').html(`<span style="width: 10px; height: 11px;"  class="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle">
+                                    <div id=""></div>
+                                    <span class="visually-hidden"></span>
+                                </span>
+                            <i class="bi bi-bell"></i>`);
+                            }
+                        }
+                    });
+                }
+
+                setInterval(function () { // run function every 2000 ms
+                    getNumNotification();
+                }, 2000);
+                getNumNotification(); // also run function on init
+            })();
+            </c:if>
         </script>
     </body>
 </html>

@@ -47,7 +47,7 @@
                 <div class="main-panel">
                     <dec:body/>
                     <!-- partial:../../partials/_footer.html -->
-                    <%@ include file="/common/ADMIN/footer.jsp" %>
+                    <%--<%@ include file="/common/ADMIN/footer.jsp" %>--%>
                 </div>
             </div>
         </div>
@@ -61,11 +61,15 @@
             var dataChart = [];
             var dataLabels = [];
             <c:forEach items="${requestScope.CATEGORIES}" var="cate" varStatus="loop">
-                dataChart[${loop.index}] = ${cate.getTotal()};
-                
-                dataLabels[${loop.index}] = '${cate.getName()}';
+            dataChart[${loop.index}] = ${cate.getTotal()};
+                <c:if test="${sessionScope.lang == 'vi-VN'}">
+            dataLabels[${loop.index}] = '${cate.getName()}';
+                </c:if>
+                <c:if test="${sessionScope.lang == 'en-US'}">
+            dataLabels[${loop.index}] = '${cate.getNameEng()}';
+                </c:if>
             </c:forEach>
-            console.log(dataChart);
+//            console.log(dataChart);
 
         </script>
         <script src="<c:url value='/template/ADMIN/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' />"></script>
@@ -73,16 +77,29 @@
 
         <!-- End plugin js for this page -->
         <!-- inject:js -->
+        <script src="<c:url value='/template/js/language.js' />"></script>
         <script src="<c:url value='/template/ADMIN/js/off-canvas.js' />"></script>
         <script src="<c:url value='/template/ADMIN/js/hoverable-collapse.js' />"></script>
         <script src="<c:url value='/template/ADMIN/js/template.js' />"></script>
         <script src="<c:url value='/template/ADMIN/js/settings.js' />"></script>
         <script src="<c:url value='/template/ADMIN/js/todolist.js' />"></script>
+        <script>
+            //select LANG
+            $('#select_Lang').change(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/api-lang?lang=" + $('#select_Lang').val(),
+                    success: function () {
+                        window.location.href = "/admin/home";
+                    }
+                });
+            });
+        </script>
         <!-- endinject -->
         <!-- Custom js for this page-->
         <script src="<c:url value='/template/ADMIN/js/dashboard.js' />"></script>
         <script src="<c:url value='/template/ADMIN/js/Chart.roundedBarCharts.js' />"></script>
-        <script src="<c:url value='/template/js/language.js' />"></script>
+
         <!-- End custom js for this page-->
     </body>
 </html>

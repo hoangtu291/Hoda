@@ -14,13 +14,18 @@
                                 <div class="col-sm-12">
                                     <div class="statistics-details d-flex align-items-center justify-content-around">
                                         <div>
-                                            <p class="statistics-title">Total Post</p>
-                                            <h3 class="rate-percentage">${requestScope.POSTS.size()} posts</h3>
+                                            <p class="statistics-title"><span label-lang="ADMIN_HOME_NUM_TOTAL_POST" class="multilang"></span></p>
+                                            <h3 class="rate-percentage">${requestScope.POSTS.size()} <span label-lang="ADMIN_HOME_NUM_POST" class="multilang"></span></h3>
 
                                         </div>
                                         <div>
-                                            <p class="statistics-title">Total User</p>
-                                            <h3 class="rate-percentage">${requestScope.USERS.size()} users</h3>
+                                            <p class="statistics-title"><span label-lang="ADMIN_HOME_NUM_TOTAL_USER" class="multilang"></span></p>
+                                            <h3 class="rate-percentage">${requestScope.USERS.size()} <span label-lang="ADMIN_HOME_NUM_USER" class="multilang"></span></h3>
+                                        </div>
+                                        
+                                        <div>
+                                            <p class="statistics-title"><span label-lang="ADMIN_HOME_NUM_TOTAL_VISITED" class="multilang"></span></p>
+                                            <h3 class="rate-percentage">${requestScope.TOTAL_VIEW} <span label-lang="ADMIN_HOME_NUM_VISITED" class="multilang"></span></h3>
                                         </div>
 
                                     </div>
@@ -34,8 +39,8 @@
                                                 <div class="card-body">
                                                     <div class="d-sm-flex justify-content-between align-items-start">
                                                         <div>
-                                                            <h4 class="card-title card-title-dash">Thống kê danh mục</h4>
-                                                            <h5 class="card-subtitle card-subtitle-dash">Số bài viết trên từng thể loại</h5>
+                                                            <h4 class="card-title card-title-dash"><span label-lang="ADMIN_HOME_CHART_CATEGORY" class="multilang"></span></h4>
+                                                            <h5 class="card-subtitle card-subtitle-dash"><span label-lang="ADMIN_HOME_CHART_CATEGORY_LABEL" class="multilang"></span></h5>
                                                         </div>
                                                         <div id="performance-line-legend"></div>
                                                     </div>
@@ -55,12 +60,7 @@
                                                 <div class="card-body">
                                                     <div class="table-responsive  mt-1">
                                                         <table class="table select-table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>User</th>
-                                                                    <th>Status</th>
-                                                                </tr>
-                                                            </thead>
+           
                                                             <tbody>
                                                                 <c:forEach items="${requestScope.USERS}" var="user" end="9">
                                                                     <tr>
@@ -73,7 +73,7 @@
                                                                             </div>
                                                                         </td>
 
-                                                                        <td><div class="badge badge-opacity-warning">In progress</div></td>
+                                                                        
                                                                     </tr>
                                                                 </c:forEach>
                                                             </tbody>
