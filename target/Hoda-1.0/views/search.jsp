@@ -9,9 +9,9 @@
         <title>Search | HODA</title>
         <link href="IMG/Logo_Xanh.png" rel="shortcut icon" type="images/vnd.microsoft.icon">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-        <link rel="stylesheet" href="../template/css/search.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">     
         <link rel="stylesheet" href="../template/css/post.css">
+        <link rel="stylesheet" href="../template/css/search.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
@@ -221,6 +221,7 @@
                                                         </div>
                                                         <div class="footer-post d-flex flex-row">                        
                                                             <div id="modalComment_pid_${post.getId()}" class="modal fade" role="dialog" tabindex="-1">
+                                                                <div style="background: #000; width: 100vw; height: 100vh; position: fixed; opacity: .5;"></div>
                                                                 <div class="modal-dialog modal-dialog-centered mx-auto p-0">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">

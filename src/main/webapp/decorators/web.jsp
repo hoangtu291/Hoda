@@ -75,8 +75,8 @@
             var pathname = window.location.pathname;
             if (pathname.indexOf("home") !== -1) {
                 $('.btn-home').children().removeClass('bi-house-door');
-                $('.btn-home').children().addClass('bi-house-door-fill');
-            } else if (pathname.indexOf("suggestion") !== -1) {
+                $('.btn-home').children().addClass('bi-house-door-fill');             
+            } else if (pathname.indexOf("suggest") !== -1) {
                 $('.btn-people').children().removeClass('bi-people');
                 $('.btn-people').children().addClass('bi-people-fill');
             } else if (pathname.indexOf("notification") !== -1) {

@@ -91,17 +91,17 @@ function dislike(sessionid, pid) {
     });
 }
 function openComment(pid) {
-    console.log(pid);
-    console.log('#btn-comment_id_' + pid);
+//    console.log(pid);
+//    console.log('#btn-comment_id_' + pid);
     document.querySelector('#' + 'btn-comment_id_' + pid).classList.toggle('green');
 }
 function closeComment(pid) {
-    console.log(pid);
-    console.log('#btn-close_id_' + pid);
+//    console.log(pid);
+//    console.log('#btn-close_id_' + pid);
     document.querySelector('#' + 'btn-comment_id_' + pid).classList.remove('green');
 }
 function sendCommentToInput(id, pid, uid, sessionId, cmtid) {
-    console.log(uid === sessionId);
+//    console.log(uid === sessionId);
     if (uid === sessionId) {
         var comment = document.querySelector('#' + 'comment_' + id + "_" + pid + "_" + uid);
         var content = comment.querySelector('.content-comment').textContent;
@@ -140,7 +140,7 @@ function sendCommentToInput(id, pid, uid, sessionId, cmtid) {
                     document.querySelector('#' + 'content-comment_id_' + pid).value = "";
                     console.log(data);
                     $('#comment_' + cmtid).remove();
-                    $('#list-comment_'+pid).prepend(`<li class="d-flex flex-row" id="comment_${data.commentModel.id}">
+                    $('#list-comment_'+pid).prepend(`<li class="d-flex flex-row pe-3" id="comment_${data.commentModel.id}">
                                                             <div class="pe-2">
                                                                 <img src="${data.userModel.profileModel.avatar}"
                                                                      class="d-block rounded-circle" alt=""

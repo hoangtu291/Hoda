@@ -46,6 +46,15 @@
                 background-color: #1d9000;
                 color: #fff;
             }
+            .modal-backdrop.show {
+                opacity: .5;
+            }
+            .modal-backdrop.fade {
+                opacity: 0;
+            }
+            .modal-backdrop {
+                z-index: 1;
+            }
         </style>
         <title>Trang cá nhân</title>
     </head>
@@ -338,7 +347,8 @@
                                             <c:set var="totalDislike" scope="session" value="${0}"/>
                                             <c:set var="totalComment" scope="session" value="${0}"/>
                                             <c:set var="like" scope="session" value=" "/>
-
+                                            <c:set var="totalComment" scope="session" value="${0}"/>
+                                            
                                             <c:forEach items="${post.getInteractModels()}" var="interact" varStatus="loop">
                                                 <c:if test="${interact.getFeelModel().getId()!=0 && interact.getFeelModel().getStatus()==1 }">
                                                     <c:if test="${interact.getUserModel().getId() == sessionScope.account.getId()}">
@@ -389,6 +399,7 @@
                                                 </div>
                                                 <div class="footer-post d-flex flex-row">                        
                                                     <div id="modalComment_pid_${post.getId()}" class="modal fade" role="dialog" tabindex="-1">
+                                                        <div style="background: #000; width: 100vw; height: 100vh; position: fixed; opacity: .5;"></div>
                                                         <div class="modal-dialog modal-dialog-centered mx-auto p-0">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">

@@ -4,16 +4,16 @@
     <nav class="navbar navbar-expand fixed-bottom p-0" id="footer-nav">
         <div class="container-fluid" id="tabbar" style="height: 100%">
             <ul class="navbar-nav" id="footer-icon">
-                <li class="nav-item my-auto" onclick="changeColorIcon()">
+                <li class="nav-item my-auto">
                     <a href="/home">
                         <button class="btn-home d-block">
                             <i class="bi bi-house-door"></i>
                         </button>
                     </a>
                 </li>
-                <li class="nav-item my-auto" onclick="changeColorIcon()">
+                <li class="nav-item my-auto">
                     <c:if test="${not empty sessionScope.account}">
-                        <a href="#">
+                        <a href="/suggest">
                             <button class="btn-people d-block">
                                 <i class="bi bi-people"></i>
                             </button>
@@ -27,7 +27,7 @@
                         </a>
                     </c:if>
                 </li>
-                <li class="nav-item my-auto" onclick="changeColorIcon()">
+                <li class="nav-item my-auto">
                     <c:if test="${not empty sessionScope.account}">
                         <button class="btn-add-post d-block" id="two">
                             <i class="bi bi-plus-circle"></i>
@@ -42,7 +42,7 @@
                         </a>
                     </c:if>
                 </li>
-                <li class="nav-item my-auto" onclick="changeColorIcon()">
+                <li class="nav-item my-auto">
                     <c:if test="${not empty sessionScope.account}">
                         <a href="/notification">
                             <button id="nav-Notification" class="btn-notification d-block position-relative ">
@@ -61,7 +61,7 @@
                         </a>
                     </c:if>
                 </li>
-                <li class="nav-item my-auto" onclick="changeColorIcon()">
+                <li class="nav-item my-auto">
                     <a href="/setting">
                         <button class="btn-setting d-block">
                             <i class="bi bi-gear"></i>
@@ -71,19 +71,4 @@
             </ul>
         </div>
     </nav>
-    <script>
-        function changeColorIcon() {
-            console.log(document.querySelector('#footer-icon'));
-//    if (document.querySelector('#' + 'btn-like_id_' + pid).classList.contains('green')) {
-//        document.querySelector('#' + 'btn-like_id_' + pid).classList.remove('green');
-//
-//    } else {
-//        if (document.querySelector('#' + 'btn-dislike_id_' + pid).classList.contains('green')) {
-//            document.querySelector('#' + 'btn-dislike_id_' + pid).classList.remove('green');
-//        }
-//        document.querySelector('#' + 'btn-like_id_' + pid).classList.toggle('green');
-//
-//    }
-        }
-    </script>
 </footer>

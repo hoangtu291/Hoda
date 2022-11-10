@@ -194,14 +194,14 @@ $('.btn-send').click(function (event) {
     //        sendComment();
     var id = $(this).attr("id");
     id = id.substring(id.lastIndexOf("_") + 1);
-    console.log(id);
+//    console.log(id);
     var data = {};
     var formData = $('#form-comment_' + id).serializeArray();
     $.each(formData, function (i, v) {
         data["" + v.name + ""] = v.value;
     });
 
-    console.log(data);
+//    console.log(data);
 
     $.ajax({
         type: "POST",
