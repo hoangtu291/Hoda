@@ -12,7 +12,7 @@
     <body lang="${sessionScope.lang}">
         <main class="center">
             <div class="content-top d-flex">
-                <h5>Goi y nguoi theo doi</h5>
+                <h5> <span label-lang="SUGGEST_USER_TITLE" class="multilang"></span></h5>
             </div>
             <div class="list-user" id="list-user">
                 
@@ -29,12 +29,7 @@
                                         <span>${user.getProfileModel().getFullName()}</span>
                                     </div>
                                 </div>
-                                    <label class="switch btn-follow-user" id="btn-followUser_${user.getId()}" 
-                                           onmousedown="dataFollowUser(${sessionScope.account.getId()}, ${user.getId()}, '${sessionScope.lang}')">
-                                        <input type="checkbox" id="chb-follower_${user.getId()}"
-                                               <c:if test="${requestScope.ISFOLLOW == false}">checked</c:if>>
-                                        <label class="slider" for="chb-follower_${user.getId()}"><span style="pointer-events: none;" label-lang="PERSONAL_BTN_FOLLOW" class="multilang"></span></label>
-                                    </label>
+                                    
                             </div>
                         </div>
                     </a>

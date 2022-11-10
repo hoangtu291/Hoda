@@ -28,6 +28,7 @@ D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\AnnounmentAPI.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\IReportTypeService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\AnnounmentService.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\service\impl\FollowUserService.java
+D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\SuggestController.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\model\LoginTypeModel.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\mapper\RowMapper.java
 D:\JAVA\Hoda\src\main\java\com\nhom01\hoda\controller\API\FeelAPI.java
